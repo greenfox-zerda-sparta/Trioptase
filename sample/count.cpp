@@ -11,5 +11,6 @@ int main(int argc, char* argv[]) {
 }
 
 void count(int providedAge) {
-  cout << "Hi everyone!\nI'm " << providedAge << " years old." << endl;
+  int age = providedAge;
+  cout << "Hi everyone!\nI'm " << age << " years old." << endl;
 }

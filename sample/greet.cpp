@@ -11,4 +11,5 @@ int main(int argc, char* argv[]) {
 
 void printname(char* name) {
   cout << "My name is: " << name;
+  cout << " and I was born in " << 5 << ". month";
 }

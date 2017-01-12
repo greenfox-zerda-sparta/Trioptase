@@ -1,0 +1,13 @@
+*~
+.exe
+.sln
+.vcxproj
+.filters
+.obj
+.ilk
+.DS_Store
+.project
+.settings
+.classpath
+.metadata
+.idb

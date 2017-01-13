@@ -7,7 +7,7 @@ void count(int);
 
 int main(int argc, char* argv[]) {
   count(26);
-	return 0;
+  return 0;
 }
 
 void count(int providedAge) {

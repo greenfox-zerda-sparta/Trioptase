@@ -10,6 +10,7 @@ int main(int argc, char* argv[]) {
   return 0;
 }
 
-void count(unsigned int providedAge) {
+void count(unsigned int providedAge, unsigned short int month) {
   cout << "Hi everyone!\nI'm " << providedAge << " years old." << endl;
+  cout << "And I was born in " << month << ". month" << endl;
 }

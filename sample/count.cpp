@@ -3,10 +3,13 @@
 using std::cout;
 using std::endl;
 
+const int MY_AGE = 26;
+
 void count(int);
 
 int main(int argc, char* argv[]) {
-  count(26);
+  int month = MY_AGE * 12;
+  count(MY_AGE, month);
   return 0;
 }
 

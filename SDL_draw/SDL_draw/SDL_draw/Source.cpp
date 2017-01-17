@@ -4,8 +4,8 @@
 using std::cerr;
 using std::endl;
 
-const int WINDOW_HEIGHT = 320;
-const int WINDOW_WIDTH = 320;
+const int WINDOW_HEIGHT = 20;
+const int WINDOW_WIDTH = 20;
 
 int main(int argc, char* argv[]) {
   SDL_Init(SDL_INIT_EVERYTHING);
@@ -14,10 +14,13 @@ int main(int argc, char* argv[]) {
   SDL_Surface* picture;
   SDL_Surface* picture2;
   
-  window = SDL_CreateWindow("title", 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
+  window = SDL_CreateWindow("title", 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_FULLSCREEN_DESKTOP);
+  // SDL_SetWindowPosition(window, 200, 200);
+  
   // get the empty window as a surface
   pureSurface = SDL_GetWindowSurface(window);
- /// pureSurface = SDL_LoadBMP("lego.bmp");
+  
+  /// pureSurface = SDL_LoadBMP("lego.bmp");
   picture = SDL_LoadBMP("pic.bmp");
   picture2 = SDL_LoadBMP("lego.bmp");
  

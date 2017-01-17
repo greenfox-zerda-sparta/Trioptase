@@ -30,12 +30,14 @@ int main(int argc, char* argv[]) {
   //gets the texture's parameters(SDL_Texture, SDL_Pixel_Format, SDL_Texture_Acces) see in SDL_Texture, and gets the width and the heigth;
   SDL_QueryTexture(texture, NULL, NULL, &textureWidth, &textureHeigth);
 
+  //creates a recangular sized virtual box on the screen for...
   SDL_Rect rectangle;
   rectangle.x = WIDTH;
   rectangle.y = HEIGHT;
   rectangle.w = textureWidth;
   rectangle.h = textureHeigth;
   
+  //cleares the renderer 
   SDL_RenderClear(renderer);
   SDL_RenderCopy(renderer, texture, NULL, &rectangle);
   SDL_RenderPresent(renderer);

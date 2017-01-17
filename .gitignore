@@ -35,6 +35,11 @@
 *.opendb
 *.sln
 *.filters
+*.ilk
+*.pdb
+*.idb
+*.tlog
+*.log
 
 # Auxillary Files
 *.txt

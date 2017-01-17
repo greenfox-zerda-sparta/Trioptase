@@ -44,3 +44,7 @@
 # Auxillary Files
 *.txt
 *.bmp
+
+# SDL extensions
+*.user
+*.swp

@@ -4,4 +4,3 @@
 <h2>Team:<ul><li>Ferenc Tatai</li> <li>Daniel <i>Lego</i> Korompai</li> <li>Kristof Czetenyi</li></ul></h2>
 <h2>Mentor: Daniel Vattay</h2>
 Project started: 12.01.2017 <br>
->>>>>>> ce6014675679eb9f01027ba26bd158f55feca200

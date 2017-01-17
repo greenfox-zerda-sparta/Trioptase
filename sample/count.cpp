@@ -10,7 +10,6 @@ int main(int argc, char* argv[]) {
   return 0;
 }
 
-void count(int providedAge) {
-  int age = providedAge;
-  cout << "Hi everyone!\nI'm " << age << " years old." << endl;
+void count(unsigned int providedAge) {
+  cout << "Hi everyone!\nI'm " << providedAge << " years old." << endl;
 }

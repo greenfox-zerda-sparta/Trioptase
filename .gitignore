@@ -27,3 +27,15 @@
 *.exe
 *.out
 *.app
+
+# Visual Studio Library Files
+*.vs
+*.vcxproj
+*.db
+*.opendb
+*.sln
+*.filters
+
+# Auxillary Files
+*.txt
+*.bmp

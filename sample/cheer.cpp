@@ -10,6 +10,8 @@
 
 using namespace std;
 
+const int TEAM_SIZE = 3;
+
 void cheer(int number, char* baseLanguage) {
   cout << "Trioptase " << number << endl;
   cout << "my chosen base language is: " << baseLanguage << endl; 
@@ -17,7 +19,6 @@ void cheer(int number, char* baseLanguage) {
 
 int main() {
   char* lang = "c++";
-  int number_of_team_members = 3;
-  cheer(number_of_team_members, lang);
+  cheer(TEAM_SIZE, lang);
   return 0;
 }

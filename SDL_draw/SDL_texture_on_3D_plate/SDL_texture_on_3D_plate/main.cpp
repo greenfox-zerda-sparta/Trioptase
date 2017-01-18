@@ -1,5 +1,6 @@
 #include <SDL.h>
 #include <SDL_opengl.h>
+#include <glut.h>
 #include <iostream>
 
 float rgbToGl(float);

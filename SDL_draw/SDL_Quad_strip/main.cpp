@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include "SDL.h"
 #include <glut.h>
+#include "texture_functions.hpp"
 
 #define WIDTH 640
 #define HEIGHT 480
@@ -85,8 +86,10 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-void drawer(SDL_Window* screen)
-{
+GLuint texture; //texture
+GLuint texture2; //texture
+
+void drawer(SDL_Window* screen) {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
@@ -96,45 +99,49 @@ void drawer(SDL_Window* screen)
   glRotated(angleX, 1, 0, 0);
   glRotated(angleZ, 0, 0, 1);
 
-  /*INITIALIZATION OF TEXTURE*/
-  GLuint texture;
-  SDL_Surface* surf = SDL_LoadBMP("walking_seq.bmp");
-  if (surf == NULL) { //If failed, say why and don't continue loading the texture
-    printf("Error: \"%s\"\n", SDL_GetError()); return;
-  }
-  GLenum data_fmt; //Determine the data format of the surface by seeing how SDL arranges a test pixel.  This probably only works --  correctly for little-endian machines.
-  Uint8 test = SDL_MapRGB(surf->format, 0xAA, 0xBB, 0xCC) & 0xFF;
-  if (test == 0xAA) data_fmt = GL_RGB;
-  else if (test == 0xCC) data_fmt = 0x80E0;//GL_BGR;
-  else {
-    printf("Error: \"Loaded surface was neither RGB or BGR!\""); return;
-  }
-                      
-  glGenTextures(1, &texture);//Generate an array of textures.  We only want one texture (one element array), so trick                      
-  glBindTexture(GL_TEXTURE_2D, texture);
-  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, surf->w, surf->h, 0, data_fmt, GL_UNSIGNED_BYTE, surf->pixels);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-  SDL_FreeSurface(surf); //Unload SDL's copy of the data; we don't need it anymore because OpenGL now stores it in the texture.
-  glBindTexture(GL_TEXTURE_2D, texture); //Tell OpenGL that all subsequent drawing operations should try to use the current 2D texture
-  glEnable(GL_TEXTURE_2D);
-  /*END OF INITIALZATION TEXTURE*/
-
+  texture_init(texture, "pic.bmp");
+  texture_deinit(texture);
+  texture_init(texture2, "pic1.bmp");
+  texture_blind_and_enable(texture);
   /*DRAWING STARTS HERE*/
-  glBegin(GL_QUADS); 
+  glBegin(GL_QUAD_STRIP);
 
-  glTexCoord2f(seq + TextPosX, 1.0f); //All subsequent vertices will have an associated texture coordinate of (1,1)
-  glVertex3d(ScaleX * 1, ScaleY * 1, 0);
+  ///  glColor3ub(0, 255, 255);
+
+
+  glTexCoord2f(0, 0);
+  glVertex3d(ScaleX * (0), ScaleY * (0), 0); /// 0,0
+  glTexCoord2f(0, 1);
+  glVertex3d(ScaleX * (0), ScaleY * (1), 0); /// 0,1
+  glTexCoord2f(1, 0);
+  glVertex3d(ScaleX * (1), ScaleY * (0), 0); /// 1,0
+  glTexCoord2f(1, 1);
+  glVertex3d(ScaleX * (1), ScaleY * (1), 0); /// 1,1
   
-  glTexCoord2f(seq + TextPosX, 0.0f); //All subsequent vertices will have an associated texture coordinate of (1,0)
-  glVertex3d(ScaleX * 1, ScaleY * (-1), 0);
   
-  glTexCoord2f(0.0f + TextPosX, 0.0f); //All subsequent vertices will have an associated texture coordinate of (0,0)
-  glVertex3d(ScaleX * (-1), ScaleY * (-1), 0);
   
-  glTexCoord2f(0.0f + TextPosX, 1.0f); //All subsequent vertices will have an associated texture coordinate of (0,1)
-  glVertex3d(ScaleX * (-1), ScaleY * 1, 0);
+  glTexCoord2f(2, 0);
+  glVertex3d(ScaleX * (2), ScaleY * (0), 0); /// 2,0
+  glTexCoord2f(2, 1);
+  glVertex3d(ScaleX * (2), ScaleY * (1), 0); /// 2,1
+
+  glTexCoord2f(0, 1);
+  glVertex3d(ScaleX * (0), ScaleY * (1), 0); /// 0,1
+  glTexCoord2f(0, 2);
+  glVertex3d(ScaleX * (0), ScaleY * (2), 0); /// 0,2
+  glTexCoord2f(1, 1);
+  glVertex3d(ScaleX * (1), ScaleY * (1), 0); /// 1,1
+  glTexCoord2f(1, 2);
+  glVertex3d(ScaleX * (1), ScaleY * (2), 0); /// 1,2
+
+  glTexCoord2f(2, 1);
+  glVertex3d(ScaleX * (2), ScaleY * (1), 0); /// 2,1
+  glTexCoord2f(2, 2);
+  glVertex3d(ScaleX * (2), ScaleY * (2), 0); /// 2,2
+
+
   glEnd();
+
   /*DRAWING ENDS HERE*/
 
   glFlush();

@@ -99,8 +99,7 @@ void drawer(SDL_Window* screen) {
   glRotated(angleX, 1, 0, 0);
   glRotated(angleZ, 0, 0, 1);
 
-  texture_init(texture, "pic.bmp");
-  texture_deinit(texture);
+  /*TEXTURE INIT AND BEGIN STAFFS*/
   texture_init(texture2, "pic1.bmp");
   texture_blind_and_enable(texture);
   /*DRAWING STARTS HERE*/
@@ -119,12 +118,12 @@ void drawer(SDL_Window* screen) {
   glVertex3d(ScaleX * (1), ScaleY * (1), 0); /// 1,1
   
   
-  
+/*
   glTexCoord2f(2, 0);
   glVertex3d(ScaleX * (2), ScaleY * (0), 0); /// 2,0
   glTexCoord2f(2, 1);
   glVertex3d(ScaleX * (2), ScaleY * (1), 0); /// 2,1
-
+  
   glTexCoord2f(0, 1);
   glVertex3d(ScaleX * (0), ScaleY * (1), 0); /// 0,1
   glTexCoord2f(0, 2);
@@ -138,11 +137,69 @@ void drawer(SDL_Window* screen) {
   glVertex3d(ScaleX * (2), ScaleY * (1), 0); /// 2,1
   glTexCoord2f(2, 2);
   glVertex3d(ScaleX * (2), ScaleY * (2), 0); /// 2,2
-
+*/
 
   glEnd();
 
   /*DRAWING ENDS HERE*/
+  texture_disable();
+  texture_deinit(texture);
+  /*TEXTURE STAFFS END HERE*/
+
+  texture_init(texture, "pic.bmp");
+  texture_blind_and_enable(texture);
+  
+  glBegin(GL_QUAD_STRIP);
+
+  glTexCoord2f(1, 0);
+  glVertex3d(ScaleX * (1), ScaleY * (0), 0); /// 0,0
+  glTexCoord2f(1, 1);
+  glVertex3d(ScaleX * (1), ScaleY * (1), 0); /// 0,1
+  glTexCoord2f(2, 0);
+  glVertex3d(ScaleX * (2), ScaleY * (0), 0); /// 1,0
+  glTexCoord2f(2, 1);
+  glVertex3d(ScaleX * (2), ScaleY * (1), 0); /// 1,1                                     
+
+  glEnd();
+  texture_disable();
+  texture_deinit(texture);
+
+  texture_init(texture, "pic2.bmp");
+  texture_blind_and_enable(texture);
+
+  glBegin(GL_QUAD_STRIP);
+
+  glTexCoord2f(1, 1);
+  glVertex3d(ScaleX * (1), ScaleY * (1), 0); /// 0,0
+  glTexCoord2f(1, 2);
+  glVertex3d(ScaleX * (1), ScaleY * (2), 0); /// 0,1
+  glTexCoord2f(2, 1);
+  glVertex3d(ScaleX * (2), ScaleY * (1), 0); /// 1,0
+  glTexCoord2f(2, 2);
+  glVertex3d(ScaleX * (2), ScaleY * (2), 0); /// 1,1                                     
+
+  glEnd();
+  texture_disable();
+  texture_deinit(texture);
+
+  texture_init(texture, "pic3.bmp");
+  texture_blind_and_enable(texture);
+
+  glBegin(GL_QUAD_STRIP);
+
+  glTexCoord2f(0, 1);
+  glVertex3d(ScaleX * (0), ScaleY * (1), 0); /// 0,0
+  glTexCoord2f(0, 2);
+  glVertex3d(ScaleX * (0), ScaleY * (2), 0); /// 0,1
+  glTexCoord2f(1, 1);
+  glVertex3d(ScaleX * (1), ScaleY * (1), 0); /// 1,0
+  glTexCoord2f(1, 2);
+  glVertex3d(ScaleX * (1), ScaleY * (2), 0); /// 1,1                                     
+
+  glEnd();
+  texture_disable();
+  texture_deinit(texture);
+
 
   glFlush();
   SDL_GL_SwapWindow(screen);

@@ -1,27 +1,29 @@
-#include <iostream>
-#include <Windows.h>
-#include <SDL.h>
-#include <glut.h>
+#include "Header.h"
 
-const char* WINDOW_TITLE = "sprite on 3D surface";
-const int WINDOW_WIDTH = 640;
-const int WINDOW_HEIGHT = 480;
-const int WINDOW_X_POS = 0;
-const int WINDOW_Y_POS = 30;
-
-const double FOVY = 70; // field of view in degrees
-const double ASPECT = WINDOW_WIDTH / WINDOW_HEIGHT; // aspect of the WINDOW_WIDTH / WINDOW_HEIGHT
-const double Z_NEAR = 1; //Specifies the distance from the viewer to the near clipping plane (always positive).
-const double Z_FAR = 1000; //Specifies the distance from the viewer to the far clipping plane (always positive).
-
-
-void drawer(SDL_Window*);
-
+SDL_Texture* LoadTexture(std::string file_name, SDL_Renderer* renderer) {
+  SDL_Texture* texture = NULL;
+  SDL_Surface* surface = SDL_LoadBMP(file_name.c_str());
+  if (surface != NULL) {
+    texture = SDL_CreateTextureFromSurface(renderer, surface);
+  }
+  return texture;
+}
 
 int main(int argc, char* argv[]) {
-  SDL_Init(SDL_INIT_VIDEO);
-
+  SDL_Init(SDL_INIT_EVERYTHING);
   SDL_Window* window = SDL_CreateWindow(WINDOW_TITLE, WINDOW_X_POS, WINDOW_Y_POS, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_OPENGL);
+/*
+//additiions for the sprite
+  SDL_Renderer* character_renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+  SDL_Texture* image = LoadTexture("tojas.bmp", character_renderer);
+
+  SDL_Rect character_position;
+  character_position.h = 48;
+  character_position.w = 48;
+  character_position.x = 0;
+  character_position.y = 0;
+// here ends the sprite part
+*/
   SDL_GL_CreateContext(window);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
@@ -35,7 +37,7 @@ int main(int argc, char* argv[]) {
 
   while (running) {
 
-    drawer(window);
+    //drawer(window);
 
     while (SDL_PollEvent(&event)) {
       switch (event.type) {
@@ -53,7 +55,11 @@ int main(int argc, char* argv[]) {
     }
 
     drawer(window);
-
+    
+  //SDL_RenderClear(character_renderer);
+  //SDL_RenderCopy(character_renderer, image, NULL, &character_position);
+  //SDL_RenderPresent(character_renderer);
+    
   }
   SDL_DestroyWindow(window);
   SDL_Quit();
@@ -61,42 +67,3 @@ int main(int argc, char* argv[]) {
   return 0;
 }
 
-void drawer(SDL_Window* window) {
-
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  glMatrixMode(GL_MODELVIEW);
-  glLoadIdentity();
-          //X, Y, Z
-  gluLookAt(4, 3, 1,
-            0, 0, 0,
-            8, 6, 0); // EYE:3,4,2; CENTER:0,0,0; UP:0,0,1 
-
-// here i step over the 2 glRotated(angle, double, double); function
-
-  glBegin(GL_QUADS);
-  glColor3ub(255, 0, 0); // red
-  glVertex3d(1, 0, 1);  
-  glVertex3d(1, 0, -1);
-  glVertex3d(-1, 0, -1);
-  glVertex3d(-1, 0, 1);
-  glEnd();
-  
-  glBegin(GL_LINE_LOOP);
-  
-  glColor3ub(0, 255, 0); // green X
-  glVertex3d(100, 0, 0);
-  glVertex3d(-100, 0, 0); 
-  
-  glColor3ub(0, 0, 255); // blue Y
-  glVertex3d(0, 100, 0);
-  glVertex3d(0, -100, 0); 
-  
-  glColor3ub(255, 255, 255); // white Z
-  glVertex3d(0, 0, 100);
-  glVertex3d(0, 0, -100);
-  
-  glEnd();
-
-  glFlush();
-  SDL_GL_SwapWindow(window);
-}

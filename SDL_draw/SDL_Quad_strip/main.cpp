@@ -100,7 +100,7 @@ void drawer(SDL_Window* screen) {
   glRotated(angleZ, 0, 0, 1);
 
   /*TEXTURE INIT AND BEGIN STAFFS*/
-  texture_init(texture2, "pic1.bmp");
+  texture_init(texture2, "westeros_3.bmp");
   texture_blind_and_enable(texture);
   /*DRAWING STARTS HERE*/
   glBegin(GL_QUAD_STRIP);
@@ -146,7 +146,7 @@ void drawer(SDL_Window* screen) {
   texture_deinit(texture);
   /*TEXTURE STAFFS END HERE*/
 
-  texture_init(texture, "pic.bmp");
+  texture_init(texture, "westeros_1.bmp");
   texture_blind_and_enable(texture);
   
   glBegin(GL_QUAD_STRIP);
@@ -164,7 +164,7 @@ void drawer(SDL_Window* screen) {
   texture_disable();
   texture_deinit(texture);
 
-  texture_init(texture, "pic2.bmp");
+  texture_init(texture, "westeros_4.bmp");
   texture_blind_and_enable(texture);
 
   glBegin(GL_QUAD_STRIP);
@@ -182,7 +182,7 @@ void drawer(SDL_Window* screen) {
   texture_disable();
   texture_deinit(texture);
 
-  texture_init(texture, "pic3.bmp");
+  texture_init(texture, "westeros_2.bmp");
   texture_blind_and_enable(texture);
 
   glBegin(GL_QUAD_STRIP);

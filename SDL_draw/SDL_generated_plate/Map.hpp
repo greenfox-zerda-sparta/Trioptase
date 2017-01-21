@@ -12,7 +12,7 @@ private:
 public:
   Map();
   ~Map();
-  void generate_map(int, int);
+  void generate_map(int _beg, int repeat, int x, int z, char ax);
   void draw_square();
 };
 

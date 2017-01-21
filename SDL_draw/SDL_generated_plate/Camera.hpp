@@ -9,5 +9,6 @@ public:
   Camera();
   ~Camera();
   void place_camera();
+  void rotate_camera(double, double);
 };
 

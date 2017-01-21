@@ -2,6 +2,10 @@
 #include "Camera.hpp"
 #include "Axes.hpp"
 #include "Map.hpp"
+#define WIDTH 640
+#define HEIGHT 480
+double angle_x = 0;
+double angle_z = 0;
 
 int main(int argc, char* argv[]) {
   Opengl opgl;
@@ -11,22 +15,55 @@ int main(int argc, char* argv[]) {
   
   SDL_Event event;
   
-  opgl.opengl_init();
+  opgl.opengl_init(WIDTH, HEIGHT);
   
-  cam.place_camera();
-
-  ax.draw_axes();
-  quad_map.generate_map(3, 3);
-  
-  opgl.opengl_display();
 
   bool running = true;
+  int repeat = 0;
+  while (running) {
+    while (SDL_PollEvent(&event)) {
+      switch (event.type) {
+      case SDL_QUIT:
+        running = false;
+        break;
+      case SDL_KEYDOWN:
+        switch (event.key.keysym.sym) {
+        case SDLK_RIGHT:
+          break;
+        case SDLK_LEFT:
+          break;
+        case SDLK_UP:
+          repeat++;
+          break;
+        case SDLK_DOWN:
+          repeat--;
+          break;
+        case SDLK_ESCAPE:
+          running = false;
+          break;
+        }
+        break;
+        case SDL_MOUSEMOTION:
+        angle_z = event.motion.x + WIDTH / 2;
+        angle_x = HEIGHT / 2 + event.motion.y;
+        break;
+      }
+    }
+    opgl.opengl_sreenbuilder();
+    cam.place_camera();
+    cam.rotate_camera(angle_x, angle_z);
+    ax.draw_axes();
+    quad_map.generate_map(-2, repeat, 0, 0, 'x');
+    opgl.opengl_display();
+  }
+  
+  
   while (running) {
     SDL_PollEvent(&event);
     if (event.type == SDL_QUIT) {
       running = false;
     }
-    ax.draw_axes();
+    
   }
   SDL_Quit();
   return 0;

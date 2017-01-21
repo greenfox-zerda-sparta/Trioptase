@@ -10,23 +10,43 @@ Map::Map() {
 Map::~Map() {
 }
 
-void Map::generate_map(int size_x, int size_z) {
+void Map::generate_map(int _beg, int repeat, int x, int z, char ax) {
+  int beg = _beg;
+  int end = beg + 2;
+
   glBegin(GL_QUAD_STRIP);
   glColor3ub(0, 153, 76);
-
-  glVertex3d(scale_x * ((double)0) + size_x, scale_y * (0), scale_z * ((double)0) + size_z);
-  glVertex3d(scale_x * ((double)0) + size_x, scale_y * (0), scale_z * ((double)1) + size_z);
-  glVertex3d(scale_x * ((double)1) + size_x, scale_y * (0), scale_z * ((double)0) + size_z);
-  glVertex3d(scale_x * ((double)1) + size_x, scale_y * (0), scale_z * ((double)1) + size_z);
-
+  for (int j = beg + z; j < end + z; j++) {
+    for (int i = beg + x; i < end + x; i++) {
+      glVertex3d(double(i), 0, double(j));
+    }
+  }
   glEnd();
   
-  size_z--;
-  if (size_z < 0) {
+  switch (ax) {
+  case 'x':
+    x++;
+    z = 0;
+    ax = 'z';
+    break;
+  case 'z':
+    z++;
+    x = 0;
+    ax = 'd';
+    break;
+  case 'd':
+    x++;
+    // z++;
+    beg++;
+    ax = 'x';
+    break;
+  }
+  repeat--;
+  if (repeat < 0) {
     return;
   }
   else {
-    generate_map(size_x, size_z);
+    generate_map(beg, repeat, x, z, ax);
   }
 }
 
@@ -34,7 +54,7 @@ void Map::draw_square() {
 
   glBegin(GL_QUAD_STRIP);
 
-  
+  glColor3ub(0, 153, 76);
   glVertex3d(scale_x * (0), scale_y * (0), scale_z * (0)); /// 0,0
   glVertex3d(scale_x * (0), scale_y * (0), scale_z * (1)); /// 0,1
   glVertex3d(scale_x * (1), scale_y * (0), scale_z * (0)); /// 1,0

@@ -10,7 +10,8 @@ private:
 public:
   Opengl();
   ~Opengl();
-  void opengl_init();
+  void opengl_init(int, int);
+  void opengl_sreenbuilder();
   void opengl_display();
 };
 

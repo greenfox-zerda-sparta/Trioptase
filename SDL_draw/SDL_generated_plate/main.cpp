@@ -2,12 +2,12 @@
 #include "Camera.hpp"
 #include "Axes.hpp"
 #include "Map.hpp"
-#include "texture_functions.hpp"
 
 int main(int argc, char* argv[]) {
   Opengl opgl;
   Axes ax;
   Camera cam;
+  Map quad_map;
   
   SDL_Event event;
   
@@ -16,6 +16,7 @@ int main(int argc, char* argv[]) {
   cam.place_camera();
 
   ax.draw_axes();
+  quad_map.generate_map(3, 3);
   
   opgl.opengl_display();
 

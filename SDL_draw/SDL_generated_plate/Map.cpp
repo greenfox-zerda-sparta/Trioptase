@@ -49,12 +49,12 @@ void Map::generate_map(int _beg, int repeat, int x, int z, char ax, int pic) {
   case 'd':
     x++;
     // z++;
-    beg++;
     ax = 'x';
     break;
   }
   repeat--;
   pic++;
+  
   if (pic > texture_names.size() - 1) {
     pic = 0;
   }
@@ -76,4 +76,28 @@ void Map::draw_square() {
   glVertex3d(scale_x * (1), scale_y * (0), scale_z * (1)); /// 1,1
 
   glEnd();
+}
+
+void Map::generate_tile_net(int size) {
+  bool color = true;
+  if (size % 2 != 0) {
+    size++;
+  }
+  int shift = size / 2;
+  for (int x = 0 - shift; x < size - shift; x++) {
+    for (int z = 0 - shift; z < size - shift; z++) {
+      if (color)
+        glColor3f(1, 1, 1);
+      else
+        glColor3f(0, 0, 0);
+      color = !color;
+      glBegin(GL_POLYGON);
+      glVertex3i(x, 0, z);
+      glVertex3i((x + 1), 0, z);
+      glVertex3i((x + 1), 0, (z + 1));
+      glVertex3i(x, 0, (z + 1));
+      glEnd();
+    }
+    if (size % 2 == 0) color = !color;
+  }
 }

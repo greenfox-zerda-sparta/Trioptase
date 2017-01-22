@@ -16,5 +16,6 @@ public:
   ~Map();
   void generate_map(int _beg, int repeat, int x, int z, char ax, int pic);
   void draw_square();
+  void generate_tile_net(int);
 };
 

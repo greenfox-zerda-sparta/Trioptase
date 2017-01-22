@@ -2,6 +2,7 @@
 #include "Camera.hpp"
 #include "Axes.hpp"
 #include "Map.hpp"
+#include <iostream>
 #define WIDTH 640
 #define HEIGHT 480
 double angle_x = 0;
@@ -19,7 +20,7 @@ int main(int argc, char* argv[]) {
   
 
   bool running = true;
-  int repeat = 0;
+  int repeat = 1;
   while (running) {
     while (SDL_PollEvent(&event)) {
       switch (event.type) {
@@ -53,7 +54,9 @@ int main(int argc, char* argv[]) {
     cam.place_camera();
     cam.rotate_camera(angle_x, angle_z);
     ax.draw_axes();
-    quad_map.generate_map(-2, repeat, 0, 0, 'x', 0);
+    quad_map.generate_tile_net(repeat);
+    ///quad_map.generate_map(-1, repeat, 0, 0, 'x', 0);
+    
     opgl.opengl_display();
   }
   

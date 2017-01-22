@@ -67,14 +67,12 @@ void Map::generate_map(int _beg, int repeat, int x, int z, char ax, int pic) {
 }
 
 void Map::draw_square() {
-  glBegin(GL_QUAD_STRIP);
-
   glColor3ub(0, 153, 76);
+  glBegin(GL_QUAD_STRIP);
   glVertex3d(scale_x * (0), scale_y * (0), scale_z * (0)); /// 0,0
   glVertex3d(scale_x * (0), scale_y * (0), scale_z * (1)); /// 0,1
   glVertex3d(scale_x * (1), scale_y * (0), scale_z * (0)); /// 1,0
   glVertex3d(scale_x * (1), scale_y * (0), scale_z * (1)); /// 1,1
-
   glEnd();
 }
 

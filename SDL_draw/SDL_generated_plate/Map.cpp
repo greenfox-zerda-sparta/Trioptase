@@ -85,9 +85,9 @@ void Map::generate_tile_net(int size) {
   for (int x = 0 - shift; x < size - shift; x++) {
     for (int z = 0 - shift; z < size - shift; z++) {
       if (color)
-        glColor3f(1, 1, 1);
+        glColor3f(0.2, 1, 0.7);
       else
-        glColor3f(0, 0, 0);
+        glColor3f(0.3, 0.1, 0.5);
       color = !color;
       glBegin(GL_POLYGON);
       glVertex3i(x, 0, z);

@@ -45,8 +45,8 @@ int main(int argc, char* argv[]) {
         }
         break;
         case SDL_MOUSEMOTION:
-        angle_z = event.motion.x - WIDTH / 2;
-        angle_x = HEIGHT / 2 - event.motion.y;
+        angle_z = event.motion.x + WIDTH / 2;
+        angle_x = HEIGHT / 2 + event.motion.y;
         break;
       }
     }
@@ -55,7 +55,7 @@ int main(int argc, char* argv[]) {
     cam.rotate_camera(angle_x, angle_z);
     ax.draw_axes();
     quad_map.generate_tile_net(repeat);
-    //quad_map.draw_square();
+    ///quad_map.generate_map(-1, repeat, 0, 0, 'x', 0);
     
     opgl.opengl_display();
   }

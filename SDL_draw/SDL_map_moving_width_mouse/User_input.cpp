@@ -1,6 +1,6 @@
 #include "User_input.hpp"
 
-User_input::User_input() : WINDOW_HEIGHT(0), WINDOW_WIDTH(0) {
+User_input::User_input() : WINDOW_WIDTH(0), WINDOW_HEIGHT(0) {
   this->changing_x = 0;
   this->changing_y = 0;
   this->changing_mouse_x = 0;
@@ -8,7 +8,7 @@ User_input::User_input() : WINDOW_HEIGHT(0), WINDOW_WIDTH(0) {
   this->step = 20;
 }
 
-User_input::User_input(int height, int width, int start_pos_x, int start_pos_y) : WINDOW_HEIGHT(height), WINDOW_WIDTH(width) {
+User_input::User_input(int width, int height, int start_pos_x, int start_pos_y) : WINDOW_WIDTH(width), WINDOW_HEIGHT(height) {
   this->changing_x = start_pos_x;
   this->changing_y = start_pos_y;
   this->changing_mouse_x = 0;
@@ -44,8 +44,6 @@ void User_input::input_handler(bool& running) {
     case SDL_MOUSEMOTION:
       this->changing_mouse_x = event.motion.x;
       this->changing_mouse_y = event.motion.y;
-      ///std::cout << this->changing_mouse_x << std::endl;
-      ///std::cout << this->changing_mouse_y << std::endl;
       break;
     }
   }

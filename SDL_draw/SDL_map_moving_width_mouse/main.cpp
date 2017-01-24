@@ -10,11 +10,11 @@ const int MAP_SIZE(10);
 
 int main(int argc, char* argv[]) {
 
-  Window win(WINDOW_HEIGHT, WINDOW_WIDTH);
+  Window win(WINDOW_WIDTH, WINDOW_HEIGHT);
 
   User_input input;
 
-  Texture_manager text_man(WINDOW_HEIGHT, WINDOW_WIDTH);
+  Texture_manager text_man(WINDOW_WIDTH, WINDOW_HEIGHT);
 
   text_man.load("pics/wallpaper.jpg", "move", 1920, 1080, win.get_renderer());
   text_man.load("pics/64x64.png", "yoda", 64, 64, win.get_renderer());
@@ -25,8 +25,8 @@ int main(int argc, char* argv[]) {
     input.input_handler(running);
     win.render_clear();
     
-    text_man.draw("move", 0, 0, WINDOW_HEIGHT, WINDOW_WIDTH, win.get_renderer());
-    text_man.draw_frame("move", 0, 0, WINDOW_HEIGHT, WINDOW_WIDTH, input.get_changing_mouse_y(), input.get_changing_mouse_x(), win.get_renderer());
+    text_man.draw("move", 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, win.get_renderer());
+    text_man.draw_frame("move", 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
     
     text_man.draw("yoda", input.get_changing_x(), input.get_changing_y(), 64, 64, win.get_renderer());
 

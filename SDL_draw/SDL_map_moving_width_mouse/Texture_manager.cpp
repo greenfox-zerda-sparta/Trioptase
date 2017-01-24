@@ -1,21 +1,21 @@
 #include "Texture_manager.hpp"
 
-Texture_manager::Texture_manager() : WINDOW_HEIGHT(0), WINDOW_WIDTH(0) {
+Texture_manager::Texture_manager() : WINDOW_WIDTH(0), WINDOW_HEIGHT(0) {
 
 }
 
-Texture_manager::Texture_manager(int height, int width) : WINDOW_HEIGHT(height), WINDOW_WIDTH(width) {
+Texture_manager::Texture_manager(int width, int height) : WINDOW_WIDTH(width), WINDOW_HEIGHT(height) {
 }
 
 bool Texture_manager::load(std::string file_name, std::string id, int image_width, int image_height, SDL_Renderer* renderer) {
   SDL_Surface* temp_surface = IMG_Load(file_name.c_str());
-  if (temp_surface == 0) {
-    return false;
-  }
-
   std::pair<int, int> temp_pair;
   temp_pair.first = image_width;
   temp_pair.second = image_height;
+
+  if (temp_surface == 0) {
+    return false;
+  }
 
   this->texture = SDL_CreateTextureFromSurface(renderer, temp_surface);
   SDL_FreeSurface(temp_surface);
@@ -29,30 +29,25 @@ bool Texture_manager::load(std::string file_name, std::string id, int image_widt
 }
 
 void Texture_manager::draw(std::string id, int x, int y, int width, int height, SDL_Renderer* renderer, SDL_RendererFlip flip) {
+  this->srcrect.x = 0;
+  this->srcrect.y = 0;
+  this->srcrect.w = dstrect.w = width;
+  this->srcrect.h = dstrect.h = height;
+  this->dstrect.x = x;
+  this->dstrect.y = y;
 
-  SDL_Rect srcRect;
-  SDL_Rect destRect;
-  srcRect.x = 0;
-  srcRect.y = 0;
-  srcRect.w = destRect.w = width;
-  srcRect.h = destRect.h = height;
-  destRect.x = x;
-  destRect.y = y;
-  SDL_RenderCopyEx(renderer, textures[id], &srcRect, &destRect, 0, 0, flip);
+  SDL_RenderCopyEx(renderer, textures[id], &srcrect, &dstrect, 0, 0, flip);
 }
 
-void Texture_manager::draw_frame(std::string id, int x, int y, int width, int height, int change_y, int change_x, SDL_Renderer* renderer, SDL_RendererFlip flip) {
-  SDL_Rect srcRect;
-  SDL_Rect destRect;
-  
-  srcRect.x = 0 + change_x;
-  srcRect.y = 0 + change_y;
-  srcRect.w = destRect.w = width;
-  srcRect.h = destRect.h = height;
-  destRect.x = x;
-  destRect.y = y;
+void Texture_manager::draw_frame(std::string id, int x, int y, int width, int height, int change_x, int change_y, SDL_Renderer* renderer, SDL_RendererFlip flip) {
+  this->srcrect.x = 0 + change_x;
+  this->srcrect.y = 0 + change_y;
+  this->srcrect.w = dstrect.w = width;
+  this->srcrect.h = dstrect.h = height;
+  this->dstrect.x = x;
+  this->dstrect.y = y;
 
-  SDL_RenderCopyEx(renderer, textures[id], &srcRect, &destRect, 0, 0, flip);
+  SDL_RenderCopyEx(renderer, textures[id], &srcrect, &dstrect, 0, 0, flip);
 }
 
 Texture_manager::~Texture_manager() {

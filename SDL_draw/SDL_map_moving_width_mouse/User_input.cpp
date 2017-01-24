@@ -67,5 +67,9 @@ int User_input::get_changing_mouse_y() {
   return this->changing_mouse_y;
 }
 
+void User_input::set_step(int _value) {
+  this->step = _value;
+}
+
 User_input::~User_input() {
 }

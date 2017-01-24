@@ -7,23 +7,29 @@ Texture_manager::Texture_manager() : WINDOW_HEIGHT(0), WINDOW_WIDTH(0) {
 Texture_manager::Texture_manager(int height, int width) : WINDOW_HEIGHT(height), WINDOW_WIDTH(width) {
 }
 
-bool Texture_manager::load(std::string file_name, std::string id, SDL_Renderer* renderer) {
+bool Texture_manager::load(std::string file_name, std::string id, int image_width, int image_height, SDL_Renderer* renderer) {
   SDL_Surface* temp_surface = IMG_Load(file_name.c_str());
   if (temp_surface == 0) {
     return false;
   }
+
+  std::pair<int, int> temp_pair;
+  temp_pair.first = image_width;
+  temp_pair.second = image_height;
 
   this->texture = SDL_CreateTextureFromSurface(renderer, temp_surface);
   SDL_FreeSurface(temp_surface);
 
   if (this->texture != 0) {
     textures[id] = this->texture;
+    texture_resolution[id] = temp_pair;
     return true;
   }
   return false;
 }
 
 void Texture_manager::draw(std::string id, int x, int y, int width, int height, SDL_Renderer* renderer, SDL_RendererFlip flip) {
+
   SDL_Rect srcRect;
   SDL_Rect destRect;
   srcRect.x = 0;
@@ -38,7 +44,7 @@ void Texture_manager::draw(std::string id, int x, int y, int width, int height, 
 void Texture_manager::draw_frame(std::string id, int x, int y, int width, int height, int change_y, int change_x, SDL_Renderer* renderer, SDL_RendererFlip flip) {
   SDL_Rect srcRect;
   SDL_Rect destRect;
-
+  
   srcRect.x = 0 + change_x;
   srcRect.y = 0 + change_y;
   srcRect.w = destRect.w = width;

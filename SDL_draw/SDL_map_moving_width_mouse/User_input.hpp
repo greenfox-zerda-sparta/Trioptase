@@ -20,6 +20,7 @@ public:
   int get_changing_y();
   int get_changing_mouse_x();
   int get_changing_mouse_y();
+  void set_step(int _value);
   ~User_input();
 };
 

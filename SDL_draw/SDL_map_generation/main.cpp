@@ -203,6 +203,7 @@ int main(int argc, char* argv[]) {
     
     
   }
+  SDL_RenderClear(renderer);
 
   SDL_DestroyTexture(pictures[pic1]);
   SDL_DestroyTexture(pictures[pic2]);
@@ -210,7 +211,7 @@ int main(int argc, char* argv[]) {
   SDL_DestroyTexture(pictures[pic4]);
   SDL_DestroyTexture(pictures[yoda]);
 
-  SDL_RenderClear(renderer);
+
   SDL_DestroyWindow(window);
   
   SDL_QUIT;

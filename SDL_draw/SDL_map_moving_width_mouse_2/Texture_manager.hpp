@@ -21,7 +21,7 @@ public:
   void draw(std::string id, int x, int y, int width, int height, SDL_Renderer* renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
   void draw_frame(std::string id, int x, int y, int width, int height, int change_x, int change_y, SDL_Renderer* renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
   void draw_frame_dyn(std::string id, int x, int y, int width, int height, int change_x, int change_y, SDL_Renderer* renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
-
+  void draw_frame_dyn_pro_tile(std::string id, int x, int y, int width, int height, int change_x, int change_y, SDL_Renderer* renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
   ~Texture_manager();
 };
 

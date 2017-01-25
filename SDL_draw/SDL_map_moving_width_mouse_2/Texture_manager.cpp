@@ -66,5 +66,17 @@ void Texture_manager::draw_frame_dyn(std::string id, int x, int y, int width, in
   }
 }
 
+void Texture_manager::draw_frame_dyn_pro_tile(std::string id, int x, int y, int width, int height, int change_x, int change_y, SDL_Renderer * renderer, SDL_RendererFlip flip) {
+  this->srcrect.x = 0;
+  this->srcrect.y = 0;
+  this->srcrect.w = width;
+  this->srcrect.h = height;
+  this->dstrect.x = x * 64 - change_x * 2;
+  this->dstrect.y = y * 64 - change_y * 2;
+  this->dstrect.w = 64;
+  this->dstrect.h = 64;
+  SDL_RenderCopyEx(renderer, textures[id], &srcrect, &dstrect, 0, 0, flip);
+}
+
 Texture_manager::~Texture_manager() {
 }

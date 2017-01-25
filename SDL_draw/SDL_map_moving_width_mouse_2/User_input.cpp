@@ -5,7 +5,7 @@ User_input::User_input() : WINDOW_WIDTH(0), WINDOW_HEIGHT(0) {
   this->changing_y = 0;
   this->changing_mouse_x = 0;
   this->changing_mouse_y = 0;
-  this->step = 20;
+  this->step = 1;
 }
 
 User_input::User_input(int width, int height, int start_pos_x, int start_pos_y) : WINDOW_WIDTH(width), WINDOW_HEIGHT(height) {

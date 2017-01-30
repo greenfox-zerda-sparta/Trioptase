@@ -10,7 +10,7 @@ const int MAP_SIZE(30);
 
 int ticker(int steps); //map size -4 is recommended but it must be adjusted
 
-int main(int argc, char* argv[]) {
+int main_(int argc, char* argv[]) {
 
   Window win(WINDOW_WIDTH, WINDOW_HEIGHT);
 

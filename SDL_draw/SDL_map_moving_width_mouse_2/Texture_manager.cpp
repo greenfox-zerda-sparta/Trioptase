@@ -78,5 +78,14 @@ void Texture_manager::draw_frame_dyn_pro_tile(std::string id, int x, int y, int 
   SDL_RenderCopyEx(renderer, textures[id], &srcrect, &dstrect, 0, 0, flip);
 }
 
+SDL_Rect Texture_manager::get_actual_rect() {
+  SDL_Rect temp_rect;
+  temp_rect.x = this->srcrect.x;
+  temp_rect.y = this->srcrect.y;
+  temp_rect.w = this->dstrect.w;
+  temp_rect.h = this->dstrect.h;
+  return temp_rect;
+}
+
 Texture_manager::~Texture_manager() {
 }

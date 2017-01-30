@@ -3,8 +3,8 @@
 
 class Window {
 private:
-  SDL_Window* window;
-  SDL_Renderer* renderer;
+  SDL_Window* window = NULL;
+  SDL_Renderer* renderer = NULL;
   const int WINDOW_HEIGHT;
   const int WINDOW_WIDTH;
 public:

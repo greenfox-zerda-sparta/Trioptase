@@ -22,11 +22,14 @@ int main(int argc, char* argv[]) {
   text_man.load("pics/64x64.png", "yoda", 64, 64, win.get_renderer());
   text_man.load("pics/building.bmp", "builing", 128, 128, win.get_renderer());
   text_man.load("pics/grass.bmp", "grass", 64, 64, win.get_renderer());
+  
+  SDL_Rect* temp_rect = NULL;
+  bool contr = true;
 
   bool running = true;
   while (running) {
     /*user input handler. you can see the class*/
-    input.input_handler(running);
+    input.input_handler(running, temp_rect);
     /*You have to use this method at this point, like render present at the end of the loop*/
     win.render_clear();
 
@@ -45,6 +48,9 @@ int main(int argc, char* argv[]) {
     /*yoda holds its position on 4, 7*/
     text_man.draw_frame_dyn_pro_tile("yoda", 4, 7, WINDOW_WIDTH, WINDOW_HEIGHT, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
     /*you can controll yoda's movements on xy coords by direction buttons*/
+   
+    temp_rect = &text_man.get_actual_rect();
+
     text_man.draw_frame_dyn_pro_tile("yoda", input.get_changing_x(), input.get_changing_y(), WINDOW_WIDTH, WINDOW_HEIGHT, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
     
     if (input.get_changing_y() > 64 + (float)128 * 0.2) {

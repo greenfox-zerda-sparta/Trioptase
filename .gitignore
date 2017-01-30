@@ -42,12 +42,8 @@
 *.log
 
 # Auxillary Files
-*.txt
-*.bmp
-*.jpg
-*.gif
-*.png
 *.zip
+
 
 # SDL extensions
 *.user

@@ -13,6 +13,7 @@ private:
   const int WINDOW_HEIGHT;
   SDL_Rect srcrect; //source rect
   SDL_Rect dstrect; //destination rect
+  SDL_Rect actual_rect;
 public:
   Texture_manager();
   Texture_manager(int width, int height);

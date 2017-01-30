@@ -20,6 +20,7 @@ int main(int argc, char* argv[]) {
 
   text_man.load("pics/wallpaper.jpg", "background", 1920, 1080, win.get_renderer());
   text_man.load("pics/64x64.png", "yoda", 64, 64, win.get_renderer());
+  text_man.load("pics/black_64x64.png", "black", 64, 64, win.get_renderer());
   text_man.load("pics/building.bmp", "builing", 128, 128, win.get_renderer());
   text_man.load("pics/grass.bmp", "grass", 64, 64, win.get_renderer());
   
@@ -47,12 +48,12 @@ int main(int argc, char* argv[]) {
     text_man.draw_frame_dyn_pro_tile("yoda", ticker_status, ticker_status, WINDOW_WIDTH, WINDOW_HEIGHT, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
     /*yoda holds its position on 4, 7*/
     text_man.draw_frame_dyn_pro_tile("yoda", 4, 7, WINDOW_WIDTH, WINDOW_HEIGHT, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
+    
     /*you can controll yoda's movements on xy coords by direction buttons*/
-   
+    text_man.draw_frame_dyn_pro_tile("black", input.get_changing_x(), input.get_changing_y(), WINDOW_WIDTH, WINDOW_HEIGHT, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
+    
     temp_rect = &text_man.get_actual_rect();
 
-    text_man.draw_frame_dyn_pro_tile("yoda", input.get_changing_x(), input.get_changing_y(), WINDOW_WIDTH, WINDOW_HEIGHT, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
-    
     if (input.get_changing_y() > 64 + (float)128 * 0.2) {
     /*here you can define the order of objects but this is not sophistical solution. It's existed just for demonstration purpose*/
     }

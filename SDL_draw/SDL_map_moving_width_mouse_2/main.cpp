@@ -3,6 +3,8 @@
 #include "User_input.hpp"
 #include "Map.hpp"
 #include "Texture_manager.hpp"
+#include "Node.hpp"
+#include "Path_finder.hpp"
 
 const int WINDOW_WIDTH(640);
 const int WINDOW_HEIGHT(640);
@@ -10,7 +12,7 @@ const int MAP_SIZE(30);
 
 int ticker(int steps); //map size -4 is recommended but it must be adjusted
 
-int main_(int argc, char* argv[]) {
+int main(int argc, char* argv[]) {
 
   Window win(WINDOW_WIDTH, WINDOW_HEIGHT);
 

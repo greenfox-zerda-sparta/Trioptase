@@ -1,7 +1,3 @@
-// Astar.cpp
-// http://en.wikipedia.org/wiki/A*
-// Compiler: Dev-C++ 4.9.9.2
-// FB - 201012256
 #include <iostream>
 #include <iomanip>
 #include <queue>
@@ -208,7 +204,7 @@ string pathFind(const int & xStart, const int & yStart,
   return ""; // no route found
 }
 
-int main()
+int main_()
 {
   srand(time(NULL));
 

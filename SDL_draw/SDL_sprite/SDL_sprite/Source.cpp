@@ -33,8 +33,6 @@ int main(int argc, char* argv[]) {
 
   while (running) {
 
-    //drawer(window);
-
     while (SDL_PollEvent(&event)) {
       switch (event.type) {
       case SDL_MOUSEMOTION:

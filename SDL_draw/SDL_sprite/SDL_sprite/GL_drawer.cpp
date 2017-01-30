@@ -22,7 +22,10 @@ void GL_drawer::draw() {
   // these are for camera movement...
 
   drawAxis();
-  drawFourRectangle();
+  drawRectangle(0, 0, 1);
+  drawRectangle(-1, 0, 1);
+  drawRectangle(-1, -1, 1);
+  drawRectangle(0, -1, 1);
 
   drawSprite(0, 0, 0, 0.5, 0, 255, 0);
   drawSprite(-1, 0, 0, 0.5, 0, 255, 0);
@@ -54,29 +57,13 @@ void GL_drawer::drawAxis() {
   glEnd();
 }
 
-void GL_drawer::drawFourRectangle() {
+void GL_drawer::drawRectangle(double start_X_Point, double start_Y_point, double size) {
   glBegin(GL_QUADS);
   glColor3ub(255, 0, 0);
-  //first
-  glVertex3d(0, -RECTANGLE_Y_CORD, 0);
-  glVertex3d(1, -RECTANGLE_Y_CORD, 0);
-  glVertex3d(1, -RECTANGLE_Y_CORD, 1);
-  glVertex3d(0, -RECTANGLE_Y_CORD, 1);
-  //second
-  glVertex3d(-1, RECTANGLE_Y_CORD, 0);
-  glVertex3d(0, RECTANGLE_Y_CORD, 0);
-  glVertex3d(0, RECTANGLE_Y_CORD, 1);
-  glVertex3d(-1, RECTANGLE_Y_CORD, 1);
-  //third
-  glVertex3d(-1, RECTANGLE_Y_CORD, -1);
-  glVertex3d(0, RECTANGLE_Y_CORD, -1);
-  glVertex3d(0, RECTANGLE_Y_CORD, 0);
-  glVertex3d(-1, RECTANGLE_Y_CORD, 0);
-  //fourth
-  glVertex3d(0, RECTANGLE_Y_CORD, -1);
-  glVertex3d(1, RECTANGLE_Y_CORD, -1);
-  glVertex3d(1, RECTANGLE_Y_CORD, 0);
-  glVertex3d(0, RECTANGLE_Y_CORD, 0);
+  glVertex3d(start_X_Point, -RECTANGLE_Y_CORD, start_Y_point); //00
+  glVertex3d(start_X_Point + size, -RECTANGLE_Y_CORD, start_Y_point); //10
+  glVertex3d(start_X_Point + size, -RECTANGLE_Y_CORD, start_Y_point+size); //11
+  glVertex3d(start_X_Point, -RECTANGLE_Y_CORD, start_Y_point + size); //01
   glEnd();
 }
 

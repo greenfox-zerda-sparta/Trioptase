@@ -16,8 +16,7 @@ private:
   int mouse_state_y;
   bool is_inside(SDL_Rect* rect);
 public:
-  User_input();
-  User_input(int width, int height, int start_pos_x, int start_pos_y);
+  User_input(int width, int height);  
   void input_handler(bool& running, bool& selector, SDL_Rect* rect);
   int get_changing_x();
   int get_changing_y();

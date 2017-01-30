@@ -14,7 +14,7 @@ int main(int argc, char* argv[]) {
 
   Window win(WINDOW_WIDTH, WINDOW_HEIGHT);
 
-  User_input input;
+  User_input input(WINDOW_WIDTH, WINDOW_HEIGHT);
 
   Texture_manager text_man(WINDOW_WIDTH, WINDOW_HEIGHT);
 
@@ -40,23 +40,23 @@ int main(int argc, char* argv[]) {
     ticker_status = ticker(MAP_SIZE - 4);
     /*Inside of the methodes there are coded some usefull function, e.g mouse controlled "camera frame view"*/
     /*for the static background*/
-    text_man.draw_frame("background", 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
+    text_man.draw_frame("background", 0, 0, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
     /*yoda can walk on x automatically*/
-    text_man.draw_frame_dyn_pro_tile("yoda", ticker_status, 3, WINDOW_WIDTH, WINDOW_HEIGHT, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
+    text_man.draw_frame_dyn_pro_tile("yoda", ticker_status, 3, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
     /*yoda can walk on y automatically*/
-    text_man.draw_frame_dyn_pro_tile("yoda", 2, ticker_status, WINDOW_WIDTH, WINDOW_HEIGHT, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
+    text_man.draw_frame_dyn_pro_tile("yoda", 2, ticker_status, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
     /*yoda can walk on x and y automatically*/
-    text_man.draw_frame_dyn_pro_tile("yoda", ticker_status, ticker_status, WINDOW_WIDTH, WINDOW_HEIGHT, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
+    text_man.draw_frame_dyn_pro_tile("yoda", ticker_status, ticker_status, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
     /*yoda holds its position on 4, 7*/
-    text_man.draw_frame_dyn_pro_tile("yoda", 4, 7, WINDOW_WIDTH, WINDOW_HEIGHT, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
+    text_man.draw_frame_dyn_pro_tile("yoda", 4, 7, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
     
     /*you can controll yoda's movements on xy coords by direction buttons*/
-    text_man.draw_frame_dyn_pro_tile("yoda", input.get_changing_x(), input.get_changing_y(), WINDOW_WIDTH, WINDOW_HEIGHT, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
+    text_man.draw_frame_dyn_pro_tile("yoda", input.get_changing_x(), input.get_changing_y(), input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
     /*here can I say that the last item is selectable. In the next step I have to make this data visible and load it into a vector*/
     temp_rect = &text_man.get_actual_rect();
 
     if (selector) {
-      text_man.draw_frame_dyn_pro_tile("circle", input.get_changing_x(), input.get_changing_y(), WINDOW_WIDTH, WINDOW_HEIGHT, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
+      text_man.draw_frame_dyn_pro_tile("circle", input.get_changing_x(), input.get_changing_y(), input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
     }
 
     if (input.get_changing_y() > 64 + (float)128 * 0.2) {

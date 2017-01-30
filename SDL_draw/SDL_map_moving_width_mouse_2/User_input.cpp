@@ -16,20 +16,12 @@ bool User_input::is_inside(SDL_Rect* rect) {
   return true;
 }
 
-User_input::User_input() : WINDOW_WIDTH(0), WINDOW_HEIGHT(0) {
+User_input::User_input(int width, int height) : WINDOW_WIDTH(width), WINDOW_HEIGHT(height) {
   this->changing_x = 0;
   this->changing_y = 0;
   this->changing_mouse_x = 0;
   this->changing_mouse_y = 0;
   this->step = 1;
-}
-
-User_input::User_input(int width, int height, int start_pos_x, int start_pos_y) : WINDOW_WIDTH(width), WINDOW_HEIGHT(height) {
-  this->changing_x = start_pos_x;
-  this->changing_y = start_pos_y;
-  this->changing_mouse_x = 0;
-  this->changing_mouse_y = 0;
-  this->step = 10;
 }
 
 void User_input::input_handler(bool& running, bool& selector, SDL_Rect* rect) {

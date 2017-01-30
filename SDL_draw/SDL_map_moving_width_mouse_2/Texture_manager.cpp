@@ -57,10 +57,10 @@ void Texture_manager::draw_frame_dyn(std::string id, int x, int y, int width, in
       this->srcrect.y = 0;
       this->srcrect.w = width;
       this->srcrect.h = height;
-      this->dstrect.x = i * 64 - change_x * 2;
-      this->dstrect.y = j * 64 - change_y * 2;
-      this->dstrect.w = 64;
-      this->dstrect.h = 64;
+      this->dstrect.x = i * texture_resolution[id].first - change_x * 2;
+      this->dstrect.y = j * texture_resolution[id].second - change_y * 2;
+      this->dstrect.w = texture_resolution[id].first;
+      this->dstrect.h = texture_resolution[id].second;
       SDL_RenderCopyEx(renderer, textures[id], &srcrect, &dstrect, 0, 0, flip);
     }
   }
@@ -71,15 +71,15 @@ void Texture_manager::draw_frame_dyn_pro_tile(std::string id, int x, int y, int 
   this->srcrect.y = 0;
   this->srcrect.w = width;
   this->srcrect.h = height;
-  this->dstrect.x = x * 64 - change_x * 2;
-  this->dstrect.y = y * 64 - change_y * 2;
-  this->dstrect.w = 64;
-  this->dstrect.h = 64;
+  this->dstrect.x = x * texture_resolution[id].first - change_x * 2;
+  this->dstrect.y = y * texture_resolution[id].second - change_y * 2;
+  this->dstrect.w = texture_resolution[id].first;
+  this->dstrect.h = texture_resolution[id].second;
 
-  this->actual_rect.x = (x * 64  - change_x) / 2;
-  this->actual_rect.y = (y * 64  - change_y) / 2;
-  this->actual_rect.w = actual_rect.x + 64 / 2;
-  this->actual_rect.h = actual_rect.y + 64 / 2;
+  this->actual_rect.x = (x * texture_resolution[id].first - change_x) / 2;
+  this->actual_rect.y = (y * texture_resolution[id].second - change_y) / 2;
+  this->actual_rect.w = actual_rect.x + texture_resolution[id].first / 2;
+  this->actual_rect.h = actual_rect.y + texture_resolution[id].second / 2;
   SDL_RenderCopyEx(renderer, textures[id], &srcrect, &dstrect, 0, 0, flip);
 }
 

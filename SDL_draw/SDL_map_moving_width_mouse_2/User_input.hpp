@@ -18,7 +18,7 @@ private:
 public:
   User_input();
   User_input(int width, int height, int start_pos_x, int start_pos_y);
-  void input_handler(bool& running, SDL_Rect* rect);
+  void input_handler(bool& running, bool& selector, SDL_Rect* rect);
   int get_changing_x();
   int get_changing_y();
   int get_changing_mouse_x();

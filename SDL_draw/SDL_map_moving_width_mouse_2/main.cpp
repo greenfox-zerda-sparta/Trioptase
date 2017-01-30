@@ -23,14 +23,15 @@ int main(int argc, char* argv[]) {
   text_man.load("pics/black_64x64.png", "black", 64, 64, win.get_renderer());
   text_man.load("pics/building.bmp", "builing", 128, 128, win.get_renderer());
   text_man.load("pics/grass.bmp", "grass", 64, 64, win.get_renderer());
+  text_man.load("pics/circle.png", "circle", 64, 64, win.get_renderer());
   
   SDL_Rect* temp_rect = NULL;
-  bool contr = true;
+  bool selector = false;
 
   bool running = true;
   while (running) {
     /*user input handler. you can see the class*/
-    input.input_handler(running, temp_rect);
+    input.input_handler(running, selector, temp_rect);
     /*You have to use this method at this point, like render present at the end of the loop*/
     win.render_clear();
 
@@ -50,9 +51,13 @@ int main(int argc, char* argv[]) {
     text_man.draw_frame_dyn_pro_tile("yoda", 4, 7, WINDOW_WIDTH, WINDOW_HEIGHT, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
     
     /*you can controll yoda's movements on xy coords by direction buttons*/
-    text_man.draw_frame_dyn_pro_tile("black", input.get_changing_x(), input.get_changing_y(), WINDOW_WIDTH, WINDOW_HEIGHT, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
-    
+    text_man.draw_frame_dyn_pro_tile("yoda", input.get_changing_x(), input.get_changing_y(), WINDOW_WIDTH, WINDOW_HEIGHT, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
+    /*here can I say that the last item is selectable. In the next step I have to make this data visible and load it into a vector*/
     temp_rect = &text_man.get_actual_rect();
+
+    if (selector) {
+      text_man.draw_frame_dyn_pro_tile("circle", input.get_changing_x(), input.get_changing_y(), WINDOW_WIDTH, WINDOW_HEIGHT, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
+    }
 
     if (input.get_changing_y() > 64 + (float)128 * 0.2) {
     /*here you can define the order of objects but this is not sophistical solution. It's existed just for demonstration purpose*/

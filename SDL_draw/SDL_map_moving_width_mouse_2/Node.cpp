@@ -10,6 +10,9 @@ const int dir = 8;
 static int dx[dir] = { 1, 1, 0, -1, -1, -1, 0, 1 };
 static int dy[dir] = { 0, 1, 1, 1, 0, -1, -1, -1 };
 
+Node::Node() {
+}
+
 Node::Node(int _pos_x, int _pos_y, int _dest, int _prior) {
   this->pos_x = _pos_x;
   this->pos_y = _pos_y;

@@ -5,6 +5,7 @@
 #include <string>
 #include <math.h>
 #include <ctime>
+#include <vector>
 
 class Node {
 private:
@@ -14,6 +15,7 @@ private:
   int priority;
   const int& estimate(const int& dest_x, const int& dest_y) const;
 public:
+  Node();
   Node(int _pos_x, int _pos_y, int _dest, int _prior);
   int get_pos_x();
   int get_pos_y();

@@ -6,12 +6,11 @@
 #include "Texture_manager.hpp"
 #include "Path_finder.hpp"
 
-
 const int WINDOW_WIDTH(640);
 const int WINDOW_HEIGHT(640);
 const int MAP_SIZE(30);
 
-#ifndef CATCH_CONFIG_MAIN
+#ifdef CATCH_CONFIG_MAIN
 
 int ticker(int steps); //map size -4 is recommended but it must be adjusted
 
@@ -22,6 +21,9 @@ int main(int argc, char* argv[]) {
   User_input input(WINDOW_WIDTH, WINDOW_HEIGHT);
 
   Texture_manager text_man(WINDOW_WIDTH, WINDOW_HEIGHT);
+
+  Singleton::getInstance()->initialize_tile_map();
+  Singleton::getInstance()->fill_tile_map_with_plus_pattern();
 
   text_man.load("pics/wallpaper.jpg", "background", 1920, 1080, win.get_renderer());
   text_man.load("pics/64x64.png", "yoda", 64, 64, win.get_renderer());
@@ -46,6 +48,8 @@ int main(int argc, char* argv[]) {
     /*Inside of the methodes there are coded some usefull function, e.g mouse controlled "camera frame view"*/
     /*for the static background*/
     text_man.draw_frame("background", 0, 0, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
+    
+    text_man.draw_frame_dyn("black", input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
     /*yoda can walk on x automatically*/
     text_man.draw_frame_dyn_pro_tile("yoda", ticker_status, 3, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
     /*yoda can walk on y automatically*/
@@ -87,9 +91,7 @@ int ticker(int steps) {
 
 #endif
 
-#ifdef CATCH_CONFIG_MAIN
-
-using namespace std;
+#ifndef CATCH_CONFIG_MAIN
 
 int main(int argc, char* argv[]) {
   Path_finder pf;

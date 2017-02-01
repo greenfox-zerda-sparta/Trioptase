@@ -46,19 +46,20 @@ void Texture_manager::draw_frame(std::string id, int x, int y, int change_x, int
   SDL_RenderCopyEx(renderer, textures[id], &srcrect, &dstrect, 0, 0, flip);
 }
 
-void Texture_manager::draw_frame_dyn(std::string id, int x, int y, int change_x, int change_y, SDL_Renderer * renderer, SDL_RendererFlip flip) {
-
-  for (int i = 2; i < 28; i++) {
+void Texture_manager::draw_frame_dyn(std::string id, int change_x, int change_y, SDL_Renderer* renderer, SDL_RendererFlip flip) {  
+  for (int i = 2; i < Singleton::getInstance()->tile_map.size()-2; i++) {
     for (int j = 2; j < 28; j++) {
-      this->srcrect.x = 0;
-      this->srcrect.y = 0;
-      this->srcrect.w = this->WINDOW_WIDTH;
-      this->srcrect.h = this->WINDOW_HEIGHT;
-      this->dstrect.x = i * texture_resolution[id].first - change_x * 2;
-      this->dstrect.y = j * texture_resolution[id].second - change_y * 2;
-      this->dstrect.w = texture_resolution[id].first;
-      this->dstrect.h = texture_resolution[id].second;
-      SDL_RenderCopyEx(renderer, textures[id], &srcrect, &dstrect, 0, 0, flip);
+      if (Singleton::getInstance()->tile_map[i][j] == 1) {
+        this->srcrect.x = 0;
+        this->srcrect.y = 0;
+        this->srcrect.w = this->WINDOW_WIDTH;
+        this->srcrect.h = this->WINDOW_HEIGHT;
+        this->dstrect.x = i * texture_resolution[id].first - change_x * 2;
+        this->dstrect.y = j * texture_resolution[id].second - change_y * 2;
+        this->dstrect.w = texture_resolution[id].first;
+        this->dstrect.h = texture_resolution[id].second;
+        SDL_RenderCopyEx(renderer, textures[id], &srcrect, &dstrect, 0, 0, flip);
+      }
     }
   }
 }

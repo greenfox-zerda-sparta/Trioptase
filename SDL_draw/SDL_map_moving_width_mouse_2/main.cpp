@@ -92,29 +92,18 @@ int ticker(int steps) {
 using namespace std;
 
 int main(int argc, char* argv[]) {
-  Singleton::getInstance()->tile_map.resize(MAP_SIZE);
-  for (int i = 0; i < Singleton::getInstance()->tile_map.size(); i++) {
-    Singleton::getInstance()->tile_map[i].resize(MAP_SIZE, 0);
-  }
-
-  for (int x = MAP_SIZE / 8; x < MAP_SIZE * 7 / 8; x++) {
-    Singleton::getInstance()->tile_map[x][MAP_SIZE / 2] = 1;
-  }
-
-  for (int y = MAP_SIZE / 8; y < MAP_SIZE * 7 / 8; y++) {
-    Singleton::getInstance()->tile_map[MAP_SIZE / 2][y] = 1;
-  }
-
   Path_finder pf;
-  pf.route_planning();
-  pf.print_map();
+  Singleton::getInstance()->initialize_tile_map();
+  Singleton::getInstance()->fill_tile_map_with_plus_pattern();
+  pf.find_path(0, 0, 20, 20);
+  pf.scratch_route_to_temp_map();
+  pf.print_temp_map();
 
-  for (int y = MAP_SIZE / 8; y < MAP_SIZE * 7 / 8; y++) {
-    Singleton::getInstance()->tile_map[MAP_SIZE / 2][y] = 0;
-  }
+  Singleton::getInstance()->reset_route();
+  pf.find_path(0, 0, 10, 10);
+  //pf.scratch_route_to_temp_map();
+  //pf.print_temp_map();
 
-  pf.route_planning();
-  pf.print_map();
   return 0;
 }
 

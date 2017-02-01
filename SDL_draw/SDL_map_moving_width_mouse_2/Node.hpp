@@ -5,7 +5,6 @@
 #include <string>
 #include <math.h>
 #include <ctime>
-#include <vector>
 
 class Node {
 private:

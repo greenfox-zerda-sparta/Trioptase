@@ -1,5 +1,6 @@
 #include "Path_finder.hpp"
 
+const int MAP_SIZE(30);
 const int n = 30; // horizontal size of the map
 const int m = 30; // vertical size size of the map
 ///std::vector<std::vector<int>> tile_map;
@@ -13,17 +14,19 @@ static int dy[dir] = { 0, 1, 1, 1, 0, -1, -1, -1 };
 Path_finder::Path_finder() {
 }
 
-std::string Path_finder::pathFind(const int& start_x, const int& start_y, const int& finish_x, const int& finish_y) {
+void Path_finder::find_path(const int& start_x, const int& start_y, const int& finish_x, const int& finish_y) {
   static priority_queue<Node> pq[2]; // list of open (not-yet-tried) nodes
   static int pqi; // pq index
   static Node* n0;
   static Node* m0;
-  static int i, j, x, y, xdx, ydy;
-  static char c;
+  static int i, j, x, y, xdx, ydy;  
+  static int ind = 0;
+  static int temp_finish_x = finish_x;
+  static int temp_finish_y = finish_y;
   pqi = 0;
 
-  for (y = 0; y<m; y++) { // reset the node maps
-    for (x = 0; x<n; x++) {
+  for (y = 0; y < m; y++) { // reset the node maps
+    for (x = 0; x < n; x++) {
       closed_nodes_map[x][y] = 0;
       open_nodes_map[x][y] = 0;
     }
@@ -34,7 +37,7 @@ std::string Path_finder::pathFind(const int& start_x, const int& start_y, const 
   pq[pqi].push(*n0);
   open_nodes_map[x][y] = n0->get_priority(); // mark it on the open nodes map
 
-                                             /* A* search */
+/* A* search */
   while (!pq[pqi].empty()) { // get the current node w/ the highest priority from the list of open nodes
     n0 = new Node(pq[pqi].top().get_pos_x(), pq[pqi].top().get_pos_y(), pq[pqi].top().get_level(), pq[pqi].top().get_priority());
     x = n0->get_pos_x(); y = n0->get_pos_y();
@@ -43,23 +46,29 @@ std::string Path_finder::pathFind(const int& start_x, const int& start_y, const 
     closed_nodes_map[x][y] = 1; // mark it on the closed nodes map
 
     if (x == finish_x && y == finish_y) { // quit searching when the goal state is reached
-      string path = ""; // generate the path from finish to start by following the directions
       while (!(x == start_x && y == start_y)) {
-        j = dir_map[x][y];
-        c = '0' + (j + dir / 2) % dir;
-        path = c + path;
+        j = dir_map[x][y];        
+        ind = (j + dir / 2) % dir;
+
+        /*pushback dir vector of coord pairs*/
+        temp_finish_x -= dx[ind];
+        temp_finish_y -= dy[ind];
+        Singleton::getInstance()->route.push_back(std::make_pair(temp_finish_x, temp_finish_y));        
+       
         x += dx[j];
         y += dy[j];
       }
       delete n0;
-      while (!pq[pqi].empty()) pq[pqi].pop();
-      return path;
+      while (!pq[pqi].empty()) {
+        pq[pqi].pop();
+      }
+      return;
     }
 
-    for (i = 0; i<dir; i++) { // generate moves (child nodes) in all possible directions
+    for (i = 0; i < dir; i++) { // generate moves (child nodes) in all possible directions
       xdx = x + dx[i]; ydy = y + dy[i];
 
-      if (!(xdx<0 || xdx>n - 1 || ydy<0 || ydy>m - 1 || Singleton::getInstance()->tile_map[xdx][ydy] == 1 || closed_nodes_map[xdx][ydy] == 1)) {
+      if (!(xdx < 0 || xdx > n - 1 || ydy < 0 || ydy > m - 1 || Singleton::getInstance()->tile_map[xdx][ydy] == 1 || closed_nodes_map[xdx][ydy] == 1)) {
         m0 = new Node(xdx, ydy, n0->get_level(), n0->get_priority());   // generate a child node        
         m0->next_level(i);
         m0->update_priority(finish_x, finish_y);
@@ -96,47 +105,26 @@ std::string Path_finder::pathFind(const int& start_x, const int& start_y, const 
     }
     delete n0; // garbage collection
   }
-  return ""; // no route found
+  return; // no route found
 }
 
-void Path_finder::route_planning() {
-  /*Set start and finish positions*/
-  int xA, yA, xB, yB;
-  xA = 0;
-  yA = 0;
-  xB = 20;
-  yB = 25;
-
-  /*get the route*/
-  string route = pathFind(xA, yA, xB, yB);
-  if (route == "") {
-    cout << "An empty route generated!" << endl;
-  }
-
-  /*follow the route on the map and display it*/
-  if (route.length()>0) {
-    int j; char c;
-    int x = xA;
-    int y = yA;
-    Singleton::getInstance()->tile_map[x][y] = 2;
-    for (int i = 0; i<route.length(); i++) {
-      c = route.at(i);
-      j = atoi(&c);
-      x = x + dx[j];
-      y = y + dy[j];
-      Singleton::getInstance()->tile_map[x][y] = 3;
-    }
-    Singleton::getInstance()->tile_map[x][y] = 4;
+void Path_finder::scratch_route_to_temp_map() {
+  this->temp_tile_map = Singleton::getInstance()->tile_map;
+  for (int i = 0; i < Singleton::getInstance()->route.size(); i++) {   
+    this->temp_tile_map[Singleton::getInstance()->route[i].first][Singleton::getInstance()->route[i].second] = 4;
   }
 }
 
-void Path_finder::print_map() {
-  for (int y = 0; y < m; y++) {
-    for (int x = 0; x < n; x++) {
-      std::cout << Singleton::getInstance()->tile_map[x][y];
+void Path_finder::print_temp_map() {
+  if (!this->temp_tile_map.empty()) {
+    for (int y = 0; y < this->temp_tile_map.size(); y++) {
+      for (int x = 0; x < this->temp_tile_map[y].size(); x++) {
+        std::cout << this->temp_tile_map[x][y];
+      }
+      std::cout << std::endl;
     }
-    std::cout << std::endl;
   }
+  this->temp_tile_map.clear();
 }
 
 Path_finder::~Path_finder(){

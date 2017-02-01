@@ -66,3 +66,7 @@ void Singleton::print_route() {
   }
 }
 
+Singleton::~Singleton() {
+  delete mInstance;
+}
+

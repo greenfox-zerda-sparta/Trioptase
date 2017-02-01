@@ -19,4 +19,5 @@ public:
   void reset_route(); // You have to reset after walk ot the continous pushback operation will fill it
   void print_tile_map();
   void print_route();
+  ~Singleton();
 };

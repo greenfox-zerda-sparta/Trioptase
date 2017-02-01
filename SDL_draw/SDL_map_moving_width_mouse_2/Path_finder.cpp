@@ -20,10 +20,12 @@ void Path_finder::find_path(const int& start_x, const int& start_y, const int& f
   static Node* n0;
   static Node* m0;
   static int i, j, x, y, xdx, ydy;  
-  static int ind = 0;
-  static int temp_finish_x = finish_x;
-  static int temp_finish_y = finish_y;
+  int ind = 0;
+  int temp_finish_x = finish_x;
+  int temp_finish_y = finish_y;
   pqi = 0;
+
+  Singleton::getInstance()->reset_route();
 
   for (y = 0; y < m; y++) { // reset the node maps
     for (x = 0; x < n; x++) {

@@ -98,11 +98,10 @@ int main(int argc, char* argv[]) {
   pf.find_path(0, 0, 20, 20);
   pf.scratch_route_to_temp_map();
   pf.print_temp_map();
-
-  Singleton::getInstance()->reset_route();
-  pf.find_path(0, 0, 10, 10);
-  //pf.scratch_route_to_temp_map();
-  //pf.print_temp_map();
+  std::cout << std::endl;
+  pf.find_path(10, 10, 19, 18);
+  pf.scratch_route_to_temp_map();
+  pf.print_temp_map();
 
   return 0;
 }

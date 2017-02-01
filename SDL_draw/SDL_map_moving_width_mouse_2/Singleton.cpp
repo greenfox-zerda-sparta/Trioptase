@@ -61,7 +61,7 @@ void Singleton::print_route() {
   if (!this->route.empty()) {
     for (int i = 0; i < this->route.size(); i++) {
       std::cout << i << ". x = " << this->route[i].first;
-      std::cout << ", x = " << this->route[i].first << " | ";
+      std::cout << ", x = " << this->route[i].second << " |\n";
     }
   }
 }

@@ -2,6 +2,8 @@
 #include "catch.h"
 #include "LevelMap.hpp"
 #include "MapNode.hpp"
+#include "Game.hpp"
+
 
 TEST_CASE("LevelMap class") {
   LevelMap mymap;
@@ -26,3 +28,11 @@ TEST_CASE("MapNode constructor") {
   REQUIRE(mynode.get_tile_image_path() == "frutyi");
 }
 
+TEST_CASE("Game class") {
+  Game* my_game = Game::get_game_instance();
+  REQUIRE(my_game->game_LevelMap.nodes.empty());
+}
+
+TEST_CASE("checking map biuld in singleton's constructor") {
+  REQUIRE(Game::get_game_instance()->tile_map[0][0] == 3);
+}

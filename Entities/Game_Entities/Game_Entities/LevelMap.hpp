@@ -9,6 +9,7 @@ public:
   vector<vector<char>> nodes;
 public:
   LevelMap();
+
   ~LevelMap();
 };
 

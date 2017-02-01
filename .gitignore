@@ -48,3 +48,7 @@
 # SDL extensions
 *.user
 *.swp
+/sample/Branch_practice
+/SDL_draw
+*.pdb
+/Entities/Game_Entities/Game_Entities.VC.VC.opendb

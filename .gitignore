@@ -31,8 +31,8 @@
 # Visual Studio Library Files
 #*.vs
 #*.vcxproj
-#*.db
-#*.opendb
+*.db
+*.opendb
 #*.sln
 #*.filters
 *.ilk

@@ -114,12 +114,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="LevelMap.cpp" />
+    <ClCompile Include="MapNode.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="catch.h" />
     <ClInclude Include="LevelMap.hpp" />
+    <ClInclude Include="MapNode.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

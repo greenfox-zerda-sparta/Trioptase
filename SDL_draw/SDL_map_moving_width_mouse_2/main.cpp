@@ -5,6 +5,7 @@
 #include "Map.hpp"
 #include "Texture_manager.hpp"
 #include "Path_scratcher.hpp"
+#include "Path_finder.hpp"
 
 #ifndef CATCH_CONFIG_MAIN
 
@@ -90,13 +91,10 @@ int ticker(int steps) {
 
 using namespace std;
 int main(int argc, char* argv[]) {
-  route_planning();
-  for (int y = 0; y < m; y++) {
-    for (int x = 0; x < n; x++) {
-      std::cout << tile_map[x][y];
-    }
-    std::cout << std::endl;
-  }
+  Path_finder pf;
+  pf.route_planning();
+  pf.print_map();
+  
   return 0;
 }
 

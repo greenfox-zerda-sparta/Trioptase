@@ -29,14 +29,14 @@
 *.app
 
 # Visual Studio Library Files
-*.vs
-*.vcxproj
-*.db
-*.opendb
-*.sln
-*.filters
+#*.vs
+#*.vcxproj
+#*.db
+#*.opendb
+#*.sln
+#*.filters
 *.ilk
-*.pdb
+#OB*.pdb
 *.idb
 *.tlog
 *.log

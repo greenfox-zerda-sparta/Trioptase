@@ -31,6 +31,7 @@
 # Visual Studio Library Files
 #*.vs
 #*.vcxproj
+*.suo
 *.db
 *.opendb
 *.sln

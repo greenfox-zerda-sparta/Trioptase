@@ -5,7 +5,7 @@
 #include "Map.hpp"
 #include "Texture_manager.hpp"
 #include "Path_finder.hpp"
-#include "Singleton.hpp"
+
 
 const int WINDOW_WIDTH(640);
 const int WINDOW_HEIGHT(640);
@@ -92,35 +92,29 @@ int ticker(int steps) {
 using namespace std;
 
 int main(int argc, char* argv[]) {
-  std::vector<std::vector<int>> m_map;
-
-  m_map.resize(MAP_SIZE);
-  for (int i = 0; i < m_map.size(); i++) {
-    m_map[i].resize(MAP_SIZE, 0);
+  Singleton::getInstance()->tile_map.resize(MAP_SIZE);
+  for (int i = 0; i < Singleton::getInstance()->tile_map.size(); i++) {
+    Singleton::getInstance()->tile_map[i].resize(MAP_SIZE, 0);
   }
 
   for (int x = MAP_SIZE / 8; x < MAP_SIZE * 7 / 8; x++) {
-    m_map[x][MAP_SIZE / 2] = 1;
+    Singleton::getInstance()->tile_map[x][MAP_SIZE / 2] = 1;
   }
 
   for (int y = MAP_SIZE / 8; y < MAP_SIZE * 7 / 8; y++) {
-    m_map[MAP_SIZE / 2][y] = 1;
+    Singleton::getInstance()->tile_map[MAP_SIZE / 2][y] = 1;
   }
 
-  Path_finder pf(m_map);
-  //pf.route_planning();
-  //pf.print_map();
+  Path_finder pf;
+  pf.route_planning();
+  pf.print_map();
 
   for (int y = MAP_SIZE / 8; y < MAP_SIZE * 7 / 8; y++) {
-    m_map[MAP_SIZE / 2][y] = 0;
+    Singleton::getInstance()->tile_map[MAP_SIZE / 2][y] = 0;
   }
 
-  //pf.route_planning();
-  //pf.print_map();
-
-  Singleton::initialize(42);
-  Singleton::getInstance()->print();
-
+  pf.route_planning();
+  pf.print_map();
   return 0;
 }
 

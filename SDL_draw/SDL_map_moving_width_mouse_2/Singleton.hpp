@@ -1,29 +1,15 @@
 #pragma once
 #include <iostream>
 #include <string>
-
-using namespace std;
+#include <vector>
 
 class Singleton {
 private:        
   static Singleton* mInstance;        
-  int mId;        
-  Singleton(int _Id) {
-    mId = _Id;
-  }
-public:        
-  static void initialize(int _Id) {
-    mInstance = new Singleton(_Id);
-  }
-  static Singleton* getInstance() {
-    return mInstance;
-  }
-  void setId(int _Id) {
-    mId = _Id;
-  }
-  void print() {
-    cout << this << " |  " << mId << endl;
-  }
+  Singleton();
+public:
+  static Singleton* getInstance();
+  void print();
+  std::vector<std::vector<int>> tile_map;
+  int a;
 };
-
-Singleton* Singleton::mInstance = NULL;

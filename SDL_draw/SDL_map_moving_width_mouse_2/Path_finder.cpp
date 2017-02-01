@@ -10,8 +10,7 @@ const int dir = 8; // number of possible directions to go at any position
 static int dx[dir] = { 1, 1, 0, -1, -1, -1, 0, 1 };
 static int dy[dir] = { 0, 1, 1, 1, 0, -1, -1, -1 };
 
-Path_finder::Path_finder(std::vector<std::vector<int>>& _tile_map) {
-  this->tile_map = _tile_map;
+Path_finder::Path_finder() {
 }
 
 std::string Path_finder::pathFind(const int& start_x, const int& start_y, const int& finish_x, const int& finish_y) {
@@ -60,7 +59,7 @@ std::string Path_finder::pathFind(const int& start_x, const int& start_y, const 
     for (i = 0; i<dir; i++) { // generate moves (child nodes) in all possible directions
       xdx = x + dx[i]; ydy = y + dy[i];
 
-      if (!(xdx<0 || xdx>n - 1 || ydy<0 || ydy>m - 1 || tile_map[xdx][ydy] == 1 || closed_nodes_map[xdx][ydy] == 1)) {
+      if (!(xdx<0 || xdx>n - 1 || ydy<0 || ydy>m - 1 || Singleton::getInstance()->tile_map[xdx][ydy] == 1 || closed_nodes_map[xdx][ydy] == 1)) {
         m0 = new Node(xdx, ydy, n0->get_level(), n0->get_priority());   // generate a child node        
         m0->next_level(i);
         m0->update_priority(finish_x, finish_y);
@@ -119,22 +118,22 @@ void Path_finder::route_planning() {
     int j; char c;
     int x = xA;
     int y = yA;
-    tile_map[x][y] = 2;
+    Singleton::getInstance()->tile_map[x][y] = 2;
     for (int i = 0; i<route.length(); i++) {
       c = route.at(i);
       j = atoi(&c);
       x = x + dx[j];
       y = y + dy[j];
-      tile_map[x][y] = 3;
+      Singleton::getInstance()->tile_map[x][y] = 3;
     }
-    tile_map[x][y] = 4;
+    Singleton::getInstance()->tile_map[x][y] = 4;
   }
 }
 
 void Path_finder::print_map() {
   for (int y = 0; y < m; y++) {
     for (int x = 0; x < n; x++) {
-      std::cout << tile_map[x][y];
+      std::cout << Singleton::getInstance()->tile_map[x][y];
     }
     std::cout << std::endl;
   }

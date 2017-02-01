@@ -33,7 +33,7 @@
 #*.vcxproj
 *.db
 *.opendb
-#*.sln
+*.sln
 #*.filters
 *.ilk
 #OB*.pdb

@@ -14,7 +14,7 @@ class Path_finder {
 private:
   std::vector<std::vector<int>> tile_map;
 public:
-  Path_finder();
+  Path_finder(std::vector<std::vector<int>>& _tile_map);
   std::string pathFind(const int& start_x, const int& start_y, const int& finish_x, const int& finish_y);
   void route_planning();
   void print_map();

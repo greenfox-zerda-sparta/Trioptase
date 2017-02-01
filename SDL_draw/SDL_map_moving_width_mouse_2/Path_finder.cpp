@@ -1,7 +1,7 @@
 #include "Path_finder.hpp"
 
-const int n = 60; // horizontal size of the map
-const int m = 60; // vertical size size of the map
+const int n = 30; // horizontal size of the map
+const int m = 30; // vertical size size of the map
 ///std::vector<std::vector<int>> tile_map;
 static int closed_nodes_map[n][m]; // map of closed (tried-out) nodes
 static int open_nodes_map[n][m]; // map of open (not-yet-tried) nodes
@@ -10,10 +10,11 @@ const int dir = 8; // number of possible directions to go at any position
 static int dx[dir] = { 1, 1, 0, -1, -1, -1, 0, 1 };
 static int dy[dir] = { 0, 1, 1, 1, 0, -1, -1, -1 };
 
-Path_finder::Path_finder() {
+Path_finder::Path_finder(std::vector<std::vector<int>>& _tile_map) {
+  this->tile_map = _tile_map;
 }
 
-std::string Path_finder::pathFind(const int & start_x, const int & start_y, const int & finish_x, const int & finish_y) {
+std::string Path_finder::pathFind(const int& start_x, const int& start_y, const int& finish_x, const int& finish_y) {
   static priority_queue<Node> pq[2]; // list of open (not-yet-tried) nodes
   static int pqi; // pq index
   static Node* n0;
@@ -100,26 +101,12 @@ std::string Path_finder::pathFind(const int & start_x, const int & start_y, cons
 }
 
 void Path_finder::route_planning() {
-  tile_map.resize(n); // create empty map
-  for (int i = 0; i < tile_map.size(); i++) {
-    tile_map[i].resize(m, 0);
-  }
-
-  /*fillout the map matrix with a '+' pattern*/
-  for (int x = n / 8; x<n * 7 / 8; x++) {
-    tile_map[x][m / 2] = 1;
-  }
-
-  for (int y = m / 8; y<m * 7 / 8; y++) {
-    tile_map[n / 2][y] = 1;
-  }
-
   /*Set start and finish positions*/
   int xA, yA, xB, yB;
   xA = 0;
   yA = 0;
-  xB = 50;
-  yB = 50;
+  xB = 20;
+  yB = 25;
 
   /*get the route*/
   string route = pathFind(xA, yA, xB, yB);

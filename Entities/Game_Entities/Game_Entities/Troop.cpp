@@ -19,20 +19,11 @@ pair<int, int> Troop::getCordinates() {
   return cords;
 }
 
-bool Troop::get_click_status() {
-  return click_status;
-}
-
-void Troop::set_click_status() {
-  click_status ? click_status = false : click_status = true;
-}
-
 Troop::Troop(pair<int,int> coordinates) {
   x_coord = coordinates.first;
   y_coord = coordinates.second;
   this->tile_image_path = "pic/troop.png";
 }
-
 
 Troop::~Troop()
 {

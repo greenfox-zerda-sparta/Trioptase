@@ -84,4 +84,12 @@ TEST_CASE("troop clicked status changing") {
   REQUIRE(ogre.get_click_status());
 }
 
+TEST_CASE("building clicked status changing") {
+  pair<int, int> pos = { 0, 0 };
+  Building ogre(pos);
+  REQUIRE_FALSE(ogre.get_click_status());
+  ogre.set_click_status();
+  REQUIRE(ogre.get_click_status());
+}
+
 #endif // TEST

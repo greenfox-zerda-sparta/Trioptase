@@ -14,6 +14,8 @@ private:
   int step;
   int mouse_state_x;
   int mouse_state_y;
+  int mouse_x;
+  int mouse_y;
   bool is_inside(SDL_Rect* rect);
 public:
   User_input(int width, int height);  
@@ -22,6 +24,8 @@ public:
   int get_changing_y();
   int get_changing_mouse_x();
   int get_changing_mouse_y();
+  int get_mouse_x();
+  int get_mouse_y();
   void set_step(int _value);
   ~User_input();
 };

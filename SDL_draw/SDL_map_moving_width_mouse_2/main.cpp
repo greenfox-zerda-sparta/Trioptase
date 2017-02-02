@@ -24,7 +24,7 @@ int main(int argc, char* argv[]) {
   Texture_manager text_man(WINDOW_WIDTH, WINDOW_HEIGHT, PANEL_WIDTH);
 
   Singleton::getInstance()->initialize_tile_map();
-  Singleton::getInstance()->fill_tile_map_with_plus_pattern();
+  //Singleton::getInstance()->fill_tile_map_with_plus_pattern();
 
   text_man.load("pics/wallpaper.jpg", "background", 1920, 1080, win.get_renderer());
   text_man.load("pics/64x64.png", "troop", 64, 64, win.get_renderer());
@@ -57,12 +57,14 @@ int main(int argc, char* argv[]) {
       text_man.draw_frame_static("building", WINDOW_WIDTH + 40, 20, win.get_renderer());
       /*here can I say that the last item is selectable. In the next step I have to make this data visible and load it into a vector*/
       temp_rect = &text_man.get_actual_rect();
+
       text_man.draw_frame_static("troop", WINDOW_WIDTH + 20, 144, win.get_renderer());
 
     }
 
-    if (selector) {
+    if (selector) {      
       text_man.draw_frame_static("circle", WINDOW_WIDTH + 40, 20, win.get_renderer());
+      Singleton::getInstance()->pin_mouse_click_to_map(input.get_mouse_x(), input.get_mouse_y());
     }
 
     if (input.get_changing_y() > 64 + (float)128 * 0.2) {

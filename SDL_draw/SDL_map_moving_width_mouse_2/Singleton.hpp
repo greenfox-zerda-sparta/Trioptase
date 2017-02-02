@@ -19,5 +19,6 @@ public:
   void reset_route(); // You have to reset after walk ot the continous pushback operation will fill it
   void print_tile_map();
   void print_route();
+  bool pin_mouse_click_to_map(int mouse_x, int mouse_y);
   ~Singleton();
 };

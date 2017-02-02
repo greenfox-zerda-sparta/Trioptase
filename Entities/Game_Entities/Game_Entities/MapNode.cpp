@@ -21,6 +21,11 @@ void MapNode::set_click_status() {
   click_status ? click_status = false : click_status = true;
 }
 
+pair<int, int> MapNode::get_cordinates() {
+  pair<int, int> coords = { x_coord , y_coord };
+  return coords;
+}
+
 
 MapNode::~MapNode() {
 }

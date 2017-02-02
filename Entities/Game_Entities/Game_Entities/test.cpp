@@ -78,8 +78,8 @@ TEST_CASE("Troop class move_troop method") {
 TEST_CASE("Building class constructor") {
   pair<int, int> place = { 1,3 };
   Building house(place);
-  REQUIRE(house.getCordinates().first == 1);
-  REQUIRE(house.getCordinates().second == 3);
+  REQUIRE(house.get_cordinates().first == 1);
+  REQUIRE(house.get_cordinates().second == 3);
   REQUIRE(house.get_tile_image_path() == "pic/building.png");
 }
 

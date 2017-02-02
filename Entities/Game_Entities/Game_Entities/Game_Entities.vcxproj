@@ -114,6 +114,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Building.cpp" />
+    <ClCompile Include="Field.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="LevelMap.cpp" />
     <ClCompile Include="MapNode.cpp" />
@@ -124,6 +125,7 @@
   <ItemGroup>
     <ClInclude Include="Building.hpp" />
     <ClInclude Include="catch.h" />
+    <ClInclude Include="Field.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="LevelMap.hpp" />
     <ClInclude Include="MapNode.hpp" />

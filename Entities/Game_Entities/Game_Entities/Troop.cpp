@@ -2,6 +2,7 @@
 
 
 Troop::Troop(pair<int, int> coordinates) {
+  node_type = TROOP;
   x_coord = coordinates.first;
   y_coord = coordinates.second;
   this->tile_image_path = "pic/troop.png";
@@ -17,10 +18,6 @@ void Troop::move_troop() {
   }
 }
 
-pair<int, int> Troop::get_cordinates() {
-  pair<int, int> coords = { x_coord , y_coord };
-  return coords;
-}
 
 Troop::~Troop() {
 }

@@ -26,7 +26,7 @@ User_input::User_input(int width, int height) : WINDOW_WIDTH(width), WINDOW_HEIG
   this->step = 1;
 }
 
-void User_input::input_handler(bool& running, bool& selector, SDL_Rect* rect) {
+void User_input::input_handler(bool& running, bool& building_selector, bool& troop_selector, SDL_Rect* temp_rect_building, SDL_Rect* temp_rect_troop) {
   while (SDL_PollEvent(&event)) {
     switch (event.type) {
     case SDL_QUIT:
@@ -56,27 +56,44 @@ void User_input::input_handler(bool& running, bool& selector, SDL_Rect* rect) {
       this->changing_mouse_y = event.motion.y;
       break;
     case SDL_MOUSEBUTTONDOWN:
-      if (rect != NULL) {
+      if (temp_rect_building != NULL) {
         SDL_GetMouseState(&this->mouse_state_x, &this->mouse_state_y);                
         this->mouse_x = int((float)this->mouse_state_x / 32 / ((float)20 / 30));
         this->mouse_y = int((float)this->mouse_state_y / 32 / ((float)20 / 30));
         //std::cout << mouse_x << std::endl << mouse_y << std::endl;        
-        if (is_inside(rect)) {
+        if (is_inside(temp_rect_building)) {
           //std::cout << "inside" << std::endl;
-          if (selector) {
-            selector = false;
+          if (building_selector) {
+            building_selector = false;
           }
           else {
-            selector = true;
+            building_selector = true;
           }
           //std::cout << "mouse button down from \"selected\" area" << std::endl;
         }
       }
+      /*temporary solution to handle with different type of objects*/
+      if (temp_rect_troop != NULL) {
+        SDL_GetMouseState(&this->mouse_state_x, &this->mouse_state_y);
+        this->mouse_x = int((float)this->mouse_state_x / 32 / ((float)20 / 30));
+        this->mouse_y = int((float)this->mouse_state_y / 32 / ((float)20 / 30));             
+        if (is_inside(temp_rect_troop)) {
+          //std::cout << "inside" << std::endl;
+          if (troop_selector) {
+            troop_selector = false;
+          }
+          else {
+            troop_selector = true;
+          }
+          //std::cout << "mouse button down from \"selected\" area" << std::endl;
+        }
+      }
+      
       break;
     case SDL_MOUSEBUTTONUP:      
-      if (rect != NULL) {
+      if (temp_rect_building != NULL) {
         SDL_GetMouseState(&this->mouse_state_x, &this->mouse_state_y);
-        if (is_inside(rect)) {          
+        if (is_inside(temp_rect_building)) {
           //std::cout << "mouse button up from \"selected\" area" << std::endl;
         }
       }

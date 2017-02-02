@@ -19,7 +19,7 @@ private:
   bool is_inside(SDL_Rect* rect);
 public:
   User_input(int width, int height);  
-  void input_handler(bool& running, bool& selector, SDL_Rect* rect);
+  void input_handler(bool& running, bool& building_selector, bool& troop_selector, SDL_Rect* temp_rect_building, SDL_Rect* temp_rect_troop);
   int get_changing_x();
   int get_changing_y();
   int get_changing_mouse_x();

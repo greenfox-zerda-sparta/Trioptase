@@ -10,7 +10,6 @@ public:
   vector<vector<MapNode>> nodes;
 public:
   LevelMap();
-
   ~LevelMap();
 };
 

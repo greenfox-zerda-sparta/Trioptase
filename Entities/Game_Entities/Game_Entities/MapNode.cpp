@@ -6,8 +6,7 @@ string MapNode::get_tile_image_path() {
   return tile_image_path;
 }
 
-MapNode::MapNode()
-{
+MapNode::MapNode() {
 }
 /*
 void MapNode::setpath(string tile_path) {
@@ -23,6 +22,5 @@ void MapNode::set_click_status() {
 }
 
 
-MapNode::~MapNode()
-{
+MapNode::~MapNode() {
 }

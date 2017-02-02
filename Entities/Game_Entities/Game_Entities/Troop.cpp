@@ -1,6 +1,11 @@
 #include "Troop.hpp"
 
 
+Troop::Troop(pair<int, int> coordinates) {
+  x_coord = coordinates.first;
+  y_coord = coordinates.second;
+  this->tile_image_path = "pic/troop.png";
+}
 
 void Troop::move_troop() {
   Game* my_game = Game::get_game_instance();
@@ -12,19 +17,10 @@ void Troop::move_troop() {
   }
 }
 
-pair<int, int> Troop::getCordinates() {
-  pair<int, int> cords;
-  cords.first = x_coord;
-  cords.second = y_coord;
-  return cords;
+pair<int, int> Troop::get_cordinates() {
+  pair<int, int> coords = { x_coord , y_coord };
+  return coords;
 }
 
-Troop::Troop(pair<int,int> coordinates) {
-  x_coord = coordinates.first;
-  y_coord = coordinates.second;
-  this->tile_image_path = "pic/troop.png";
-}
-
-Troop::~Troop()
-{
+Troop::~Troop() {
 }

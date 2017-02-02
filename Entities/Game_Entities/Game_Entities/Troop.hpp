@@ -10,7 +10,7 @@ private:
 public:
   Troop(pair<int,int>);
   void move_troop();
-  pair<int, int> getCordinates();
+  pair<int, int> get_cordinates();
   ~Troop();
 };
 

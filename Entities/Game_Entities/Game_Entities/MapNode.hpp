@@ -1,15 +1,16 @@
 #pragma once
 #include <string>
+#include <utility>
 
 using std::string;
 
 class MapNode {
-private:
+protected:
   string tile_image_path;
 public:
   string get_tile_image_path();
   MapNode();
-  MapNode(string);
+  //void setpath(string);
   ~MapNode();
 };
 

@@ -1,4 +1,3 @@
-//#define RELEASE
 
 #ifdef RELEASE
 
@@ -9,8 +8,9 @@ using std::cout;
 using std::endl;
 
 int main(int argc, char* argv[]) {
-  Game* my_game = Game::get_game_instance();
-  
+  cout << "HEllo Dani!" << endl;
+  int a;
+  std::cin >> a;
   return 0;
 }
 

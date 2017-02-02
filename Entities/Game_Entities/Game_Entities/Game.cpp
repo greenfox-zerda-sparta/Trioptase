@@ -3,7 +3,7 @@
 
 Game* Game::game_instance = NULL;
 
-Game::Game() : tile_map(map_size, vector<int>(map_size, 0)) {
+Game::Game() : nodes(map_size, vector<MapNode>(map_size, empty_field)) {
   //just for demonstration purpose:
   //vector<int> korte;
   //korte.push_back(3);

@@ -35,14 +35,14 @@ TEST_CASE("MapNode class has an empty string as img_path at the beginning") {
 TEST_CASE("Game singleton class is pointing to the same instant") {
   Game* my_game = Game::get_game_instance();
   Game* other_game = Game::get_game_instance();
-  REQUIRE(my_game->nodes.empty());
-  REQUIRE(other_game->nodes.empty());
+  REQUIRE_FALSE(my_game->nodes.empty());
+  REQUIRE_FALSE(other_game->nodes.empty());
   MapNode alma;
   vector<MapNode> map_node_vector;
   map_node_vector.push_back(alma);
   my_game->nodes.push_back(map_node_vector);
-  REQUIRE(my_game->nodes.size() == 1);
-  REQUIRE(other_game->nodes.size() == 1);
+  REQUIRE(my_game->nodes.size() == 31); // couse of the previous push_back 
+  REQUIRE(other_game->nodes.size() == 31);
 }
 
 /*TEST_CASE("checking map biuld in singleton's constructor") {
@@ -50,7 +50,7 @@ TEST_CASE("Game singleton class is pointing to the same instant") {
 }*/
 
 TEST_CASE("Game singleton class's  tile_map size is constant") {
-  REQUIRE(Game::get_game_instance()->tile_map.size() == 30);
+  REQUIRE(Game::get_game_instance()->tile_map.size() == 0);
 }
 
 TEST_CASE("Troop class constructor need a pair of ints") {

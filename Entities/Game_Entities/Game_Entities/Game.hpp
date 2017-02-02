@@ -1,7 +1,9 @@
 #pragma once
 #include <utility>
 #include <vector>
-#include "MapNode.hpp"
+#include "Field.hpp"
+#include "Troop.hpp"
+#include "Building.hpp"
 
 using std::vector;
 
@@ -10,6 +12,7 @@ private:
   Game();
   static Game* game_instance;
   void fill_tile_map();
+  Field empty_field;
 public: 
   const int map_size = 30;
   vector<vector<MapNode>> nodes;

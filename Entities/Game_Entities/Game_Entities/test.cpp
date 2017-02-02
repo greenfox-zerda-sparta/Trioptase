@@ -76,4 +76,12 @@ TEST_CASE("building class constructor") {
   REQUIRE(house.get_tile_image_path() == "pic/building.png");
 }
 
+TEST_CASE("troop clicked status changing") {
+  pair<int, int> pos = { 0, 0 };
+  Troop ogre(pos);
+  REQUIRE_FALSE(ogre.get_click_status());
+  ogre.set_click_status();
+  REQUIRE(ogre.get_click_status());
+}
+
 #endif // TEST

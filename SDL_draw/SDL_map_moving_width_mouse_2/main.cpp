@@ -9,6 +9,7 @@
 const int WINDOW_WIDTH(640);
 const int WINDOW_HEIGHT(640);
 const int MAP_SIZE(30);
+const int PANEL_WIDTH(260);
 
 #ifdef CATCH_CONFIG_MAIN
 
@@ -16,11 +17,11 @@ int ticker(int steps); //map size -4 is recommended but it must be adjusted
 
 int main(int argc, char* argv[]) {
 
-  Window win(WINDOW_WIDTH, WINDOW_HEIGHT);
+  Window win(WINDOW_WIDTH + PANEL_WIDTH, WINDOW_HEIGHT);
 
   User_input input(WINDOW_WIDTH, WINDOW_HEIGHT);
 
-  Texture_manager text_man(WINDOW_WIDTH, WINDOW_HEIGHT);
+  Texture_manager text_man(WINDOW_WIDTH, WINDOW_HEIGHT, PANEL_WIDTH);
 
   Singleton::getInstance()->initialize_tile_map();
   Singleton::getInstance()->fill_tile_map_with_plus_pattern();
@@ -31,6 +32,7 @@ int main(int argc, char* argv[]) {
   text_man.load("pics/building.bmp", "builing", 128, 128, win.get_renderer());
   text_man.load("pics/grass.bmp", "grass", 64, 64, win.get_renderer());
   text_man.load("pics/circle.png", "circle", 64, 64, win.get_renderer());
+  text_man.load("pics/panel.bmp", "panel", 260, 640, win.get_renderer());
   
   SDL_Rect* temp_rect = NULL;
   bool selector = false;
@@ -43,26 +45,19 @@ int main(int argc, char* argv[]) {
     win.render_clear();
 
     int ticker_status;
-    /*ticker to automatically movements*/
+    /*ticker to automatically movements, I have to load it to frame_dyn_pro_tile x and y to try it*/
     ticker_status = ticker(MAP_SIZE - 4);
-    /*Inside of the methodes there are coded some usefull function, e.g mouse controlled "camera frame view"*/
-    /*for the static background*/
+    
     text_man.draw_frame("background", 0, 0, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
     
-    text_man.draw_frame_dyn("black", input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
-    /*yoda can walk on x automatically*/
-    text_man.draw_frame_dyn_pro_tile("yoda", ticker_status, 3, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
-    /*yoda can walk on y automatically*/
-    text_man.draw_frame_dyn_pro_tile("yoda", 2, ticker_status, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
-    /*yoda can walk on x and y automatically*/
-    text_man.draw_frame_dyn_pro_tile("yoda", ticker_status, ticker_status, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
-    /*yoda holds its position on 4, 7*/
-    text_man.draw_frame_dyn_pro_tile("yoda", 4, 7, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
     
-    /*you can controll yoda's movements on xy coords by direction buttons*/
+    text_man.draw_frame_dyn("black", input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());    
+    
     text_man.draw_frame_dyn_pro_tile("yoda", input.get_changing_x(), input.get_changing_y(), input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
     /*here can I say that the last item is selectable. In the next step I have to make this data visible and load it into a vector*/
     temp_rect = &text_man.get_actual_rect();
+
+    text_man.draw_frame_static("panel", WINDOW_WIDTH, 0, win.get_renderer());
 
     if (selector) {
       text_man.draw_frame_dyn_pro_tile("circle", input.get_changing_x(), input.get_changing_y(), input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
@@ -97,11 +92,10 @@ int main(int argc, char* argv[]) {
   Path_finder pf;
   Singleton::getInstance()->initialize_tile_map();
   Singleton::getInstance()->fill_tile_map_with_plus_pattern();
-  pf.find_path(0, 0, 20, 20);
-  pf.scratch_route_to_temp_map();
-  pf.print_temp_map();
-  std::cout << std::endl;
-  pf.find_path(10, 10, 19, 18);
+
+  pf.find_path(0, 0, 15, 15);
+  Singleton::getInstance()->print_route();
+  Singleton::getInstance()->print_route();
   pf.scratch_route_to_temp_map();
   pf.print_temp_map();
 

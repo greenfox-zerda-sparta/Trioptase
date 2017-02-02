@@ -2,11 +2,12 @@
 
 Game* Game::game_instance = NULL;
 
-Game::Game() {
+Game::Game() : tile_map(map_size, vector<int>(map_size, 0)) {
   //just for demonstration purpose:
-  vector<int> korte;
-  korte.push_back(3);
-  tile_map.push_back(korte);
+  //vector<int> korte;
+  //korte.push_back(3);
+  //tile_map.push_back(korte);
+  //tile_map(30, vector<int>(30, 0));
 }
 
 Game* Game::get_game_instance() {

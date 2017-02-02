@@ -32,7 +32,11 @@ TEST_CASE("Game class") {
   Game* my_game = Game::get_game_instance();
   REQUIRE(my_game->game_LevelMap.nodes.empty());
 }
-
+/*
 TEST_CASE("checking map biuld in singleton's constructor") {
   REQUIRE(Game::get_game_instance()->tile_map[0][0] == 3);
+}
+*/
+TEST_CASE("checking tile map size") {
+  REQUIRE(Game::get_game_instance()->tile_map.size() == 30);
 }

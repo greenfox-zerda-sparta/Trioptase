@@ -6,6 +6,8 @@
 #include "LevelMap.hpp"
 #include "Game.hpp"
 #include "Troop.hpp"
+#include "Building.hpp"
+
 
 
 TEST_CASE("LevelMap class") {
@@ -49,7 +51,7 @@ TEST_CASE("troop machen") {
   Troop ogre(alma);
   REQUIRE(ogre.getCordinates().first == 1);
   REQUIRE(ogre.getCordinates().second == 2);
-  REQUIRE(ogre.get_tile_image_path() == "");
+  REQUIRE(ogre.get_tile_image_path() == "pic/troop.png");
 }
 
 TEST_CASE("troop movement") {
@@ -64,7 +66,14 @@ TEST_CASE("troop movement") {
   legolas.move_troop();
   REQUIRE(legolas.getCordinates().first == 1);
   REQUIRE(legolas.getCordinates().second == 1);
+}
 
+TEST_CASE("building class constructor") {
+  pair<int, int> place = { 1,3 };
+  Building house(place);
+  REQUIRE(house.getCordinates().first == 1);
+  REQUIRE(house.getCordinates().second == 3);
+  REQUIRE(house.get_tile_image_path() == "pic/building.png");
 }
 
 #endif // TEST

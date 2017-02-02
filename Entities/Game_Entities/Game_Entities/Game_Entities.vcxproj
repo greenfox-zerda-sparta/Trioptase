@@ -113,6 +113,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Building.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="LevelMap.cpp" />
     <ClCompile Include="MapNode.cpp" />
@@ -121,6 +122,7 @@
     <ClCompile Include="Troop.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Building.hpp" />
     <ClInclude Include="catch.h" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="LevelMap.hpp" />

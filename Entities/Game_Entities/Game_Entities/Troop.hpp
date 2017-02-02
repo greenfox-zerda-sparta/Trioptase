@@ -2,8 +2,6 @@
 #include "MapNode.hpp"
 #include "Game.hpp"
 
-using std::pair;
-
 class Troop : public MapNode {
 private:
   int x_coord;

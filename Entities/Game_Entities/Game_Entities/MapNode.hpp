@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <utility>
-
+using std::pair;
 using std::string;
 
 class MapNode {

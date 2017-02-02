@@ -57,6 +57,8 @@ void User_input::input_handler(bool& running, bool& selector, SDL_Rect* rect) {
       if (rect != NULL) {
         SDL_GetMouseState(&this->mouse_state_x, &this->mouse_state_y);        
         //std::cout << "mouse_state_x is: " << this->mouse_state_x << std::endl;        std::cout << "mouse_state_y is: " << this->mouse_state_y << std::endl;        std::cout << std::endl;        std::cout << "rect x: " << rect->x << std::endl;                std::cout << "rect y is: " << rect->y << std::endl;        std::cout << "rect w is: " << rect->w << std::endl;        std::cout << "rect h: " << rect->h << std::endl;                        std::cout << std::endl;        
+        std::cout << "mouse_state_x is: " << int((float)this->mouse_state_x / 32 / ((float)20 / 30)) << std::endl;
+        std::cout << "mouse_state_y is: " << int((float)this->mouse_state_y / 32 / ((float)20 / 30)) << std::endl;
         if (is_inside(rect)) {
           //std::cout << "inside" << std::endl;
           if (selector) {

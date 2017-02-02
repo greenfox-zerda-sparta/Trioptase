@@ -27,7 +27,7 @@ int main(int argc, char* argv[]) {
   Singleton::getInstance()->fill_tile_map_with_plus_pattern();
 
   text_man.load("pics/wallpaper.jpg", "background", 1920, 1080, win.get_renderer());
-  text_man.load("pics/64x64.png", "yoda", 64, 64, win.get_renderer());
+  text_man.load("pics/64x64.png", "troop", 64, 64, win.get_renderer());
   text_man.load("pics/black_64x64.png", "black", 64, 64, win.get_renderer());
   text_man.load("pics/building.png", "building", 64, 64, win.get_renderer());
   text_man.load("pics/grass.bmp", "grass", 64, 64, win.get_renderer());
@@ -48,23 +48,21 @@ int main(int argc, char* argv[]) {
     /*ticker to automatically movements, I have to load it to frame_dyn_pro_tile x and y to try it*/
     ticker_status = ticker(MAP_SIZE - 4);
     
-    text_man.draw_frame("background", 0, 0, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
-    
-    
-    text_man.draw_frame_dyn("building", input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());    
-    
-    text_man.draw_frame_dyn_pro_tile("yoda", input.get_changing_x(), input.get_changing_y(), input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
-    /*here can I say that the last item is selectable. In the next step I have to make this data visible and load it into a vector*/
-  
+    text_man.draw_frame("background", 0, 0, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());       
+    text_man.draw_frame_dyn("building", input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());        
+    text_man.draw_frame_dyn_pro_tile("troop", input.get_changing_x(), input.get_changing_y(), input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());    
 
+    { /*Static elements which are resistent of mouse mouvement to refresh the map*/
+      text_man.draw_frame_static("panel", WINDOW_WIDTH, 0, win.get_renderer());
+      text_man.draw_frame_static("building", WINDOW_WIDTH + 40, 20, win.get_renderer());
+      /*here can I say that the last item is selectable. In the next step I have to make this data visible and load it into a vector*/
+      temp_rect = &text_man.get_actual_rect();
+      text_man.draw_frame_static("troop", WINDOW_WIDTH + 20, 144, win.get_renderer());
 
-    text_man.draw_frame_static("panel", WINDOW_WIDTH, 0, win.get_renderer());
-    text_man.draw_frame_static("building", WINDOW_WIDTH + 20, 20, win.get_renderer());
-    temp_rect = &text_man.get_actual_rect();
-
+    }
 
     if (selector) {
-      text_man.draw_frame_static("circle", WINDOW_WIDTH + 20, 20, win.get_renderer());
+      text_man.draw_frame_static("circle", WINDOW_WIDTH + 40, 20, win.get_renderer());
     }
 
     if (input.get_changing_y() > 64 + (float)128 * 0.2) {
@@ -97,7 +95,7 @@ int main(int argc, char* argv[]) {
   Singleton::getInstance()->initialize_tile_map();
   Singleton::getInstance()->fill_tile_map_with_plus_pattern();
 
-  pf.find_path(0, 0, 15, 15);
+  pf.find_path(0, 0, 16, 16);
   Singleton::getInstance()->print_route();
   Singleton::getInstance()->print_route();
   pf.scratch_route_to_temp_map();

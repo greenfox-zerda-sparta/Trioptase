@@ -4,13 +4,13 @@ bool User_input::is_inside(SDL_Rect* rect) {
   if (this->mouse_state_x < rect->x) {
     return false;
   }
-  else if (this->mouse_state_x > rect->w) {
+  else if (this->mouse_state_x > rect->w + rect->x) {
     return false;
   }
   else if (this->mouse_state_y < rect->y) {
     return false;
   }
-  else if (this->mouse_state_y > rect->h) {
+  else if (this->mouse_state_y > rect->h + rect->y) {
     return false;
   }
   return true;
@@ -56,8 +56,9 @@ void User_input::input_handler(bool& running, bool& selector, SDL_Rect* rect) {
     case SDL_MOUSEBUTTONDOWN:
       if (rect != NULL) {
         SDL_GetMouseState(&this->mouse_state_x, &this->mouse_state_y);        
-        //std::cout << std::endl;     std::cout << "rect x: " << rect->x << std::endl;        std::cout << "rect w is: " << rect->w << std::endl << std::endl;        std::cout << "rect y is: " << rect->y << std::endl;        std::cout << "rect h: " << rect->h << std::endl;                std::cout << "mouse_state_x is: " << this->mouse_state_x << std::endl;        std::cout << "mouse_state_y is: " << this->mouse_state_y << std::endl;
+        //std::cout << "mouse_state_x is: " << this->mouse_state_x << std::endl;        std::cout << "mouse_state_y is: " << this->mouse_state_y << std::endl;        std::cout << std::endl;        std::cout << "rect x: " << rect->x << std::endl;                std::cout << "rect y is: " << rect->y << std::endl;        std::cout << "rect w is: " << rect->w << std::endl;        std::cout << "rect h: " << rect->h << std::endl;                        std::cout << std::endl;        
         if (is_inside(rect)) {
+          //std::cout << "inside" << std::endl;
           if (selector) {
             selector = false;
           }

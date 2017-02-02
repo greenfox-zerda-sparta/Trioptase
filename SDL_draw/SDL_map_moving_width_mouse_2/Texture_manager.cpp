@@ -71,10 +71,10 @@ void Texture_manager::draw_frame_static(std::string id, int x, int y, SDL_Render
   this->dstrect.h = this->texture_resolution[id].second;
   SDL_RenderCopyEx(renderer, textures[id], &srcrect, &dstrect, 0, 0, flip);
 
-  this->actual_rect.x = (x * texture_resolution[id].first) / 2;
-  this->actual_rect.y = (y * texture_resolution[id].second) / 2;
-  this->actual_rect.w = actual_rect.x + texture_resolution[id].first / 2;
-  this->actual_rect.h = actual_rect.y + texture_resolution[id].second / 2;
+  this->actual_rect.x = (x);
+  this->actual_rect.y = (y);
+  this->actual_rect.w = texture_resolution[id].first;
+  this->actual_rect.h = texture_resolution[id].second;
 }
 
 void Texture_manager::draw_frame_dyn(std::string id, int change_x, int change_y, SDL_Renderer* renderer, SDL_RendererFlip flip) {  
@@ -114,6 +114,7 @@ void Texture_manager::draw_frame_dyn_pro_tile(std::string id, int x, int y, int 
 
     change_y = temp_last_y;
   }
+
   this->srcrect.x = 0;
   this->srcrect.y = 0;
   this->srcrect.w = this->WINDOW_WIDTH;
@@ -127,8 +128,8 @@ void Texture_manager::draw_frame_dyn_pro_tile(std::string id, int x, int y, int 
 
   this->actual_rect.x = (x * texture_resolution[id].first - change_x) / 2;
   this->actual_rect.y = (y * texture_resolution[id].second - change_y) / 2;
-  this->actual_rect.w = actual_rect.x + texture_resolution[id].first / 2;
-  this->actual_rect.h = actual_rect.y + texture_resolution[id].second / 2;
+  this->actual_rect.w = texture_resolution[id].first / 2;
+  this->actual_rect.h = texture_resolution[id].second / 2;
 }
 
 SDL_Rect Texture_manager::get_actual_rect() {

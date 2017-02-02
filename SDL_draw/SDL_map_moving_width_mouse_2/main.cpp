@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
   text_man.load("pics/wallpaper.jpg", "background", 1920, 1080, win.get_renderer());
   text_man.load("pics/64x64.png", "yoda", 64, 64, win.get_renderer());
   text_man.load("pics/black_64x64.png", "black", 64, 64, win.get_renderer());
-  text_man.load("pics/building.bmp", "builing", 128, 128, win.get_renderer());
+  text_man.load("pics/building.png", "building", 64, 64, win.get_renderer());
   text_man.load("pics/grass.bmp", "grass", 64, 64, win.get_renderer());
   text_man.load("pics/circle.png", "circle", 64, 64, win.get_renderer());
   text_man.load("pics/panel.bmp", "panel", 260, 640, win.get_renderer());
@@ -51,16 +51,20 @@ int main(int argc, char* argv[]) {
     text_man.draw_frame("background", 0, 0, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
     
     
-    text_man.draw_frame_dyn("black", input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());    
+    text_man.draw_frame_dyn("building", input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());    
     
     text_man.draw_frame_dyn_pro_tile("yoda", input.get_changing_x(), input.get_changing_y(), input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
     /*here can I say that the last item is selectable. In the next step I have to make this data visible and load it into a vector*/
-    temp_rect = &text_man.get_actual_rect();
+  
+
 
     text_man.draw_frame_static("panel", WINDOW_WIDTH, 0, win.get_renderer());
+    text_man.draw_frame_static("building", WINDOW_WIDTH + 20, 20, win.get_renderer());
+    temp_rect = &text_man.get_actual_rect();
+
 
     if (selector) {
-      text_man.draw_frame_dyn_pro_tile("circle", input.get_changing_x(), input.get_changing_y(), input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
+      text_man.draw_frame_static("circle", WINDOW_WIDTH + 20, 20, win.get_renderer());
     }
 
     if (input.get_changing_y() > 64 + (float)128 * 0.2) {

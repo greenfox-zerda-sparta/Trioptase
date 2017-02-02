@@ -5,6 +5,7 @@
 #include "Game.hpp"
 #include "Troop.hpp"
 #include "Building.hpp"
+#include "Field.hpp"
 
 
 
@@ -96,6 +97,11 @@ TEST_CASE("Building clicked status changing") {
   REQUIRE_FALSE(ogre.get_click_status());
   ogre.set_click_status();
   REQUIRE(ogre.get_click_status());
+}
+
+TEST_CASE("Field class constructor") {
+  Field empty;
+  REQUIRE(empty.get_tile_image_path() == "pic/field.png");
 }
 
 #endif // TEST

@@ -26,6 +26,10 @@ pair<int, int> MapNode::get_cordinates() {
   return coords;
 }
 
+Node_Types MapNode::get_node_type() {
+  return node_type;
+}
+
 
 MapNode::~MapNode() {
 }

@@ -24,6 +24,7 @@ public:
   bool get_click_status();
   void set_click_status();
   pair<int, int> get_cordinates();
+  Node_Types get_node_type();
   ~MapNode();
 };
 

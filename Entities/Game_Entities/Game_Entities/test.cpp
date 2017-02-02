@@ -50,7 +50,7 @@ TEST_CASE("Game singleton class is pointing to the same instant") {
 }*/
 
 TEST_CASE("Game singleton class's  tile_map size is constant") {
-  REQUIRE(Game::get_game_instance()->tile_map.size() == 0);
+  REQUIRE(Game::get_game_instance()->tile_map.size() == 30);
 }
 
 TEST_CASE("Troop class constructor need a pair of ints") {
@@ -102,6 +102,26 @@ TEST_CASE("Building clicked status changing") {
 TEST_CASE("Field class constructor") {
   Field empty;
   REQUIRE(empty.get_tile_image_path() == "pic/field.png");
+}
+
+TEST_CASE("Filling tile map from nodes") {
+  Game* my_game = Game::get_game_instance();
+  pair<int, int> coords = { 1, 1 };
+  Building house(coords);
+  my_game->nodes[10][10] = house;
+  my_game->fill_tile_map();
+  REQUIRE(my_game->tile_map[25][28] == 0);
+  REQUIRE(my_game->tile_map[10][10] == 1);
+}
+
+TEST_CASE("path_map changes at \"Building\" in nodes") {
+  Game* my_game = Game::get_game_instance();
+  pair<int, int> position = { 10, 10 };
+  Building haus(position);
+  my_game->nodes[10][10] = haus;
+  my_game->fill_path_map();
+  REQUIRE(my_game->path_map[10][10] == 1);
+  REQUIRE(my_game->path_map[19][26] == 0);
 }
 
 #endif // TEST

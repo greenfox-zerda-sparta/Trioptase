@@ -22,6 +22,7 @@ pair<int, int> Troop::getCordinates() {
 Troop::Troop(pair<int,int> coordinates) {
   x_coord = coordinates.first;
   y_coord = coordinates.second;
+  this->tile_image_path = "pic/troop.png";
 }
 
 

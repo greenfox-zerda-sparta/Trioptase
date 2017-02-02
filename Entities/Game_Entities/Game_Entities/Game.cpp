@@ -1,5 +1,6 @@
 #include "Game.hpp"
 
+
 Game* Game::game_instance = NULL;
 
 Game::Game() : tile_map(map_size, vector<int>(map_size, 0)) {
@@ -8,6 +9,10 @@ Game::Game() : tile_map(map_size, vector<int>(map_size, 0)) {
   //korte.push_back(3);
   //tile_map.push_back(korte);
   //tile_map(30, vector<int>(30, 0));
+}
+
+void Game::fill_tile_map() {
+
 }
 
 Game* Game::get_game_instance() {

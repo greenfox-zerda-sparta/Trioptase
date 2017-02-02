@@ -3,21 +3,20 @@
 
 #define CATCH_CONFIG_MAIN
 #include "catch.h"
-#include "LevelMap.hpp"
 #include "Game.hpp"
 #include "Troop.hpp"
 #include "Building.hpp"
 
 
 
-TEST_CASE("LevelMap class constructor") {
+/*TEST_CASE("LevelMap class constructor") {
   LevelMap mymap;
 }
 
 TEST_CASE("LevelMap first has an empty vector") {
   LevelMap mymap;
   REQUIRE(mymap.nodes.size() == 0);
-}
+}*/ //we dont need this for the demo
 
 TEST_CASE("MapNode class constuctor") {
   MapNode mynode;
@@ -36,14 +35,14 @@ TEST_CASE("MapNode class has an empty string as img_path at the beginning") {
 TEST_CASE("Game singleton class is pointing to the same instant") {
   Game* my_game = Game::get_game_instance();
   Game* other_game = Game::get_game_instance();
-  REQUIRE(my_game->game_LevelMap.nodes.empty());
-  REQUIRE(other_game->game_LevelMap.nodes.empty());
+  REQUIRE(my_game->nodes.empty());
+  REQUIRE(other_game->nodes.empty());
   MapNode alma;
   vector<MapNode> map_node_vector;
   map_node_vector.push_back(alma);
-  my_game->game_LevelMap.nodes.push_back(map_node_vector);
-  REQUIRE(my_game->game_LevelMap.nodes.size() == 1);
-  REQUIRE(other_game->game_LevelMap.nodes.size() == 1);
+  my_game->nodes.push_back(map_node_vector);
+  REQUIRE(my_game->nodes.size() == 1);
+  REQUIRE(other_game->nodes.size() == 1);
 }
 
 /*TEST_CASE("checking map biuld in singleton's constructor") {
@@ -57,8 +56,8 @@ TEST_CASE("Game singleton class's  tile_map size is constant") {
 TEST_CASE("Troop class constructor need a pair of ints") {
   pair<int, int> alma = { 1, 2 };
   Troop ogre(alma);
-  REQUIRE(ogre.getCordinates().first == 1);
-  REQUIRE(ogre.getCordinates().second == 2);
+  REQUIRE(ogre.get_cordinates().first == 1);
+  REQUIRE(ogre.get_cordinates().second == 2);
   REQUIRE(ogre.get_tile_image_path() == "pic/troop.png");
 }
 
@@ -69,11 +68,11 @@ TEST_CASE("Troop class move_troop method") {
 
   pair<int, int> start_point = { 0, 0 };
   Troop legolas(start_point);
-  REQUIRE(legolas.getCordinates().first == 0);
-  REQUIRE(legolas.getCordinates().second == 0);
+  REQUIRE(legolas.get_cordinates().first == 0);
+  REQUIRE(legolas.get_cordinates().second == 0);
   legolas.move_troop();
-  REQUIRE(legolas.getCordinates().first == 1);
-  REQUIRE(legolas.getCordinates().second == 1);
+  REQUIRE(legolas.get_cordinates().first == 1);
+  REQUIRE(legolas.get_cordinates().second == 1);
 }
 
 TEST_CASE("Building class constructor") {

@@ -1,15 +1,18 @@
 #pragma once
 #include <utility>
-#include "LevelMap.hpp"
+#include <vector>
+#include "MapNode.hpp"
 
+using std::vector;
 
 class Game {
 private:
-  static Game* game_instance;
   Game();
+  static Game* game_instance;
+  void fill_tile_map();
 public: 
   const int map_size = 30;
-  LevelMap game_LevelMap;
+  vector<vector<MapNode>> nodes;
   vector<vector<int>> tile_map;
   vector<vector<int>> path_map; // 0free 1'not stepable'
   vector<std::pair<int, int>> troop_path;

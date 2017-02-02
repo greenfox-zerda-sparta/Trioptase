@@ -55,8 +55,7 @@ int main(int argc, char* argv[]) {
     text_man.draw_frame_dyn_pro_tile("troop", soldier.get_cordinates().first, soldier.get_cordinates().second, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
     temp_rect_troop = &text_man.get_actual_rect();
 
-    //std::cout << soldier.get_cordinates().first << std::endl;
-    //std::cout << soldier.get_cordinates().second << std::endl;
+    text_man.draw_frame_dyn_pro_tile("troop", input.get_changing_x(), input.get_changing_y(), input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
 
     { /*Static elements which are resistent of mouse mouvement to refresh the map*/
       text_man.draw_frame_static("panel", WINDOW_WIDTH, 0, win.get_renderer());
@@ -113,51 +112,19 @@ int main(int argc, char* argv[]) {
   Singleton::getInstance()->initialize_tile_map();
   Singleton::getInstance()->fill_tile_map_with_plus_pattern();
 
-  pf.find_path(0, 0, 3, 3);
-  Singleton::getInstance()->print_route();
-  Singleton::getInstance()->print_route();
+  pf.find_path(0, 0, 10, 9);
   pf.scratch_route_to_temp_map();
   pf.print_temp_map();
 
-  soldier.move_troop();
-  std::cout << soldier.get_cordinates().first << std::endl;
-  std::cout << soldier.get_cordinates().second << std::endl;
-  soldier.move_troop();
-  std::cout << soldier.get_cordinates().first << std::endl;
-  std::cout << soldier.get_cordinates().second << std::endl;
-  soldier.move_troop();
-  std::cout << soldier.get_cordinates().first << std::endl;
-  std::cout << soldier.get_cordinates().second << std::endl;
-  soldier.move_troop();
-  std::cout << soldier.get_cordinates().first << std::endl;
-  std::cout << soldier.get_cordinates().second << std::endl;
+  //Singleton::getInstance()->print_route();
+  
+  soldier.smooth_move_troop();
+  soldier.smooth_move_troop();
+  soldier.smooth_move_troop();
+  Singleton::getInstance()->print_smooth_route();
+  
 
-  pf.find_path(2, 2, 6, 7);
-  Singleton::getInstance()->print_route();
-  Singleton::getInstance()->print_route();
-  pf.scratch_route_to_temp_map();
-  pf.print_temp_map();
-
-  soldier.move_troop();
-  std::cout << soldier.get_cordinates().first << std::endl;
-  std::cout << soldier.get_cordinates().second << std::endl;
-  soldier.move_troop();
-  std::cout << soldier.get_cordinates().first << std::endl;
-  std::cout << soldier.get_cordinates().second << std::endl;
-  soldier.move_troop();
-  std::cout << soldier.get_cordinates().first << std::endl;
-  std::cout << soldier.get_cordinates().second << std::endl;
-  soldier.move_troop();
-  std::cout << soldier.get_cordinates().first << std::endl;
-  std::cout << soldier.get_cordinates().second << std::endl;
-  soldier.move_troop();
-  std::cout << soldier.get_cordinates().first << std::endl;
-  std::cout << soldier.get_cordinates().second << std::endl;
-  soldier.move_troop();
-  std::cout << soldier.get_cordinates().first << std::endl;
-  std::cout << soldier.get_cordinates().second << std::endl;
-
-  Singleton::getInstance()->print_route();
+  
 
   return 0;
 }

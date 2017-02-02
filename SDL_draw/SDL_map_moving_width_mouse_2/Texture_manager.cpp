@@ -104,7 +104,7 @@ void Texture_manager::draw_frame_dyn(std::string id, int change_x, int change_y,
   }
 }
 
-void Texture_manager::draw_frame_dyn_pro_tile(std::string id, int x, int y, int change_x, int change_y, SDL_Renderer * renderer, SDL_RendererFlip flip) {
+void Texture_manager::draw_frame_dyn_pro_tile(std::string id, int x, int y, int change_x, int change_y, SDL_Renderer* renderer, SDL_RendererFlip flip) {
   /*hold the maps view if I navigate to the panel section*/
   if (change_x == WINDOW_WIDTH) {
     temp_last_y = change_y;
@@ -114,22 +114,22 @@ void Texture_manager::draw_frame_dyn_pro_tile(std::string id, int x, int y, int 
 
     change_y = temp_last_y;
   }
+    this->srcrect.x = 0;
+    this->srcrect.y = 0;
+    this->srcrect.w = this->WINDOW_WIDTH;
+    this->srcrect.h = this->WINDOW_HEIGHT;
+    this->dstrect.x = x * texture_resolution[id].first - change_x * 2;
+    this->dstrect.y = y * texture_resolution[id].second - change_y * 2;
+    this->dstrect.w = texture_resolution[id].first;
+    this->dstrect.h = texture_resolution[id].second;    
 
-  this->srcrect.x = 0;
-  this->srcrect.y = 0;
-  this->srcrect.w = this->WINDOW_WIDTH;
-  this->srcrect.h = this->WINDOW_HEIGHT;
-  this->dstrect.x = x * texture_resolution[id].first - change_x * 2;
-  this->dstrect.y = y * texture_resolution[id].second - change_y * 2;
-  this->dstrect.w = texture_resolution[id].first;
-  this->dstrect.h = texture_resolution[id].second;
+    SDL_RenderCopyEx(renderer, textures[id], &srcrect, &dstrect, 0, 0, flip);    
 
-  SDL_RenderCopyEx(renderer, textures[id], &srcrect, &dstrect, 0, 0, flip);
-
-  this->actual_rect.x = (x * texture_resolution[id].first - change_x) / 2;
-  this->actual_rect.y = (y * texture_resolution[id].second - change_y) / 2;
-  this->actual_rect.w = texture_resolution[id].first / 2;
-  this->actual_rect.h = texture_resolution[id].second / 2;
+    this->actual_rect.x = (x * texture_resolution[id].first - change_x) / 2;
+    this->actual_rect.y = (y * texture_resolution[id].second - change_y) / 2;
+    this->actual_rect.w = texture_resolution[id].first / 2;
+    this->actual_rect.h = texture_resolution[id].second / 2;
+  
 }
 
 SDL_Rect Texture_manager::get_actual_rect() {

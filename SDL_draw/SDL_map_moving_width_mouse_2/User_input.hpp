@@ -12,14 +12,20 @@ private:
   int changing_mouse_x;
   int changing_mouse_y;
   int step;
+  int mouse_state_x;
+  int mouse_state_y;
+  int mouse_x;
+  int mouse_y;
+  bool is_inside(SDL_Rect* rect);
 public:
-  User_input();
-  User_input(int width, int height, int start_pos_x, int start_pos_y);
-  void input_handler(bool& running);
+  User_input(int width, int height);  
+  void input_handler(bool& running, bool& selector, SDL_Rect* rect);
   int get_changing_x();
   int get_changing_y();
   int get_changing_mouse_x();
   int get_changing_mouse_y();
+  int get_mouse_x();
+  int get_mouse_y();
   void set_step(int _value);
   ~User_input();
 };

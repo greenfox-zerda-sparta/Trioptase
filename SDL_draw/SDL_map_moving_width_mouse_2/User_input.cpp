@@ -1,22 +1,32 @@
 #include "User_input.hpp"
 
-User_input::User_input() : WINDOW_WIDTH(0), WINDOW_HEIGHT(0) {
+bool User_input::is_inside(SDL_Rect* rect) {
+  if (this->mouse_state_x < rect->x) {
+    return false;
+  }
+  else if (this->mouse_state_x > rect->w + rect->x) {
+    return false;
+  }
+  else if (this->mouse_state_y < rect->y) {
+    return false;
+  }
+  else if (this->mouse_state_y > rect->h + rect->y) {
+    return false;
+  }
+  return true;
+}
+
+User_input::User_input(int width, int height) : WINDOW_WIDTH(width), WINDOW_HEIGHT(height) {
   this->changing_x = 0;
   this->changing_y = 0;
   this->changing_mouse_x = 0;
   this->changing_mouse_y = 0;
+  this->mouse_x = 0;
+  this->mouse_y = 0;
   this->step = 1;
 }
 
-User_input::User_input(int width, int height, int start_pos_x, int start_pos_y) : WINDOW_WIDTH(width), WINDOW_HEIGHT(height) {
-  this->changing_x = start_pos_x;
-  this->changing_y = start_pos_y;
-  this->changing_mouse_x = 0;
-  this->changing_mouse_y = 0;
-  this->step = 10;
-}
-
-void User_input::input_handler(bool& running) {
+void User_input::input_handler(bool& running, bool& selector, SDL_Rect* rect) {
   while (SDL_PollEvent(&event)) {
     switch (event.type) {
     case SDL_QUIT:
@@ -45,6 +55,32 @@ void User_input::input_handler(bool& running) {
       this->changing_mouse_x = event.motion.x;
       this->changing_mouse_y = event.motion.y;
       break;
+    case SDL_MOUSEBUTTONDOWN:
+      if (rect != NULL) {
+        SDL_GetMouseState(&this->mouse_state_x, &this->mouse_state_y);                
+        this->mouse_x = int((float)this->mouse_state_x / 32 / ((float)20 / 30));
+        this->mouse_y = int((float)this->mouse_state_y / 32 / ((float)20 / 30));
+        //std::cout << mouse_x << std::endl << mouse_y << std::endl;        
+        if (is_inside(rect)) {
+          //std::cout << "inside" << std::endl;
+          if (selector) {
+            selector = false;
+          }
+          else {
+            selector = true;
+          }
+          //std::cout << "mouse button down from \"selected\" area" << std::endl;
+        }
+      }
+      break;
+    case SDL_MOUSEBUTTONUP:      
+      if (rect != NULL) {
+        SDL_GetMouseState(&this->mouse_state_x, &this->mouse_state_y);
+        if (is_inside(rect)) {          
+          //std::cout << "mouse button up from \"selected\" area" << std::endl;
+        }
+      }
+      break;
     }
   }
 }
@@ -63,6 +99,20 @@ int User_input::get_changing_mouse_x() {
 
 int User_input::get_changing_mouse_y() {
   return this->changing_mouse_y;
+}
+
+int User_input::get_mouse_x() {
+  if (mouse_x < 30) {
+    return this->mouse_x;
+  }
+  return 0;
+}
+
+int User_input::get_mouse_y() {
+  if (mouse_y < 30) {
+    return this->mouse_y;
+  }
+  return 0;
 }
 
 void User_input::set_step(int _value) {

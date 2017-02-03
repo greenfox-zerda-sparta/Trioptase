@@ -87,8 +87,8 @@ void Texture_manager::draw_frame_dyn(std::string id, int change_x, int change_y,
 
     change_y = temp_last_y;
   }
-  for (int i = 2; i < Singleton::getInstance()->tile_map.size()-2; i++) {
-    for (int j = 2; j < 30; j++) {
+  for (int i = 1; i < Singleton::getInstance()->tile_map.size() - 1; i++) {
+    for (int j = 1; j < Singleton::getInstance()->tile_map.size() - 1; j++) {
       if (Singleton::getInstance()->tile_map[i][j] == 1) {
         this->srcrect.x = 0;
         this->srcrect.y = 0;

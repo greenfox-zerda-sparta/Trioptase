@@ -38,6 +38,7 @@ int main(int argc, char* argv[]) {
   text_man.load("pics/circle.png", "circle", 64, 64, win.get_renderer());
   text_man.load("pics/circle2.png", "circle2", 64, 64, win.get_renderer());
   text_man.load("pics/panel.png", "panel", 260, 640, win.get_renderer());
+  text_man.load("pics/smoke.png", "smoke", 64, 64, win.get_renderer());
   
   SDL_Rect* temp_rect_building = NULL;
   SDL_Rect* temp_rect_troop = NULL;
@@ -56,7 +57,7 @@ int main(int argc, char* argv[]) {
     text_man.draw_frame_dyn_pro_tile("troop", soldier.get_cordinates().first, soldier.get_cordinates().second, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
     temp_rect_troop = &text_man.get_actual_rect();
 
-    ///text_man.draw_frame_dyn_pro_tile("troop", input.get_changing_x(), input.get_changing_y(), input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
+    text_man.draw_frame_dyn_pro_tile("smoke", input.get_changing_x(), input.get_changing_y(), input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
 
     { /*Static elements which are resistent of mouse mouvement to refresh the map*/
       text_man.draw_frame_static("panel", WINDOW_WIDTH, 0, win.get_renderer());

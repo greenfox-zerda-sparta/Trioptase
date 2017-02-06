@@ -30,6 +30,10 @@ TEST_CASE("Game_entity class exists") {
   Game_entity my_game_entity;
 }
 
+TEST_CASE("Is Game_entity child of JSON_Serial?") {
+  Game_entity my_game_entity;
+  REQUIRE(my_game_entity.to_json() == "");
+}
 
 
 #endif // TEST

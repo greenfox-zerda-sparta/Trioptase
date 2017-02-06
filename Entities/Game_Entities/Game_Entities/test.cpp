@@ -7,8 +7,6 @@
 #include "Building.hpp"
 #include "Field.hpp"
 
-
-
 /*TEST_CASE("LevelMap class constructor") {
   LevelMap mymap;
 }

@@ -6,17 +6,17 @@
 #include "Troop.hpp"
 #include "Building.hpp"
 #include "Field.hpp"
-
+#include <thread>
 
 
 /*TEST_CASE("LevelMap class constructor") {
   LevelMap mymap;
-}
+} // deleted 
 
 TEST_CASE("LevelMap first has an empty vector") {
   LevelMap mymap;
   REQUIRE(mymap.nodes.size() == 0);
-}*/ //we dont need this for the demo
+}*/ //we dont need this for the demo 
 
 TEST_CASE("MapNode class constuctor") {
   MapNode mynode;
@@ -45,7 +45,7 @@ TEST_CASE("Game singleton class is pointing to the same instant") {
   REQUIRE(other_game->nodes.size() == 31);
 }
 
-/*TEST_CASE("checking map biuld in singleton's constructor") {
+/*TEST_CASE("checking map build in singleton's constructor") {
   REQUIRE(Game::get_game_instance()->tile_map[0][0] == 3);
 }*/
 
@@ -104,7 +104,7 @@ TEST_CASE("Field class constructor") {
   REQUIRE(empty.get_tile_image_path() == "pic/field.png");
 }
 
-TEST_CASE("Filling tile map from nodes") {
+TEST_CASE("Filling tile_map from nodes") {
   Game* my_game = Game::get_game_instance();
   pair<int, int> coords = { 1, 1 };
   Building house(coords);
@@ -123,5 +123,7 @@ TEST_CASE("path_map changes at \"Building\" in nodes") {
   REQUIRE(my_game->path_map[10][10] == 1);
   REQUIRE(my_game->path_map[19][26] == 0);
 }
+
+
 
 #endif // TEST

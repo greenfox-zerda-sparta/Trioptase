@@ -7,4 +7,3 @@ class JSON_Serial {
 public:
   virtual string to_json() = 0;
 };
-

@@ -3,6 +3,7 @@
 #include <iostream>
 #include "catch.h"
 #include "JSON_Serial.h"
+#include "Game_entity.hpp"
 
 TEST_CASE("failing interface test") {
   class test_class : public JSON_Serial {
@@ -24,5 +25,11 @@ TEST_CASE("JSON_Serial is an interface") {
   test_class my_test_class;
   REQUIRE(my_test_class.to_json() == "");
 }
+
+TEST_CASE("Game_entity class exists") {
+  Game_entity my_game_entity;
+}
+
+
 
 #endif // TEST

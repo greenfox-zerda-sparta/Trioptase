@@ -1,4 +1,3 @@
-
 #ifdef RELEASE
 
 #include <iostream>

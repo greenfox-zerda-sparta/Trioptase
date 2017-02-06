@@ -124,6 +124,9 @@ TEST_CASE("path_map changes at \"Building\" in nodes") {
   REQUIRE(my_game->path_map[19][26] == 0);
 }
 
+/*TEST_CASE("") {
+
+}*/
 
 
 #endif // TEST

@@ -100,7 +100,10 @@ TEST_CASE("Game_entity is a child of JSON_Serial") {
   }
 
   TEST_CASE("Troop has price with getter, setter") {
-
+    Troop tropa;
+    REQUIRE(tropa.get_price() == 0);
+    tropa.set_price(10);
+    REQUIRE(tropa.get_price() == 10);
   }
   //------------------------------------------------------------------
   
@@ -111,6 +114,19 @@ TEST_CASE("Game_entity is a child of JSON_Serial") {
   TEST_CASE("Building to_json method return string") {
     Building haus;
     REQUIRE(haus.to_json() == "");
+  }
+
+  TEST_CASE("Building has HP, lvl, price") {
+    Building haus;
+    REQUIRE(haus.get_hp() == 0);
+    haus.set_hp(10);
+    REQUIRE(haus.get_hp() == 10);
+    REQUIRE(haus.get_price() == 0);
+    haus.set_price(10);
+    REQUIRE(haus.get_price() == 10);
+    REQUIRE(haus.get_lvl() == 0);
+    haus.set_lvl(10);
+    REQUIRE(haus.get_lvl() == 10);
   }
 
 #endif // TEST

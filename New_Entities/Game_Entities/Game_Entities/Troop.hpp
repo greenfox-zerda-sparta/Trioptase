@@ -16,10 +16,10 @@ public:
   void set_price(int);
   ~Troop();
 private:
-  int health_point;
-  int attack_point;
-  int defense_point;
+  int health_point = 0;
+  int attack_point = 0;
+  int defense_point = 0;
   int level = 1;
-  int price;
+  int price = 0;
 };
 

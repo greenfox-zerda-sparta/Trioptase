@@ -5,9 +5,6 @@ string Troop::to_json() {
 }
 
 Troop::Troop() {
-  health_point = 0;
-  attack_point = 0;
-  defense_point = 0;
 }
 
 void Troop::set_hp(int _new_hp) {

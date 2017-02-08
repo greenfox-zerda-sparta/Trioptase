@@ -49,4 +49,52 @@ TEST_CASE("Troop inherits from Game_entity") {
   ge_pointer = &soldier;
 }
 
+TEST_CASE("Troop has private varieble int HP with getter") {
+  Troop soldier;
+  REQUIRE(soldier.get_hp() == 0);
+}
+
+TEST_CASE("Troop has private varieble int HP with setter") {
+  Troop soldier;
+  REQUIRE(soldier.get_hp() == 0);
+  soldier.set_hp(5);
+  REQUIRE(soldier.get_hp() == 5);
+}
+
+TEST_CASE("Troop has private varieble int AP with getter") {
+  Troop soldier;
+  REQUIRE(soldier.get_ap() == 0);
+}
+
+TEST_CASE("Troop has private varieble int AP with setter") {
+  Troop soldier;
+  REQUIRE(soldier.get_ap() == 0);
+  soldier.set_ap(5);
+  REQUIRE(soldier.get_ap() == 5);
+}
+
+TEST_CASE("Troop has private varieble int DP with getter") {
+  Troop soldier;
+  REQUIRE(soldier.get_dp() == 0);
+}
+
+TEST_CASE("Troop has private varieble int DP with setter") {
+  Troop soldier;
+  REQUIRE(soldier.get_dp() == 0);
+  soldier.set_dp(5);
+  REQUIRE(soldier.get_dp() == 5);
+}
+
+TEST_CASE("Troop has level default (1),  with getter") {
+  Troop soldier;
+  REQUIRE(soldier.get_lvl() == 1);
+}
+
+TEST_CASE("Troop has a level up method") {
+  Troop soldier;
+  REQUIRE(soldier.get_lvl() == 1);
+  soldier.lvl_up();
+  REQUIRE(soldier.get_lvl() == 2);
+}
+
 #endif // TEST

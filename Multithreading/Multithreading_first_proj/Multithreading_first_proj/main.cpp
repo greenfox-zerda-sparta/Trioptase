@@ -2,6 +2,15 @@
 #include <iostream>
 #include <thread>
 
+
+class myFunctor {
+public: 
+  myFunctor() {}
+  void publicFunction(int var) {
+    std::cout << "var is = " << var << " public function of myFunctor class is called" << std::endl;
+  }
+};
+
 void print_message() {
   std::cout << "Hello threads" << std::endl;
   for (int i = 0; i < 100; i++) {
@@ -9,15 +18,43 @@ void print_message() {
   }
 }
 
+void printSomeValues(int val, char* str, double dval) {
+  std::cout << val << " " << str << " " << dval << std::endl;
+
+}
+
 int main(int argc, char* argv[]) {
+  myFunctor myFunc;
+  
+  std::thread functorTest(&myFunctor::publicFunction, &myFunc, 5);
+  if (functorTest.joinable()) {
+    functorTest.join();
+  }
+
+  /*
+  int counter = 0;
+  bool run = true;
   std::thread printer(print_message);
   printer.detach();
-  if (printer.joinable()) {
-    printer.join();
+  
+
+  while (run) {
+    std::cout << "counter is = " << counter++ << std::endl;
+
+    if (printer.joinable()) {
+      printer.join();
+    }
+    else {
+      std::cout << "Can not join due to detach() func" << std::endl;
+    }
+   
+    char input;
+    std::cin >> input;
+    if (input == 'x') {
+      run = false;
+    }
   }
-  else {
-    std::cout << "Can not join due to detach() func" << std::endl;
-  }
+  */
   return 0;
 }
 

@@ -138,11 +138,13 @@
     <ClCompile Include="Game_entity.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="test.cpp" />
+    <ClCompile Include="Troop.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="catch.h" />
     <ClInclude Include="Game_entity.hpp" />
-    <ClInclude Include="JSON_Serial.h" />
+    <ClInclude Include="JSON_Serial.hpp" />
+    <ClInclude Include="Troop.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

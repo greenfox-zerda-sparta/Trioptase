@@ -2,8 +2,7 @@
 #define CATCH_CONFIG_MAIN
 #include <iostream>
 #include "catch.h"
-#include "JSON_Serial.h"
-#include "Game_entity.hpp"
+#include "Troop.hpp"
 
 TEST_CASE("failing interface test") {
   class test_class : public JSON_Serial {
@@ -26,14 +25,22 @@ TEST_CASE("JSON_Serial is an interface") {
   REQUIRE(my_test_class.to_json() == "");
 }
 
-TEST_CASE("Game_entity class exists") {
+/*TEST_CASE("Game_entity class exists") {
   Game_entity my_game_entity;
 }
 
-TEST_CASE("Is Game_entity child of JSON_Serial?") {
+TEST_CASE("Game_entity is a child of JSON_Serial") {
   Game_entity my_game_entity;
   REQUIRE(my_game_entity.to_json() == "");
+}*/ //Game_entity is an abstract class 
+
+TEST_CASE("Troop class inherits from JSON_Serial") {
+  Troop soldier;
 }
 
+TEST_CASE("Troop class to_json() method returns a string") {
+  Troop soldier;
+  REQUIRE(soldier.to_json() == "");
+}
 
 #endif // TEST

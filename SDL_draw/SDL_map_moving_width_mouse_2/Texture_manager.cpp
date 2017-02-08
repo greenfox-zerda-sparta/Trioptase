@@ -129,7 +129,6 @@ void Texture_manager::draw_frame_dyn_pro_tile(std::string id, int x, int y, int 
     this->actual_rect.y = (y * texture_resolution[id].second - change_y) / 2;
     this->actual_rect.w = texture_resolution[id].first / 2;
     this->actual_rect.h = texture_resolution[id].second / 2;
-  
 }
 
 SDL_Rect Texture_manager::get_actual_rect() {

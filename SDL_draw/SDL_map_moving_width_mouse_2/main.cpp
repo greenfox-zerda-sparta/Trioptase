@@ -53,7 +53,8 @@ int main(int argc, char* argv[]) {
     win.render_clear();
     
     text_man.draw_frame("background", 0, 0, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());       
-    text_man.draw_frame_dyn("building", input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());        
+    text_man.draw_frame_dyn("building", input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());               
+
     text_man.draw_frame_dyn_pro_tile("troop", soldier.get_cordinates().first, soldier.get_cordinates().second, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
     temp_rect_troop = &text_man.get_actual_rect();
 
@@ -100,6 +101,7 @@ int ticker(int steps) {
   ticker_status = int(((SDL_GetTicks() / 100) % steps));
   return ticker_status;
 }
+
 
 #endif
 

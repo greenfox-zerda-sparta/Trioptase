@@ -18,7 +18,7 @@ public:
   const int map_size = 30;
   vector<vector<MapNode>> nodes;
   vector<vector<int>> tile_map;
-  vector<vector<int>> path_map; // 0 free, 1'not stepable'
+  vector<vector<int>> path_map; 
   vector<std::pair<int, int>> troop_path;
   static Game* get_game_instance();
 };

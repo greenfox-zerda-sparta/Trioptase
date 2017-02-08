@@ -43,4 +43,10 @@ TEST_CASE("Troop class to_json() method returns a string") {
   REQUIRE(soldier.to_json() == "");
 }
 
+TEST_CASE("Troop inherits from Game_entity") {
+  Troop soldier;
+  Game_entity* ge_pointer;
+  ge_pointer = &soldier;
+}
+
 #endif // TEST

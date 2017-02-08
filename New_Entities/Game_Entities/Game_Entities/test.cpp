@@ -3,6 +3,7 @@
 #include <iostream>
 #include "catch.h"
 #include "Troop.hpp"
+#include "Building.hpp"
 
 TEST_CASE("failing interface test") {
   class test_class : public JSON_Serial {
@@ -34,67 +35,82 @@ TEST_CASE("Game_entity is a child of JSON_Serial") {
   REQUIRE(my_game_entity.to_json() == "");
 }*/ //Game_entity is an abstract class 
 
-TEST_CASE("Troop class inherits from JSON_Serial") {
-  Troop soldier;
-}
+//-------------------------------------------------------------------
+  TEST_CASE("Troop class inherits from JSON_Serial") {
+    Troop soldier;
+  }
 
-TEST_CASE("Troop class to_json() method returns a string") {
-  Troop soldier;
-  REQUIRE(soldier.to_json() == "");
-}
+  TEST_CASE("Troop class to_json() method returns a string") {
+    Troop soldier;
+    REQUIRE(soldier.to_json() == "");
+  }
 
-TEST_CASE("Troop inherits from Game_entity") {
-  Troop soldier;
-  Game_entity* ge_pointer;
-  ge_pointer = &soldier;
-}
+  TEST_CASE("Troop inherits from Game_entity") {
+    Troop soldier;
+    Game_entity* ge_pointer;
+    ge_pointer = &soldier;
+  }
 
-TEST_CASE("Troop has private varieble int HP with getter") {
-  Troop soldier;
-  REQUIRE(soldier.get_hp() == 0);
-}
+  TEST_CASE("Troop has private varieble int HP with getter") {
+    Troop soldier;
+    REQUIRE(soldier.get_hp() == 0);
+  }
 
-TEST_CASE("Troop has private varieble int HP with setter") {
-  Troop soldier;
-  REQUIRE(soldier.get_hp() == 0);
-  soldier.set_hp(5);
-  REQUIRE(soldier.get_hp() == 5);
-}
+  TEST_CASE("Troop has private varieble int HP with setter") {
+    Troop soldier;
+    REQUIRE(soldier.get_hp() == 0);
+    soldier.set_hp(5);
+    REQUIRE(soldier.get_hp() == 5);
+  }
 
-TEST_CASE("Troop has private varieble int AP with getter") {
-  Troop soldier;
-  REQUIRE(soldier.get_ap() == 0);
-}
+  TEST_CASE("Troop has private varieble int AP with getter") {
+    Troop soldier;
+    REQUIRE(soldier.get_ap() == 0);
+  }
 
-TEST_CASE("Troop has private varieble int AP with setter") {
-  Troop soldier;
-  REQUIRE(soldier.get_ap() == 0);
-  soldier.set_ap(5);
-  REQUIRE(soldier.get_ap() == 5);
-}
+  TEST_CASE("Troop has private varieble int AP with setter") {
+    Troop soldier;
+    REQUIRE(soldier.get_ap() == 0);
+    soldier.set_ap(5);
+    REQUIRE(soldier.get_ap() == 5);
+  }
 
-TEST_CASE("Troop has private varieble int DP with getter") {
-  Troop soldier;
-  REQUIRE(soldier.get_dp() == 0);
-}
+  TEST_CASE("Troop has private varieble int DP with getter") {
+    Troop soldier;
+    REQUIRE(soldier.get_dp() == 0);
+  }
 
-TEST_CASE("Troop has private varieble int DP with setter") {
-  Troop soldier;
-  REQUIRE(soldier.get_dp() == 0);
-  soldier.set_dp(5);
-  REQUIRE(soldier.get_dp() == 5);
-}
+  TEST_CASE("Troop has private varieble int DP with setter") {
+    Troop soldier;
+    REQUIRE(soldier.get_dp() == 0);
+    soldier.set_dp(5);
+    REQUIRE(soldier.get_dp() == 5);
+  }
 
-TEST_CASE("Troop has level default (1),  with getter") {
-  Troop soldier;
-  REQUIRE(soldier.get_lvl() == 1);
-}
+  TEST_CASE("Troop has level default (1),  with getter") {
+    Troop soldier;
+    REQUIRE(soldier.get_lvl() == 1);
+  }
 
-TEST_CASE("Troop has a level up method") {
-  Troop soldier;
-  REQUIRE(soldier.get_lvl() == 1);
-  soldier.lvl_up();
-  REQUIRE(soldier.get_lvl() == 2);
-}
+  TEST_CASE("Troop has a level up method") {
+    Troop soldier;
+    REQUIRE(soldier.get_lvl() == 1);
+    soldier.lvl_up();
+    REQUIRE(soldier.get_lvl() == 2);
+  }
+
+  TEST_CASE("Troop has price with getter, setter") {
+
+  }
+  //------------------------------------------------------------------
+  
+  TEST_CASE("Building class inherits from JSON_Serial") {
+    Building haus;
+  }
+
+  TEST_CASE("Building to_json method return string") {
+    Building haus;
+    REQUIRE(haus.to_json() == "");
+  }
 
 #endif // TEST

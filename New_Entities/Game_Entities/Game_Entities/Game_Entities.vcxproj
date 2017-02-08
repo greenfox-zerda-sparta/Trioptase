@@ -135,12 +135,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Building.cpp" />
     <ClCompile Include="Game_entity.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="Troop.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Building.hpp" />
     <ClInclude Include="catch.h" />
     <ClInclude Include="Game_entity.hpp" />
     <ClInclude Include="JSON_Serial.hpp" />

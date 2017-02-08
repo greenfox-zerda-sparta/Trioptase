@@ -12,11 +12,14 @@ public:
   void set_dp(int);
   int get_lvl();
   void lvl_up();
+  int get_price();
+  void set_price(int);
   ~Troop();
 private:
   int health_point;
   int attack_point;
   int defense_point;
   int level = 1;
+  int price;
 };
 

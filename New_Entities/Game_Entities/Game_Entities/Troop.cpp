@@ -38,6 +38,14 @@ void Troop::lvl_up() {
   level++;
 }
 
+int Troop::get_price() {
+  return price;
+}
+
+void Troop::set_price(int _price) {
+  price = _price;
+}
+
 int Troop::get_dp() {
   return defense_point;
 }

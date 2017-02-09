@@ -49,20 +49,14 @@ int main(int argc, char* argv[]) {
 
   recursive_level rlvl;
   
-
+  bool running = true;
   bool mazing = true;  
 
-  std::thread random_builder(&recursive_level::porgettyu, &rlvl, &mazing);
+  std::thread random_builder(&recursive_level::porgettyu, &rlvl, &running, &mazing);
   random_builder.detach();
-  if (random_builder.joinable()) {
 
-    random_builder.join();
-  }
-  else {
-    //std::cout << "Can not join due to detach() func" << std::endl;
-  }
 
-  bool running = true;
+
   while (running) {
     /*user input handler. you can see the class*/
     input.input_handler(running, building_selector, troop_selector, temp_rect_building, temp_rect_troop);
@@ -121,6 +115,14 @@ int main(int argc, char* argv[]) {
   }
   /*And finally the closing method*/
   win.close();
+
+  if (random_builder.joinable()) {
+
+    random_builder.join();
+  }
+  else {
+    //std::cout << "Can not join due to detach() func" << std::endl;
+  }
   return 0;
 }
 

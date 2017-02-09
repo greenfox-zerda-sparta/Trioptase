@@ -6,6 +6,7 @@
 #include "Texture_manager.hpp"
 #include "Path_finder.hpp"
 #include "Troop.hpp"
+#include <thread>
 
 const int WINDOW_WIDTH(640);
 const int WINDOW_HEIGHT(640);
@@ -15,6 +16,14 @@ const int PANEL_WIDTH(260);
 #ifdef CATCH_CONFIG_MAIN
 
 int ticker(int steps); //map size -4 is recommended but it must be adjusted
+void print_message(bool run) {
+  //std::cout << "Hello threads" << std::endl;
+ while (run) {
+
+    std::cout << ". Hello threads" << std::endl;
+  }
+}
+
 
 int main(int argc, char* argv[]) {
 
@@ -45,18 +54,36 @@ int main(int argc, char* argv[]) {
   bool building_selector = false;
   bool troop_selector = false;
 
+
+  
+
   bool running = true;
+
+  std::thread printer(&print_message, &running);
+  printer.detach();
+  if (printer.joinable()) {
+
+    printer.join();
+  }
+  else {
+    //std::cout << "Can not join due to detach() func" << std::endl;
+  }
+
+
   while (running) {
     /*user input handler. you can see the class*/
     input.input_handler(running, building_selector, troop_selector, temp_rect_building, temp_rect_troop);
     /*You have to use this method at this point, like render present at the end of the loop*/
     win.render_clear();
-    
+
     text_man.draw_frame("background", 0, 0, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());       
     text_man.draw_frame_dyn("building", input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());               
 
     text_man.draw_frame_dyn_pro_tile("troop", soldier.get_cordinates().first, soldier.get_cordinates().second, input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
     temp_rect_troop = &text_man.get_actual_rect();
+
+    
+
 
     text_man.draw_frame_dyn_pro_tile("smoke", input.get_changing_x(), input.get_changing_y(), input.get_changing_mouse_x(), input.get_changing_mouse_y(), win.get_renderer());
 
@@ -73,6 +100,9 @@ int main(int argc, char* argv[]) {
     if (building_selector) {
       text_man.draw_frame_static("circle", WINDOW_WIDTH + 40, 60, win.get_renderer());
       Singleton::getInstance()->pin_mouse_click_to_map(input.get_mouse_x(), input.get_mouse_y());
+      
+
+
     }
 
     if (troop_selector) {      
@@ -81,7 +111,9 @@ int main(int argc, char* argv[]) {
       if (soldier.get_cordinates().first != input.get_mouse_x() || soldier.get_cordinates().second != input.get_mouse_y()) {        
         pf.find_path(soldier.get_cordinates().first, soldier.get_cordinates().second, input.get_mouse_x(), input.get_mouse_y());
         soldier.move_troop(); 
+        
         SDL_Delay(50);
+
         
       }
     }

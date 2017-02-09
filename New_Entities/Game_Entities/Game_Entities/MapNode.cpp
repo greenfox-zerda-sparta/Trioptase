@@ -3,7 +3,7 @@
 #include <iostream>
 
 MapNode::MapNode() {
-  entity_img_path = "pic/field.png";
+  entity_img_path = "";
 }
 
 string MapNode::get_img_path() {

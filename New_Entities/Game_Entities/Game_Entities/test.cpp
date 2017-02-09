@@ -1,11 +1,12 @@
 #ifdef TEST
 #define CATCH_CONFIG_MAIN
+
 #include <iostream>
 #include "catch.h"
 #include "Troop.hpp"
 #include "Building.hpp"
 #include "MapNode.hpp"
-
+#include "Map.hpp"
 //------------------------------------------------------------------
 
 TEST_CASE("failing interface test") {
@@ -17,7 +18,6 @@ TEST_CASE("failing interface test") {
   // commented line becouse it breaks compiling 
 }
 //------------------------------------------------------------------
-
 TEST_CASE("JSON_Serial is an interface") {
   class test_class : public JSON_Serial {
   public:
@@ -30,7 +30,6 @@ TEST_CASE("JSON_Serial is an interface") {
   REQUIRE(my_test_class.to_json() == "");
 }
 //------------------------------------------------------------------
-
 /*TEST_CASE("Game_entity class exists") {
   Game_entity my_game_entity;
 }
@@ -39,7 +38,6 @@ TEST_CASE("Game_entity is a child of JSON_Serial") {
   Game_entity my_game_entity;
   REQUIRE(my_game_entity.to_json() == "");
 }*/ //Game_entity is an abstract class 
-
 //-------------------------------------------------------------------
 TEST_CASE("Troop class inherits from JSON_Serial") {
   Troop soldier;
@@ -117,7 +115,6 @@ TEST_CASE("every Troop has uniqe id") {
   REQUIRE(ogre.ID == soldier.ID + 1);
 }
 //------------------------------------------------------------------
-  
 TEST_CASE("Building class inherits from JSON_Serial") {
   Building haus;
 }
@@ -160,18 +157,50 @@ TEST_CASE("MapNode class has a pointer to a Gameplay_entity with a setter/ gette
 
 TEST_CASE("MapNode has a string member entity_img_path with getter") {
   MapNode node;
-  REQUIRE(node.get_img_path() == "pic/field.png");
+  REQUIRE(node.get_img_path() == "");
 }
 
 TEST_CASE("MapNode set_entity() method changes entity_img_path to entity's img_path") {
   Troop soldier;
   Building hause;
   MapNode node;
-  REQUIRE(node.get_img_path() == "pic/field.png");
+  REQUIRE(node.get_img_path() == "");
   node.set_entity(&hause);
   REQUIRE(node.get_img_path() == "pic/building.png");
   node.set_entity(&soldier);
   REQUIRE(node.get_img_path() == "pic/troop.png");
 }
+//------------------------------------------------------------------
+TEST_CASE("Map class") {
+  Map map;
+}
 
+TEST_CASE("Map class has a vector filled with empty nodes") {
+  Map map;
+  REQUIRE(map.node_map.size() == MAP_SIZE);
+  REQUIRE(map.node_map[2].size()== MAP_SIZE);
+  REQUIRE(map.node_map[3][27]->get_img_path() == "");
+}
+//------------------------------------------------------------------
+//------------------------------------------------------------------
+//------------------------------------------------------------------
+TEST_CASE("try everything") {
+  Troop first_soldier;
+  Troop second_soldier;
+  Building town_hall;
+  Map map;
+  REQUIRE(map.node_map[1][1]->get_img_path() == "");
+  map.node_map[1][1]->set_entity(&first_soldier);
+  map.node_map[2][2]->set_entity(&second_soldier);
+  
+  REQUIRE(((Troop*)map.node_map[2][2]->get_entity())->ID == ((Troop*)map.node_map[1][1]->get_entity())->ID + 1);
+
+
+  REQUIRE(map.node_map[1][1]->get_img_path() == "pic/troop.png");
+  REQUIRE(map.node_map[2][2]->get_img_path() == "pic/troop.png");
+  map.node_map[3][2]->set_entity(&town_hall);
+  REQUIRE(map.node_map[3][2]->get_img_path() == "pic/building.png");
+  REQUIRE(first_soldier.ID + 1 == second_soldier.ID);
+  REQUIRE(town_hall.ID);
+}
 #endif // TEST

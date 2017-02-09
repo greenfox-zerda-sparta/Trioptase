@@ -2,6 +2,7 @@
 #include "Game_entity.hpp"
 class Troop : public Game_entity {
 public:
+  const int ID;
   string to_json();
   Troop();
   int get_hp();

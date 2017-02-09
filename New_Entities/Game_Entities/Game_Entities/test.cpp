@@ -110,6 +110,12 @@ TEST_CASE("Troop has price with getter, setter") {
   tropa.set_price(10);
   REQUIRE(tropa.get_price() == 10);
 }
+
+TEST_CASE("Troop has a const int id") {
+  Troop soldier;
+  Troop ogre;
+  REQUIRE(ogre.ID == soldier.ID + 1);
+}
 //------------------------------------------------------------------
   
 TEST_CASE("Building class inherits from JSON_Serial") {
@@ -146,7 +152,5 @@ TEST_CASE("MapNode class has a pointer to a Gameplay_entity") {
   REQUIRE(node.entity->to_json() == "");
 }
 
-TEST_CASE("MapNode class has a string cointaining the path for the entity") {
 
-}
 #endif // TEST

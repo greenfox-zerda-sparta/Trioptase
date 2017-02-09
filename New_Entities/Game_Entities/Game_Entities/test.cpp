@@ -111,7 +111,7 @@ TEST_CASE("Troop has price with getter, setter") {
   REQUIRE(tropa.get_price() == 10);
 }
 
-TEST_CASE("Troop has a const int id") {
+TEST_CASE("every Troop has uniqe id") {
   Troop soldier;
   Troop ogre;
   REQUIRE(ogre.ID == soldier.ID + 1);
@@ -138,6 +138,12 @@ TEST_CASE("Building has HP, lvl, price") {
   REQUIRE(haus.get_lvl() == 0);
   haus.set_lvl(10);
   REQUIRE(haus.get_lvl() == 10);
+}
+
+TEST_CASE("every Building has uniqe id") {
+  Building haus;
+  Building burg;
+  REQUIRE(burg.ID == haus.ID + 1);
 }
 //------------------------------------------------------------------
 //------------------------------------------------------------------

@@ -1,9 +1,8 @@
 #include "Building.hpp"
 
+static int BASE_ID = 0;
 
-
-Building::Building()
-{
+Building::Building(): ID(++BASE_ID) {
 }
 
 string Building::to_json() {

@@ -1,10 +1,13 @@
 #include "Troop.hpp"
 
+static int BASE_ID = 0;
+
 string Troop::to_json() {
   return "";
 }
 
-Troop::Troop() {
+Troop::Troop(): ID(++BASE_ID) {
+  Game_entity::IMG_PATH = "pic/troop.png";
 }
 
 void Troop::set_hp(int _new_hp) {
@@ -46,7 +49,6 @@ void Troop::set_price(int _price) {
 int Troop::get_dp() {
   return defense_point;
 }
-
 
 Troop::~Troop() {
 }

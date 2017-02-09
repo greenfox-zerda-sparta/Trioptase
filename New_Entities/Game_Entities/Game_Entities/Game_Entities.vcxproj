@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClCompile Include="Building.cpp" />
     <ClCompile Include="Game_entity.cpp" />
+    <ClCompile Include="MapNode.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="Troop.cpp" />
@@ -146,6 +147,7 @@
     <ClInclude Include="catch.h" />
     <ClInclude Include="Game_entity.hpp" />
     <ClInclude Include="JSON_Serial.hpp" />
+    <ClInclude Include="MapNode.hpp" />
     <ClInclude Include="Troop.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

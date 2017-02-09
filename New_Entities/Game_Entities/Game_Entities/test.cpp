@@ -157,14 +157,14 @@ TEST_CASE("MapNode class has a pointer to a Gameplay_entity with a setter/ gette
 
 TEST_CASE("MapNode has a string member entity_img_path with getter") {
   MapNode node;
-  REQUIRE(node.get_img_path() == "pic/field.png");
+  REQUIRE(node.get_img_path() == "");
 }
 
 TEST_CASE("MapNode set_entity() method changes entity_img_path to entity's img_path") {
   Troop soldier;
   Building hause;
   MapNode node;
-  REQUIRE(node.get_img_path() == "pic/field.png");
+  REQUIRE(node.get_img_path() == "");
   node.set_entity(&hause);
   REQUIRE(node.get_img_path() == "pic/building.png");
   node.set_entity(&soldier);
@@ -179,7 +179,28 @@ TEST_CASE("Map class has a vector filled with empty nodes") {
   Map map;
   REQUIRE(map.node_map.size() == MAP_SIZE);
   REQUIRE(map.node_map[2].size()== MAP_SIZE);
-  REQUIRE(map.node_map[3][27]->get_img_path() == "pic/field.png");
+  REQUIRE(map.node_map[3][27]->get_img_path() == "");
 }
+//------------------------------------------------------------------
+//------------------------------------------------------------------
+//------------------------------------------------------------------
+TEST_CASE("try everything") {
+  Troop first_soldier;
+  Troop second_soldier;
+  Building town_hall;
+  Map map;
+  REQUIRE(map.node_map[1][1]->get_img_path() == "");
+  map.node_map[1][1]->set_entity(&first_soldier);
+  map.node_map[2][2]->set_entity(&second_soldier);
+  
+  REQUIRE(((Troop*)map.node_map[2][2]->get_entity())->ID == ((Troop*)map.node_map[1][1]->get_entity())->ID + 1);
 
+
+  REQUIRE(map.node_map[1][1]->get_img_path() == "pic/troop.png");
+  REQUIRE(map.node_map[2][2]->get_img_path() == "pic/troop.png");
+  map.node_map[3][2]->set_entity(&town_hall);
+  REQUIRE(map.node_map[3][2]->get_img_path() == "pic/building.png");
+  REQUIRE(first_soldier.ID + 1 == second_soldier.ID);
+  REQUIRE(town_hall.ID);
+}
 #endif // TEST

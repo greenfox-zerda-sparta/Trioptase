@@ -7,6 +7,7 @@
 #include "Path_finder.hpp"
 #include "Troop.hpp"
 #include <thread>
+#include "recursive_level.hpp"
 
 const int WINDOW_WIDTH(640);
 const int WINDOW_HEIGHT(640);
@@ -16,17 +17,9 @@ const int PANEL_WIDTH(260);
 #ifdef CATCH_CONFIG_MAIN
 
 int ticker(int steps); //map size -4 is recommended but it must be adjusted
-void print_message(bool run) {
-  //std::cout << "Hello threads" << std::endl;
- while (run) {
-
-    std::cout << ". Hello threads" << std::endl;
-  }
-}
-
 
 int main(int argc, char* argv[]) {
-
+  srand(time(NULL));
   Window win(WINDOW_WIDTH + PANEL_WIDTH, WINDOW_HEIGHT);
 
   User_input input(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -54,22 +47,22 @@ int main(int argc, char* argv[]) {
   bool building_selector = false;
   bool troop_selector = false;
 
-
+  recursive_level rlvl;
   
 
-  bool running = true;
+  bool mazing = true;  
 
-  std::thread printer(&print_message, &running);
-  printer.detach();
-  if (printer.joinable()) {
+  std::thread random_builder(&recursive_level::porgettyu, &rlvl, &mazing);
+  random_builder.detach();
+  if (random_builder.joinable()) {
 
-    printer.join();
+    random_builder.join();
   }
   else {
     //std::cout << "Can not join due to detach() func" << std::endl;
   }
 
-
+  bool running = true;
   while (running) {
     /*user input handler. you can see the class*/
     input.input_handler(running, building_selector, troop_selector, temp_rect_building, temp_rect_troop);
@@ -100,7 +93,6 @@ int main(int argc, char* argv[]) {
     if (building_selector) {
       text_man.draw_frame_static("circle", WINDOW_WIDTH + 40, 60, win.get_renderer());
       Singleton::getInstance()->pin_mouse_click_to_map(input.get_mouse_x(), input.get_mouse_y());
-      
 
 
     }
@@ -114,9 +106,14 @@ int main(int argc, char* argv[]) {
         
         SDL_Delay(50);
 
+        if (soldier.get_path_size() == 0) {
+          mazing = true;
+        }
         
       }
     }
+
+
 
 
     /*As I mentioned here is the necessary render_present method to write on the screen the drawers results*/

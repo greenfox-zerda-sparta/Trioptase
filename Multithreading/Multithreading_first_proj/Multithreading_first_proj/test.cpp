@@ -1,13 +1,12 @@
 #ifdef TEST
 
 #include <iostream>
+#include <windows.data.json.h>
 
-using std::cout;
-using std::endl;
+using namespace std;
 
-int main(int argc, char* argv[]) {
-  cout << "test" << endl;
+int main() {
+  JsonObject laci;
   return 0;
 }
-
 #endif

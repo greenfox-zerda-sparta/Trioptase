@@ -24,17 +24,20 @@ void printSomeValues(int val, char* str, double dval) {
 }
 
 int main(int argc, char* argv[]) {
+  /*
   myFunctor myFunc;
   
   std::thread functorTest(&myFunctor::publicFunction, &myFunc, 5);
   if (functorTest.joinable()) {
     functorTest.join();
   }
-
-  /*
+  */
+  
   int counter = 0;
   bool run = true;
   std::thread printer(print_message);
+  std::thread::id id1 = printer.get_id();
+
   printer.detach();
   
 
@@ -43,6 +46,7 @@ int main(int argc, char* argv[]) {
 
     if (printer.joinable()) {
       printer.join();
+      std::cout << "id is: " << id1 << std::endl;
     }
     else {
       std::cout << "Can not join due to detach() func" << std::endl;
@@ -54,7 +58,7 @@ int main(int argc, char* argv[]) {
       run = false;
     }
   }
-  */
+  
   return 0;
 }
 

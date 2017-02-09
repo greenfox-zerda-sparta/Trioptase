@@ -7,6 +7,7 @@ string Troop::to_json() {
 }
 
 Troop::Troop(): ID(++BASE_ID) {
+  Game_entity::IMG_PATH = "pic/troop.png";
 }
 
 void Troop::set_hp(int _new_hp) {

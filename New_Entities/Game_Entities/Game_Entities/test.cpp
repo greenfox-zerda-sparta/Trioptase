@@ -151,12 +151,27 @@ TEST_CASE("MapNode class") {
   MapNode node;
 }
 
-TEST_CASE("MapNode class has a pointer to a Gameplay_entity") {
+TEST_CASE("MapNode class has a pointer to a Gameplay_entity with a setter/ getter") {
   MapNode node;
   Building haus;
-  node.entity = &haus;
-  REQUIRE(node.entity->to_json() == "");
+  node.set_entity(&haus);
+  REQUIRE(node.get_entity()->to_json() == "");
 }
 
+TEST_CASE("MapNode has a string member entity_img_path with getter") {
+  MapNode node;
+  REQUIRE(node.get_img_path() == "pic/field.png");
+}
+
+TEST_CASE("MapNode set_entity() method changes entity_img_path to entity's img_path") {
+  Troop soldier;
+  Building hause;
+  MapNode node;
+  REQUIRE(node.get_img_path() == "pic/field.png");
+  node.set_entity(&hause);
+  REQUIRE(node.get_img_path() == "pic/building.png");
+  node.set_entity(&soldier);
+  REQUIRE(node.get_img_path() == "pic/troop.png");
+}
 
 #endif // TEST

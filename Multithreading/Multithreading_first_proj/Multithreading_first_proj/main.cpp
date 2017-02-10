@@ -1,7 +1,7 @@
 #ifndef TEST
 #include <iostream>
 #include <thread>
-
+#include <windows.data.json.h>
 
 class myFunctor {
 public: 
@@ -24,15 +24,15 @@ void printSomeValues(int val, char* str, double dval) {
 }
 
 int main(int argc, char* argv[]) {
-  /*
+
   myFunctor myFunc;
   
   std::thread functorTest(&myFunctor::publicFunction, &myFunc, 5);
   if (functorTest.joinable()) {
     functorTest.join();
   }
-  */
-  
+
+  /*
   int counter = 0;
   bool run = true;
   std::thread printer(print_message);
@@ -58,7 +58,7 @@ int main(int argc, char* argv[]) {
       run = false;
     }
   }
-  
+  */
   return 0;
 }
 

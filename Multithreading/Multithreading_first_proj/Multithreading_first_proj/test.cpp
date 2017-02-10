@@ -6,7 +6,7 @@
 using namespace std;
 
 int main() {
-  JsonObject laci;
+  
   return 0;
 }
 #endif

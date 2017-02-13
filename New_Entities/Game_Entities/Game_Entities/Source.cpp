@@ -3,20 +3,26 @@
 #include "Troop.hpp"
 #include "Building.hpp"
 #include "MapNode.hpp"
+#include <string>
+#include <iterator>
 
 using std::cout;
 using std::endl;
+using std::string;
+using std::iterator;
 
 int main() {
-  cout << "DEBUG" << endl;
-  Troop troop;
-  Building haus;
-  MapNode node;
-  cout << node.get_img_path() << endl;
-  node.set_entity(&haus);
-  cout << node.get_img_path() << endl;
+  
+  Troop soldier;
 
+  json j = soldier.to_json();
+  for (json::iterator it = j.begin(); it != j.end(); ++it) {
+    cout << it.key() << " : " << *it << endl;
+  }
+
+  
   return 0;
+
 }
 
 #endif // !TEST

@@ -18,7 +18,7 @@ TEST_CASE("failing interface test") {
   // commented line becouse it breaks compiling 
 }
 //------------------------------------------------------------------
-TEST_CASE("JSON_Serial is an interface") {
+/*TEST_CASE("JSON_Serial is an interface") {
   class test_class : public JSON_Serial {
   public:
     test_class() {};
@@ -28,6 +28,18 @@ TEST_CASE("JSON_Serial is an interface") {
   };
   test_class my_test_class;
   REQUIRE(my_test_class.to_json() == "");
+}*/
+TEST_CASE("JSON_Serial is an interface") {
+  class test_class : public JSON_Serial {
+  public:
+    test_class() {};
+    json to_json() {
+      json j;
+      return j;
+    }
+  };
+  test_class my_test_class;
+  REQUIRE(my_test_class.to_json().empty());
 }
 //------------------------------------------------------------------
 /*TEST_CASE("Game_entity class exists") {
@@ -45,7 +57,7 @@ TEST_CASE("Troop class inherits from JSON_Serial") {
 
 TEST_CASE("Troop class to_json() method returns a string") {
   Troop soldier;
-  REQUIRE(soldier.to_json() == "");
+  REQUIRE(!soldier.to_json().empty());
 }
 
 TEST_CASE("Troop inherits from Game_entity") {
@@ -121,7 +133,7 @@ TEST_CASE("Building class inherits from JSON_Serial") {
 
 TEST_CASE("Building to_json method return string") {
   Building haus;
-  REQUIRE(haus.to_json() == "");
+  REQUIRE_FALSE(haus.to_json() == "");
 }
 
 TEST_CASE("Building has HP, lvl, price") {
@@ -152,7 +164,7 @@ TEST_CASE("MapNode class has a pointer to a Gameplay_entity with a setter/ gette
   MapNode node;
   Building haus;
   node.set_entity(&haus);
-  REQUIRE(node.get_entity()->to_json() == "");
+  REQUIRE_FALSE(node.get_entity()->to_json() == "");
 }
 
 TEST_CASE("MapNode has a string member entity_img_path with getter") {

@@ -5,10 +5,17 @@
 Building::Building(): ID(++BASE_ID) {
   Game_entity::IMG_PATH = "pic/building.png";
 }
-
-string Building::to_json() {
-  return "";
-}
+/*
+json Building::to_json() {
+  json j = {
+    { "health", health_point },
+    { "attack", attack_point },
+    { "defense", defense_point },
+    { "level", level },
+    { "price", price }
+  };
+  return j;
+}*/
 
 Building::~Building() {
 }

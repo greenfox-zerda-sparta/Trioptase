@@ -4,7 +4,7 @@ class Building : public Game_entity {
 public:
   const int ID;
   Building();
-  string to_json();
+  //json to_json();
   ~Building();
 };
 

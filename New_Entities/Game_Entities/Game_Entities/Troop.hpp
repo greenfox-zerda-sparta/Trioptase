@@ -3,7 +3,7 @@
 class Troop : public Game_entity {
 public:
   const int ID;
-  //json to_json();
+  json to_json();
   Troop();
   ~Troop();
 private:

@@ -230,4 +230,27 @@ TEST_CASE("Game_entity has all the variable lvl, hp, dp, ap, price") {
   REQUIRE(map.node_map[1][2]->get_entity()->get_lvl() == 2);
 }
 
+TEST_CASE("troop to_json returns troop object in janos format") {
+  Troop tropa;
+  Building house;
+  json troop_json = "[\"Troop\",{\"health\":0,\"attack\":0,\"defense\":0,\"level\":1,\"price\":0}]"_json;
+  json building_json = "[\"Building\",{\"health\":0,\"attack\":0,\"defense\":0,\"level\":1,\"price\":0}]"_json;
+  REQUIRE(tropa.to_json() == troop_json);
+  REQUIRE(house.to_json() == building_json);
+}
+
+TEST_CASE("fill map with troops and generating json from them") {
+  Map map;
+  for (int i = 0; i < MAP_SIZE; i++) {
+    for (int j = 0; j < MAP_SIZE; j++) {
+      map.node_map[i][j]->set_entity(new Troop);
+    }
+  }
+
+  REQUIRE(map.to_json() != "");
+  //std::cout << ((Troop*)map.node_map[1][1]->get_entity())->ID << std::endl;
+  REQUIRE(map.node_map[0][0]->get_entity()->ID == ((Troop*)map.node_map[0][0]->get_entity())->ID);
+  REQUIRE(map.node_map[1][1]->get_entity()->ID == ((Troop*)map.node_map[1][1]->get_entity())->ID);
+}
+
 #endif // TEST

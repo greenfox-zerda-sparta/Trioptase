@@ -132,9 +132,9 @@ TEST_CASE("Building has HP, lvl, price") {
   REQUIRE(haus.get_price() == 0);
   haus.set_price(10);
   REQUIRE(haus.get_price() == 10);
-  REQUIRE(haus.get_lvl() == 0);
-  haus.set_lvl(10);
-  REQUIRE(haus.get_lvl() == 10);
+  REQUIRE(haus.get_lvl() == 1);
+  haus.lvl_up();
+  REQUIRE(haus.get_lvl() == 2);
 }
 
 TEST_CASE("every Building has uniqe id") {
@@ -192,10 +192,7 @@ TEST_CASE("try everything") {
   REQUIRE(map.node_map[1][1]->get_img_path() == "");
   map.node_map[1][1]->set_entity(&first_soldier);
   map.node_map[2][2]->set_entity(&second_soldier);
-  
   REQUIRE(((Troop*)map.node_map[2][2]->get_entity())->ID == ((Troop*)map.node_map[1][1]->get_entity())->ID + 1);
-
-
   REQUIRE(map.node_map[1][1]->get_img_path() == "pic/troop.png");
   REQUIRE(map.node_map[2][2]->get_img_path() == "pic/troop.png");
   map.node_map[3][2]->set_entity(&town_hall);
@@ -203,4 +200,22 @@ TEST_CASE("try everything") {
   REQUIRE(first_soldier.ID + 1 == second_soldier.ID);
   REQUIRE(town_hall.ID);
 }
+//------------------------------------------------------------------
+TEST_CASE("Game_entity has all the variable lvl, hp, dp, ap, price") {
+  Troop soldier;
+  Building hause;
+  Map map;
+  REQUIRE(map.node_map.size() == MAP_SIZE);
+  for (int i = 0; i < MAP_SIZE; i++) {
+    REQUIRE(map.node_map[i].size() == MAP_SIZE);
+    for (int j = 0; j < MAP_SIZE; j++) {
+      REQUIRE(map.node_map[i][j]->get_entity() == NULL);
+    }
+  }
+  map.node_map[1][2]->set_entity(&hause);
+  REQUIRE(map.node_map[1][2]->get_entity()->get_lvl() == 1);
+  map.node_map[1][2]->get_entity()->lvl_up();
+  REQUIRE(map.node_map[1][2]->get_entity()->get_lvl() == 2);
+}
+
 #endif // TEST

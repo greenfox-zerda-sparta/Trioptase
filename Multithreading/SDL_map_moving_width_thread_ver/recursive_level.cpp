@@ -66,11 +66,16 @@ void recursive_level::drawer(int x, int y, int covered) {
 }
 
 void recursive_level::porgettyu(bool* running, bool* mazing) {  
+  std::mutex mtx;
+  
   while (running) {
     if (*mazing) {
+      mtx.lock();
       Singleton::getInstance()->clean_tile_map();
       this->drawer(3, 3, 0);
       *mazing = false;
+      mtx.unlock();
     }
   }
+  
 }

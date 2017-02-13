@@ -6,7 +6,6 @@
 #include "Texture_manager.hpp"
 #include "Path_finder.hpp"
 #include "Troop.hpp"
-#include <thread>
 #include "recursive_level.hpp"
 
 const int WINDOW_WIDTH(640);
@@ -55,8 +54,6 @@ int main(int argc, char* argv[]) {
   std::thread random_builder(&recursive_level::porgettyu, &rlvl, &running, &mazing);
   random_builder.detach();
 
-
-
   while (running) {
     /*user input handler. you can see the class*/
     input.input_handler(running, building_selector, troop_selector, temp_rect_building, temp_rect_troop);
@@ -100,11 +97,12 @@ int main(int argc, char* argv[]) {
         
         SDL_Delay(50);
 
-        if (soldier.get_path_size() == 0) {
+        if (soldier.get_path_size() == 1) {
           mazing = true;
         }
         
       }
+      
     }
 
 
@@ -117,12 +115,9 @@ int main(int argc, char* argv[]) {
   win.close();
 
   if (random_builder.joinable()) {
-
     random_builder.join();
   }
-  else {
-    //std::cout << "Can not join due to detach() func" << std::endl;
-  }
+
   return 0;
 }
 

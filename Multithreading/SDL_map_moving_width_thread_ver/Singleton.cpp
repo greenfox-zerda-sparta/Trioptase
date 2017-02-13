@@ -76,7 +76,7 @@ void Singleton::print_smooth_route() {
 }
 
 bool Singleton::pin_mouse_click_to_map(int mouse_state_x, int mouse_state_y) {
-  tile_map[mouse_state_x][mouse_state_y] = 1;  
+  tile_map[mouse_state_x][mouse_state_y] = 1;
   return true;
 }
 

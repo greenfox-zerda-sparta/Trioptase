@@ -6,7 +6,6 @@ static int BASE_ID = 0;
 class Game_entity : public JSON_Serial {
 public:
   Game_entity();
-  json to_json();
   int get_hp();
   void set_hp(int);
   int get_ap();

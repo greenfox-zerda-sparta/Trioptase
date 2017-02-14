@@ -87,8 +87,8 @@
     <LibraryPath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\SDL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\SDL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\SDL\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\libraryes\SDL2-2.0.5\include;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\SDL\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\libraryes\SDL2-2.0.5\lib\x86;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\SDL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\SDL\include;$(IncludePath)</IncludePath>

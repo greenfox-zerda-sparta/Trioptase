@@ -5,10 +5,35 @@
 #include "catch.h"
 #include "Troop.hpp"
 #include "Building.hpp"
-#include "MapNode.hpp"
-#include "Map.hpp"
+#include "Game.hpp"
 //------------------------------------------------------------------
+//------------------------------------------------------------------
+bool is_word_here(string word, string substring) {
+  for (int i = 0; i < word.length(); i++) {
+    if (word[i] != substring[i]) {
+      return false;
+    }
+  }
+  return true;
+}
 
+int find_word_in_string(string word, string text) {
+  int count = 0;
+  for (int i = 0; i < text.size(); i++) {
+    if (text[i] == word[0]) {
+      string word_long_text_piece = text.substr(i, i + word.length());
+      if (is_word_here(word, word_long_text_piece)) {
+        count++;
+      }
+      else {
+        continue;
+      }
+    }
+  }
+  return count;
+}
+//------------------------------------------------------------------
+//------------------------------------------------------------------
 TEST_CASE("failing interface test") {
   class test_class : public JSON_Serial {
   public:
@@ -253,36 +278,19 @@ TEST_CASE("fill map with troops and generating json from them") {
   REQUIRE(map.node_map[1][1]->get_entity()->ID == ((Troop*)map.node_map[1][1]->get_entity())->ID);
 }
 
-bool is_word_here(string word, string substring) {
-  for (int i = 0; i < word.length(); i++) {
-    if (word[i] != substring[i]) {
-      return false;
-    }
-  }
-  return true;
-}
-
-int find_word_in_string(string word, string text) {
-  int count = 0;
-  for (int i = 0; i < text.size(); i++) {
-    if (text[i] == word[0]) {
-      string word_long_text_piece = text.substr(i, i + word.length());
-      if (is_word_here(word, word_long_text_piece)) {
-        count++;
-      }
-      else {
-        continue;
-      }
-    }
-  }
-  return count;
-}
-
 TEST_CASE("Map to_json() method generate json only from != NULL entities") {
   Map map;
   string map_to_json = map.to_json().dump();
   string null = "null";
   REQUIRE(find_word_in_string(null, map_to_json) == 900);
 }
-
+//------------------------------------------------------------------
+//------------------------------------------------------------------
+TEST_CASE("Game singleton") {
+  Troop soldier;
+  Game* first_game = Game::get_game_instance();
+  Game* second_game = Game::get_game_instance();
+  first_game->map->node_map[0][0]->set_entity(&soldier);
+  REQUIRE(first_game->map->to_json() == second_game->map->to_json());
+}
 #endif // TEST

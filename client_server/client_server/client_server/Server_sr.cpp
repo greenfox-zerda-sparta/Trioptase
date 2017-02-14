@@ -1,4 +1,5 @@
 #include "Server_sr.hpp"
+#include <map>
 
 Server_sr::Server_sr() {
   set_stat = true;
@@ -24,10 +25,10 @@ void Server_sr::server_init() {
   }
 }
 
-void Server_sr::server_send(json _message) {
+void Server_sr::server_send(json _message) {  
   bool running = true;
   while (running) {
-    SDLNet_TCP_Send(client, &_message, _message.size());
+    SDLNet_TCP_Send(client, &_message, sizeof(_message));
     running = false;
   }
 }

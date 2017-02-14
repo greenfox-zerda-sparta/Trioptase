@@ -137,6 +137,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Building.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game_entity.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapNode.cpp" />
@@ -147,6 +148,7 @@
   <ItemGroup>
     <ClInclude Include="Building.hpp" />
     <ClInclude Include="catch.h" />
+    <ClInclude Include="Game.hpp" />
     <ClInclude Include="Game_entity.hpp" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="JSON_Serial.hpp" />

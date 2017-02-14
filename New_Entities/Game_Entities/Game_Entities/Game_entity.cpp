@@ -5,7 +5,7 @@ Game_entity::Game_entity() {
 }
 
 json Game_entity::to_json() {
-  json j = {
+    json j = {
     { "health", health_point },
     { "attack", attack_point },
     { "defense", defense_point },

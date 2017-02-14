@@ -8,14 +8,13 @@ using std::cout;
 using std::endl;
 
 int main() {
-  cout << "DEBUG" << endl;
+  //cout << "DEBUG" 
   Troop troop;
-  Building haus;
-  MapNode node;
-  cout << node.get_img_path() << endl;
-  node.set_entity(&haus);
-  cout << node.get_img_path() << endl;
-
+  Troop troop2;
+  cout << troop2.ID << endl;
+  cout << troop.ID << endl;
+  Game_entity ent;
+  cout << ent.ID;
   return 0;
 }
 

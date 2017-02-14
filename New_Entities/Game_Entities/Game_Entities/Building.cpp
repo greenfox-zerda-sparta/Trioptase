@@ -2,7 +2,7 @@
 
 
 
-Building::Building(): ID(Game_entity::ID), Game_entity::Game_entity() {
+Building::Building() : Game_entity() {
   Game_entity::IMG_PATH = "pic/building.png";
 }
 

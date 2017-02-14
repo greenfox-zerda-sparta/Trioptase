@@ -253,4 +253,6 @@ TEST_CASE("fill map with troops and generating json from them") {
   REQUIRE(map.node_map[1][1]->get_entity()->ID == ((Troop*)map.node_map[1][1]->get_entity())->ID);
 }
 
+
+
 #endif // TEST

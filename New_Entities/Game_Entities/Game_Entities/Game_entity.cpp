@@ -1,19 +1,7 @@
 #include "Game_entity.hpp"
 
 Game_entity::Game_entity() : ID(++BASE_ID) {
-
 }
-
-//json Game_entity::to_json() {
-//  json j = {
-//    { "health", health_point },
-//    { "attack", attack_point },
-//    { "defense", defense_point },
-//    { "level", level },
-//    { "price", price }
-//  };
-//  return j;
-//}
 
 void Game_entity::set_hp(int _new_hp) {
   health_point = _new_hp;

@@ -190,8 +190,8 @@ TEST_CASE("Map class") {
 TEST_CASE("Map class has a vector filled with empty nodes") {
   Map map;
   REQUIRE(map.node_map.size() == MAP_SIZE);
-  REQUIRE(map.node_map[2].size()== MAP_SIZE);
-  REQUIRE(map.node_map[3][27]->get_img_path() == "");
+  REQUIRE(map.node_map[1].size()== MAP_SIZE);
+  REQUIRE(map.node_map[1][map.node_map[1].size()-1]->get_img_path() == "");
 }
 //------------------------------------------------------------------
 //------------------------------------------------------------------
@@ -207,8 +207,8 @@ TEST_CASE("try everything") {
   REQUIRE(((Troop*)map.node_map[2][2]->get_entity())->ID == ((Troop*)map.node_map[1][1]->get_entity())->ID + 1);
   REQUIRE(map.node_map[1][1]->get_img_path() == "pic/troop.png");
   REQUIRE(map.node_map[2][2]->get_img_path() == "pic/troop.png");
-  map.node_map[3][2]->set_entity(&town_hall);
-  REQUIRE(map.node_map[3][2]->get_img_path() == "pic/building.png");
+  map.node_map[0][2]->set_entity(&town_hall);
+  REQUIRE(map.node_map[0][2]->get_img_path() == "pic/building.png");
   REQUIRE(first_soldier.ID + 1 == second_soldier.ID);
   REQUIRE(town_hall.ID);
 }
@@ -253,6 +253,36 @@ TEST_CASE("fill map with troops and generating json from them") {
   REQUIRE(map.node_map[1][1]->get_entity()->ID == ((Troop*)map.node_map[1][1]->get_entity())->ID);
 }
 
+bool is_word_here(string word, string substring) {
+  for (int i = 0; i < word.length(); i++) {
+    if (word[i] != substring[i]) {
+      return false;
+    }
+  }
+  return true;
+}
 
+int find_word_in_string(string word, string text) {
+  int count = 0;
+  for (int i = 0; i < text.size(); i++) {
+    if (text[i] == word[0]) {
+      string word_long_text_piece = text.substr(i, i + word.length());
+      if (is_word_here(word, word_long_text_piece)) {
+        count++;
+      }
+      else {
+        continue;
+      }
+    }
+  }
+  return count;
+}
+
+TEST_CASE("Map to_json() method generate json only from != NULL entities") {
+  Map map;
+  string map_to_json = map.to_json().dump();
+  string null = "null";
+  REQUIRE(find_word_in_string(null, map_to_json) == 900);
+}
 
 #endif // TEST

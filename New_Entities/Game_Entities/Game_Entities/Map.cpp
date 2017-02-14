@@ -19,15 +19,22 @@ json Map::to_json() {
   json to_return_j;
   for (int i = 0; i < MAP_SIZE; i++) {
     for (int j = 0; j < MAP_SIZE; j++) {
-      temp_ID = node_map[i][j]->get_entity()->ID;
-      temp_json = node_map[i][j]->get_entity()->to_json();
-      temp_full_node = {std::to_string(temp_ID), temp_json};
+      if (node_map[i][j]->get_entity() != NULL) {
+        temp_ID = node_map[i][j]->get_entity()->ID;
+        temp_json = node_map[i][j]->get_entity()->to_json();
+        temp_full_node = { std::to_string(temp_ID), temp_json };
+      }
+      else {
+        temp_ID = 0;
+        temp_json = {};
+        temp_full_node = { std::to_string(temp_ID), temp_json };
+      }
       to_return_j["Map"] += temp_full_node;
-    }
-  }
+    } // end of second for loop
+  } // end of first for loop
 
   return to_return_j;
-}
+} // end of to_json() method
 
 
 

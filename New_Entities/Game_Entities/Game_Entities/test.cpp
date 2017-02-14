@@ -293,4 +293,26 @@ TEST_CASE("Game singleton") {
   first_game->map->node_map[0][0]->set_entity(&soldier);
   REQUIRE(first_game->map->to_json() == second_game->map->to_json());
 }
+
+TEST_CASE("Game singleton's from_json method returning 0") {
+  Game* game = Game::get_game_instance();
+  
+  Map map;
+  json map_json = map.to_json();
+  REQUIRE( map_json.size() == 1 );
+  REQUIRE(game->from_json(map_json) == 0);
+  
+  json game_map_json = game->map->to_json();
+  REQUIRE( game_map_json.size() == 1 );
+  REQUIRE(game->from_json(game_map_json) == 0);
+}
+
+TEST_CASE("Game singleton's from_json return the number of non NULL variables of the given json") {
+  Game* game = Game::get_game_instance();
+  Troop soldier;
+  game->map->node_map[0][0]->set_entity(&soldier);
+  REQUIRE( game->from_json(game->map->to_json()) == 1 );
+}
+
+
 #endif // TEST

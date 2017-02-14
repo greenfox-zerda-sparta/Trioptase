@@ -6,6 +6,9 @@
 #include <string>
 #include <cstring>
 #include <WindowsX.h>
+#include "json.hpp"
+
+using json = nlohmann::json;
 
 class Server_sr {
 private:
@@ -23,14 +26,9 @@ private:
   std::string server_mess;
 public:
   Server_sr();
-  void server_init();
-  void server_accept();
-  void server_chat();
-  void server_send(std::string);
-  void server_client_open();
-  std::string server_receive();
-  void server_client_close();
+  void server_init();    
+  void server_send(json _message);  
+  std::string server_receive();  
   void server_close();
-  void server_run();
   ~Server_sr();
 };

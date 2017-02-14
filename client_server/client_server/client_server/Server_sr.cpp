@@ -24,11 +24,10 @@ void Server_sr::server_init() {
   }
 }
 
-void Server_sr::server_send(std::string in_server_mess) {
+void Server_sr::server_send(json _message) {
   bool running = true;
   while (running) {
-    server_chars = in_server_mess.c_str();
-    SDLNet_TCP_Send(client, server_chars, in_server_mess.length() + 1);
+    SDLNet_TCP_Send(client, &_message, _message.size());
     running = false;
   }
 }

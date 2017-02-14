@@ -24,15 +24,14 @@ void Client_cl::client_send(std::string client_mess) {
   }
 }
 
-std::string Client_cl::client_receive() {
+json Client_cl::client_receive() {
   bool running = true;
   while (running) {
     this->activeSockets = SDLNet_CheckSockets(set, 10);
     if (this->activeSockets != 0) {
       gotMessage = SDLNet_SocketReady(client);
       if (gotMessage != 0) {  
-        SDLNet_TCP_Recv(client, server_chars, 100);
-        server_mess = server_chars;
+        SDLNet_TCP_Recv(client, server_mess, 1000);
         running = false;
       }
     }

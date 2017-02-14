@@ -23,15 +23,21 @@ void Client_cl::client_send(std::string client_mess) {
     running = false;
   }
 }
+struct trap {
+  json jackson;
+  int j;
+};
 
-json Client_cl::client_receive() {
+std::map<int, int> Client_cl::client_receive() {
   bool running = true;
+  trap halfej;
   while (running) {
     this->activeSockets = SDLNet_CheckSockets(set, 10);
     if (this->activeSockets != 0) {
       gotMessage = SDLNet_SocketReady(client);
       if (gotMessage != 0) {  
-        SDLNet_TCP_Recv(client, server_mess, 1000);
+        SDLNet_TCP_Recv(client, &server_mess, 1000);
+        std::cout << "size: " <<server_mess.size();
         running = false;
       }
     }

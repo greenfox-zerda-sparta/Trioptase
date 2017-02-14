@@ -4,7 +4,9 @@
 #include <SDL_net.h>
 #include <conio.h>
 #include <string>
+#include <map>
 #include "json.hpp"
+
 
 using json = nlohmann::json;
 
@@ -21,13 +23,13 @@ private:
   std::string client_mess;
   //std::string server_mess;
   //json server_chars;
-  json* server_mess;
+  std::map<int,int> server_mess;
 
 public:
   Client_cl();
   void client_init();
   void client_send(std::string);
-  json client_receive();
+  std::map<int, int> client_receive();
   void client_close();
   ~Client_cl();
 };

@@ -15,13 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ServerSocket.cpp">
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Client_cl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Server_sr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,10 +32,10 @@
     <ClInclude Include="catch.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ServerSocket.hpp">
+    <ClInclude Include="Client_cl.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SocketException.hpp">
+    <ClInclude Include="Server_sr.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

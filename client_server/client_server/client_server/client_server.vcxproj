@@ -83,16 +83,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TEST|Win32'">
-    <IncludePath>C:\SDL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\SDL\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\SDL\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\SDL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\SDL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\SDL\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\SDL\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\SDL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\SDL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\SDL\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\SDL\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\SDL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -150,14 +150,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ServerSocket.cpp" />
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Client_cl.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Server_sr.cpp" />
     <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="catch.hpp" />
-    <ClInclude Include="ServerSocket.hpp" />
-    <ClInclude Include="SocketException.hpp" />
+    <ClInclude Include="Client_cl.hpp" />
+    <ClInclude Include="Server_sr.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

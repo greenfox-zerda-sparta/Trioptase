@@ -30,7 +30,7 @@ int main(int argc, char* argv[]) {
   Client_cl my_client;
   my_client.client_init();
  // my_client.client_send("cicca");
-  std::cout << my_client.client_receive()["hero"] << std::endl;
+  std::cout << my_client.client_receive() << std::endl;
   my_client.client_close();
 
   return 0;

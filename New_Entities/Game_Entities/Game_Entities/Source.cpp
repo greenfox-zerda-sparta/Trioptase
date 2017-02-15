@@ -20,7 +20,7 @@ int main() {
   my_game->map->node_map[1][1]->set_entity(&troop);
   json my_json = my_game->map->to_json();
   cout << my_json << endl;
-  cout << my_game->from_json(my_game->map->to_json()) << endl;
+  cout << my_game->update_map_from_json(my_game->map->to_json()) << endl;
 
   return 0;
 }

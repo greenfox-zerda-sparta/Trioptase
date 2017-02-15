@@ -1,9 +1,7 @@
 #include "Game.hpp"
 #include <fstream>
 
-using std::ifstream;
 using std::ofstream;
-using std::fstream;
 
 Game* Game::game_instance = NULL;
 
@@ -32,35 +30,40 @@ bool has_obj_key(string key, json obj) {
   return false;
 }
 
-int Game::from_json(json msg_from_server) {
-  int counter = 0;
+void Game::create_troop_on_map(int first_index, int second_index, json object) {
+  Troop soldier;
+  soldier.set_ap(object["attack"]);
+  soldier.set_dp(object["defense"]);
+  soldier.set_hp(object["health"]);
+  soldier.set_price(object["price"]);
+  map->node_map[first_index][second_index]->set_entity(&soldier);
+}
+
+void Game::create_building_on_map(int first_index, int second_index, json object) {
+  Building building;
+  building.set_ap(object["attack"]);
+  building.set_dp(object["defense"]);
+  building.set_hp(object["health"]);
+  building.set_price(object["price"]);
+  map->node_map[first_index][second_index]->set_entity(&building);
+}
+
+void Game::update_map_from_json(json msg_from_server) {
   json empty_json = {"0", nullptr};
   for (int i = 0; i < MAP_SIZE * MAP_SIZE; i++) {
     if (msg_from_server["Map"][i] != empty_json) {
-      counter++;
       int first_index = i / MAP_SIZE;
       int second_index = i % MAP_SIZE;
       if (has_obj_key("Troop", msg_from_server["Map"][i][1])) {
         json troop_json = msg_from_server["Map"][i][1][1];
-        Troop soldier;
-        soldier.set_ap(troop_json["attack"]);
-        soldier.set_dp(troop_json["defense"]);
-        soldier.set_hp(troop_json["health"]);
-        soldier.set_price(troop_json["price"]);
-        map->node_map[first_index][second_index]->set_entity(&soldier);
+        create_troop_on_map(first_index, second_index, troop_json);
       }
       else if (has_obj_key("Building", msg_from_server["Map"][i][1])) {
-        json bulding_json = msg_from_server["Map"][i][1][1];
-        Building building;
-        building.set_ap(bulding_json["attack"]);
-        building.set_dp(bulding_json["defense"]);
-        building.set_hp(bulding_json["health"]);
-        building.set_price(bulding_json["price"]);
-        map->node_map[first_index][second_index]->set_entity(&building);
+        json building_json = msg_from_server["Map"][i][1][1];
+        create_building_on_map(first_index, second_index, building_json);
       }
     }
   }
-  return counter;
 }
 
 void Game::write_json_to_file(json janos) {

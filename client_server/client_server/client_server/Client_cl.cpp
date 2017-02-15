@@ -36,8 +36,8 @@ json Client_cl::client_receive() {
     if (this->activeSockets != 0) {
       gotMessage = SDLNet_SocketReady(client);
       if (gotMessage != 0) {  
-        SDLNet_TCP_Recv(client, server_chars, 1000);
-        std::cout << "size: " <<server_mess.size();
+        SDLNet_TCP_Recv(client, server_mess.from_msgpack, 16);
+        std::cout << server_mess;
         running = false;
       }
     }

@@ -5,18 +5,14 @@
 #include <SDL_net.h>
 #include "Server_sr.hpp"
 #include "Client_cl.hpp"
-
+#include "minijson_writer.hpp"
 
 int main(int argc, char* argv[]) {
-  
+
   Server_sr my_server;
-  json jani = { { "hero", "Buzz Lightyer" } };  
-
+  json jani = { { "hero", "Buzz Lightyer" } };   
   std::cout << "Server is waiting for client" << std::endl;
-  my_server.server_init();
-  //std::cout << my_server.server_receive() << std::endl;  
-
-
+  my_server.server_init();  
   my_server.server_send(jani);
   my_server.server_close();
 

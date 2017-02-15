@@ -159,6 +159,7 @@
     <ClInclude Include="catch.hpp" />
     <ClInclude Include="Client_cl.hpp" />
     <ClInclude Include="json.hpp" />
+    <ClInclude Include="minijson_writer.hpp" />
     <ClInclude Include="Server_sr.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

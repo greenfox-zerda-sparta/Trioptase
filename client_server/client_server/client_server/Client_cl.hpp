@@ -7,7 +7,6 @@
 #include <map>
 #include "json.hpp"
 
-
 using json = nlohmann::json;
 
 class Client_cl {
@@ -21,7 +20,6 @@ private:
   char server_chars[21];
   const char* client_chars;
   std::string client_mess;
-  //std::string server_mess;
   json server_mess;
 
 public:
@@ -29,7 +27,6 @@ public:
   void client_init();
   void client_send(std::string);
   json client_receive();
-  //void from_char_to_json();
   void client_close();
   ~Client_cl();
 };

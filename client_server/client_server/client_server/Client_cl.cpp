@@ -14,7 +14,6 @@ void Client_cl::client_init() {
   this->activeSockets = SDLNet_CheckSockets(set, 10);
 }
 
-
 void Client_cl::client_send(std::string client_mess) {
   bool running = true;
   while (running) {
@@ -48,10 +47,6 @@ json Client_cl::client_receive() {
   return server_mess;
 }
 
-//void Client_cl::from_char_to_json() {
-//  std::string temp_string = server_chars;
-//  auto server_mes = json::parse(temp_string);
-//}
 
 void Client_cl::client_close() {
   SDLNet_TCP_Close(client);

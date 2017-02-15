@@ -27,7 +27,6 @@ void Server_sr::server_init() {
 
 void Server_sr::server_send(json& _message) {        
   std::vector<uint8_t> temp_vec = json::to_msgpack(_message);
-  std::cout << _message << std::endl;
   std::string text;
   for (int i = 0; i < temp_vec.size(); i++) {
     text += temp_vec[i];

@@ -28,7 +28,7 @@ struct trap {
   int j;
 };
 
-std::map<int, int> Client_cl::client_receive() {
+json Client_cl::client_receive() {
   bool running = true;
   trap halfej;
   while (running) {
@@ -36,7 +36,7 @@ std::map<int, int> Client_cl::client_receive() {
     if (this->activeSockets != 0) {
       gotMessage = SDLNet_SocketReady(client);
       if (gotMessage != 0) {  
-        SDLNet_TCP_Recv(client, &server_mess, 1000);
+        SDLNet_TCP_Recv(client, server_chars, 1000);
         std::cout << "size: " <<server_mess.size();
         running = false;
       }
@@ -44,6 +44,11 @@ std::map<int, int> Client_cl::client_receive() {
   }
   return server_mess;
 }
+
+//void Client_cl::from_char_to_json() {
+//  std::string temp_string = server_chars;
+//  auto server_mes = json::parse(temp_string);
+//}
 
 void Client_cl::client_close() {
   SDLNet_TCP_Close(client);

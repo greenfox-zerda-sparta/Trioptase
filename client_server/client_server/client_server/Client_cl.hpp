@@ -5,10 +5,13 @@
 #include <conio.h>
 #include <string>
 #include <map>
+#include <fstream>
 #include "json.hpp"
 
 
+
 using json = nlohmann::json;
+using std::string;
 
 class Client_cl {
 private:

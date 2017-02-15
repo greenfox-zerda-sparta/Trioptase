@@ -119,8 +119,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\VS_folders\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\VS_folders\lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>C:\VS_folders\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\VS_folders\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

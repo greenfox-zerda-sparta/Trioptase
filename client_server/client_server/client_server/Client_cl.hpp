@@ -18,7 +18,7 @@ private:
   bool set_stat;
   int activeSockets;
   int gotMessage;
-  char server_chars[100];
+  char server_chars[21];
   const char* client_chars;
   std::string client_mess;
   //std::string server_mess;

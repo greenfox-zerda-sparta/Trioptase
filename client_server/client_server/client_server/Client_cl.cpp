@@ -30,14 +30,17 @@ struct trap {
 
 json Client_cl::client_receive() {
   bool running = true;
-  trap halfej;
+  std::vector<uint8_t> message;
   while (running) {
     this->activeSockets = SDLNet_CheckSockets(set, 10);
     if (this->activeSockets != 0) {
       gotMessage = SDLNet_SocketReady(client);
       if (gotMessage != 0) {  
-        SDLNet_TCP_Recv(client, server_mess.from_msgpack, 16);
-        std::cout << server_mess;
+        SDLNet_TCP_Recv(client, server_chars, 21);
+        for (int i = 0; i < 21; i++) {
+          message.push_back(server_chars[i]);
+        }
+        server_mess = json::from_msgpack(message);
         running = false;
       }
     }

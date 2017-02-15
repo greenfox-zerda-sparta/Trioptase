@@ -29,7 +29,6 @@ public:
   void server_init();    
   void server_send(json& _message);
   std::string server_receive();  
-  void server_close();
-  std::string jason_to_string(json _message);
+  void server_close();  
   ~Server_sr();
 };

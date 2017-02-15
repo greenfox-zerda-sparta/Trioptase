@@ -25,11 +25,10 @@ void Server_sr::server_init() {
   }
 }
 
-void Server_sr::server_send(json& _message) {  
-  std::string to_send = this->jason_to_string(_message);
+void Server_sr::server_send(json& _message) {      
   bool running = true;
   while (running) {
-    SDLNet_TCP_Send(client, to_send.c_str(), to_send.length() + 1);
+    SDLNet_TCP_Send(client, _message.to_msgpack, sizeof(_message));
     running = false;
   }
 }
@@ -54,10 +53,6 @@ void Server_sr::server_close() {
   SDLNet_TCP_Close(client);
   SDLNet_TCP_Close(server);
   SDLNet_FreeSocketSet(set);
-}
-
-std::string Server_sr::jason_to_string(json _message) {
-  return _message.dump();
 }
 
 Server_sr::~Server_sr() {

@@ -16,8 +16,12 @@ using std::time;
 int main() {
   
   Game* my_game = Game::get_game_instance();
-  my_game->write_json_to_file(my_game->map->to_json());
-  my_game->from_json(my_game->map->to_json());
+  Troop troop;
+  my_game->map->node_map[1][1]->set_entity(&troop);
+  json my_json = my_game->map->to_json();
+  cout << my_json << endl;
+  cout << my_game->from_json(my_game->map->to_json()) << endl;
+
   return 0;
 }
 

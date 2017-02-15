@@ -19,14 +19,12 @@ Game* Game::get_game_instance() {
 }
 
 int Game::from_json(json msg_from_server) {
-  std::cout << msg_from_server["Map"][0] << std::endl;
   int counter = 0;
-  json nulla;
-  nulla["0"] = NULL;
-  std::cout << nulla << std::endl;
-  if (msg_from_server["Map"][0] != nulla) {
-    std::cout << "hallo" << std::endl;
-    counter++;
+  json nulla = {"0", nullptr};
+  for (int i = 0; i < 900; i++) {
+    if (msg_from_server["Map"][i] != nulla) {
+      counter++;
+    }
   }
   return counter;
 }

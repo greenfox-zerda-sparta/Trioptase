@@ -28,22 +28,30 @@ struct trap {
   int j;
 };
 
-std::map<int, int> Client_cl::client_receive() {
+json Client_cl::client_receive() {
   bool running = true;
-  trap halfej;
+  std::vector<uint8_t> message;
   while (running) {
     this->activeSockets = SDLNet_CheckSockets(set, 10);
     if (this->activeSockets != 0) {
       gotMessage = SDLNet_SocketReady(client);
       if (gotMessage != 0) {  
-        SDLNet_TCP_Recv(client, &server_mess, 1000);
-        std::cout << "size: " <<server_mess.size();
+        SDLNet_TCP_Recv(client, server_chars, 21);
+        for (int i = 0; i < 21; i++) {
+          message.push_back(server_chars[i]);
+        }
+        server_mess = json::from_msgpack(message);
         running = false;
       }
     }
   }
   return server_mess;
 }
+
+//void Client_cl::from_char_to_json() {
+//  std::string temp_string = server_chars;
+//  auto server_mes = json::parse(temp_string);
+//}
 
 void Client_cl::client_close() {
   SDLNet_TCP_Close(client);

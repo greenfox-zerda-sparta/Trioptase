@@ -7,6 +7,7 @@
 #include <cstring>
 #include <WindowsX.h>
 #include "json.hpp"
+#include <vector>
 
 using json = nlohmann::json;
 
@@ -27,8 +28,8 @@ private:
 public:
   Server_sr();
   void server_init();    
-  void server_send(json _message);  
+  void server_send(json& _message);
   std::string server_receive();  
-  void server_close();
+  void server_close();  
   ~Server_sr();
 };

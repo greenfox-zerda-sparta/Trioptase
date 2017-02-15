@@ -25,10 +25,12 @@ void Server_sr::server_init() {
   }
 }
 
-void Server_sr::server_send(json _message) {  
+void Server_sr::server_send(json& _message) {      
+  std::vector<uint8_t> dani = json::to_msgpack(_message);
+
   bool running = true;
   while (running) {
-    SDLNet_TCP_Send(client, &_message, sizeof(_message));
+    SDLNet_TCP_Send(client, &dani, sizeof(_message));
     running = false;
   }
 }

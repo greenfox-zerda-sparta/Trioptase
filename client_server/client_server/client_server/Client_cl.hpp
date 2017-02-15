@@ -18,18 +18,18 @@ private:
   bool set_stat;
   int activeSockets;
   int gotMessage;
-  //char server_chars[100];
+  char server_chars[21];
   const char* client_chars;
   std::string client_mess;
   //std::string server_mess;
-  //json server_chars;
-  std::map<int,int> server_mess;
+  json server_mess;
 
 public:
   Client_cl();
   void client_init();
   void client_send(std::string);
-  std::map<int, int> client_receive();
+  json client_receive();
+  //void from_char_to_json();
   void client_close();
   ~Client_cl();
 };

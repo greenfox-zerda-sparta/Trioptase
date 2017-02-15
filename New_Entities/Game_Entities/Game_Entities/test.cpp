@@ -322,7 +322,7 @@
 //  soldier.set_hp(50);
 //  Game* game = Game::get_game_instance();
 //  game->map->node_map[0][0]->set_entity(&soldier);
-//  REQUIRE(game->from_json(game->map->to_json()) == 1);
+//  REQUIRE(game->from_json(game->map->to_json()) == 1s);
 //  Game::delete_game();
 //  Game* other_game = Game::get_game_instance();
 //  REQUIRE(other_game->from_json(other_game->map->to_json()) == 0);
@@ -344,10 +344,9 @@ json get_json() {
 
 TEST_CASE("other source json changes mapnodes") {
   json out_source = get_json();
-
   Game* game = Game::get_game_instance();
   REQUIRE(game->map->node_map[0][0]->get_entity() == NULL);
-  game->from_json(out_source);
+  game->update_map_from_json(out_source);
   REQUIRE(game->map->node_map[0][0]->get_entity() != NULL);
 }
 

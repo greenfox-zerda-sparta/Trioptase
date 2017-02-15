@@ -25,12 +25,17 @@ void Server_sr::server_init() {
   }
 }
 
-void Server_sr::server_send(json& _message) {      
-  std::vector<uint8_t> dani = json::to_msgpack(_message);
+void Server_sr::server_send(json& _message) {        
+  std::vector<uint8_t> temp_vec = json::to_msgpack(_message);
+  std::cout << _message << std::endl;
+  std::string text;
+  for (int i = 0; i < temp_vec.size(); i++) {
+    text += temp_vec[i];
+  }
 
   bool running = true;
   while (running) {
-    SDLNet_TCP_Send(client, &dani, sizeof(_message));
+    SDLNet_TCP_Send(client, text.c_str(), text.length() + 1);
     running = false;
   }
 }

@@ -11,6 +11,7 @@ public:
   int from_json(json);
   void write_json_to_file(json);
   static Game* get_game_instance();
+  static void delete_game();
   ~Game();
 };
 

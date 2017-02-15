@@ -305,14 +305,52 @@
 //  REQUIRE( game->from_json(game_map_json) == 0 );
 //}
 
-TEST_CASE("Game singleton's from_json return the number of non NULL variables of the given json") {
-  Game* game = Game::get_game_instance();
+//TEST_CASE("Game singleton's from_json return the number of non NULL variables of the given json") {
+//  Game* game = Game::get_game_instance();
+//  Troop soldier;
+//  Troop second_soldier;
+//  game->map->node_map[0][0]->set_entity(&soldier);
+//  game->map->node_map[0][1]->set_entity(&second_soldier);
+//  REQUIRE(game->from_json(game->map->to_json()) == 2);
+//}
+
+//TEST_CASE("Game 's delete_game method delets the current singleton") {
+//  Troop soldier;
+//  soldier.set_price(100);
+//  soldier.set_ap(10);
+//  soldier.set_dp(5);
+//  soldier.set_hp(50);
+//  Game* game = Game::get_game_instance();
+//  game->map->node_map[0][0]->set_entity(&soldier);
+//  REQUIRE(game->from_json(game->map->to_json()) == 1);
+//  Game::delete_game();
+//  Game* other_game = Game::get_game_instance();
+//  REQUIRE(other_game->from_json(other_game->map->to_json()) == 0);
+//}
+
+json get_json() {
   Troop soldier;
-  Troop second_soldier;
+  soldier.set_price(100);
+  soldier.set_ap(10);
+  soldier.set_dp(5);
+  soldier.set_hp(50);
+  Game* game = Game::get_game_instance();
   game->map->node_map[0][0]->set_entity(&soldier);
-  game->map->node_map[0][1]->set_entity(&second_soldier);
-  REQUIRE(game->from_json(game->map->to_json()) == 2);
+  json troop_json = game->map->to_json();
+  game->write_json_to_file(troop_json);
+  Game::delete_game();
+  return troop_json;
 }
+
+TEST_CASE("other source json changes mapnodes") {
+  json out_source = get_json();
+
+  Game* game = Game::get_game_instance();
+  REQUIRE(game->map->node_map[0][0]->get_entity() == NULL);
+  game->from_json(out_source);
+  REQUIRE(game->map->node_map[0][0]->get_entity() != NULL);
+}
+
 
 
 #endif // TEST

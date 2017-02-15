@@ -55,7 +55,6 @@ int main(int argc, char* argv[]) {
   std::cout << my_client.client_receive()["hero"] << std::endl;
   my_client.client_close();
 
-
   return 0;
 }
 

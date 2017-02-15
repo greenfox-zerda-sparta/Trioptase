@@ -10,7 +10,11 @@
 int main(int argc, char* argv[]) {
 
   Server_sr my_server;
-  json jani = { { "hero", "Buzz Lightyer" } };   
+  json jani = { { "hero", "Buzz Lightyear" } };
+  jani.to_msgpack;
+  std::cout << jani << std::endl;
+  std::cout << sizeof(jani) << std::endl;
+  //std::cout << jani.to_msgpack << std::endl;
   std::cout << "Server is waiting for client" << std::endl;
   my_server.server_init();  
   my_server.server_send(jani);

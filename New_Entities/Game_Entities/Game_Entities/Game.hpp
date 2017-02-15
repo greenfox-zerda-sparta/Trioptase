@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Map.hpp"
+#include "Troop.hpp"
+#include "Building.hpp"
 
 class Game {
 private:

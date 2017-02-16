@@ -25,6 +25,7 @@ private:
   const char* server_chars;
   std::string client_mess;
   std::string server_mess;
+  std::string json_to_string(json& _message);
 public:
   Server_sr();
   void server_init();    

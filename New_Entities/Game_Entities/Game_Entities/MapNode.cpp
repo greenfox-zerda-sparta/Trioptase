@@ -1,5 +1,4 @@
 #include "MapNode.hpp"
-
 #include <iostream>
 
 MapNode::MapNode() {
@@ -19,6 +18,5 @@ void MapNode::set_entity(Game_entity* _new_entity) {
   entity_img_path = entity->IMG_PATH;
 }
 
-MapNode::~MapNode()
-{
+MapNode::~MapNode() {
 }

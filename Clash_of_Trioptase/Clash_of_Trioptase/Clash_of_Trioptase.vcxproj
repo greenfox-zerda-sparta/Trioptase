@@ -83,16 +83,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\sdl\all\ide;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\sdl\all\konyvtar;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\sdl\all\ide;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\sdl\all\konyvtar;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\sdl\all\ide;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\sdl\all\konyvtar;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\sdl\all\ide;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\sdl\all\konyvtar;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TEST|Win32'">
-    <IncludePath>C:\sdl\all\ide;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\sdl\all\konyvtar;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\sdl\all\ide;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\sdl\all\konyvtar;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -121,8 +121,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>
-      </PreprocessorDefinitions>
+      <PreprocessorDefinitions>RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -154,7 +153,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

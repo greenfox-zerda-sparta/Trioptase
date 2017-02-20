@@ -83,16 +83,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\sdl\all\ide;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\sdl\all\konyvtar;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\libraryes\SDL2-2.0.5\include;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\sdl\all\ide;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\libraryes\SDL2-2.0.5\lib\x86;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\sdl\all\konyvtar;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\sdl\all\ide;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\sdl\all\konyvtar;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\libraryes\SDL2-2.0.5\include;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\sdl\all\ide;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\libraryes\SDL2-2.0.5\lib\x86;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\sdl\all\konyvtar;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TEST|Win32'">
-    <IncludePath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\sdl\all\ide;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\sdl\all\konyvtar;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\libraryes\SDL2-2.0.5\include;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\sdl\all\ide;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\libraryes\SDL2-2.0.5\lib\x86;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\sdl\all\konyvtar;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

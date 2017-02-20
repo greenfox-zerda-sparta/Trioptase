@@ -147,7 +147,7 @@ int main(int argc, char* argv[]) {
   pf.scratch_route_to_temp_map();
   pf.print_temp_map();
 
-  //Singleton::getInstance()->print_route();
+  //SingletongetInstance()->print_route();
   
   soldier.smooth_move_troop();
   soldier.smooth_move_troop();

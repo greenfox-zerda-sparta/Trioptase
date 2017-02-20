@@ -1,9 +1,7 @@
 #include "Path_finder.hpp"
-
-const int MAP_SIZE(30);
+//const int MAP_SIZE = 30;
 const int n = 30; // horizontal size of the map
 const int m = 30; // vertical size size of the map
-///std::vector<std::vector<int>> tile_map;
 static int closed_nodes_map[n][m]; // map of closed (tried-out) nodes
 static int open_nodes_map[n][m];   // map of open (not-yet-tried) nodes
 static int dir_map[n][m]; // map of directions
@@ -11,7 +9,15 @@ const int dir = 8; // number of possible directions to go at any position
 static int dx[dir] = { 1, 1, 0, -1, -1, -1, 0, 1 };
 static int dy[dir] = { 0, 1, 1, 1, 0, -1, -1, -1 };
 
+void Path_finder::reset_route() {
+  this->route.clear();
+}
+
 Path_finder::Path_finder() {
+  this->tile_map.resize(MAP_SIZE);
+  for (int i = 0; i < this->tile_map.size(); i++) {
+    this->tile_map[i].resize(MAP_SIZE, 0);
+  }
 }
 
 void Path_finder::find_path(const int& start_x, const int& start_y, const int& finish_x, const int& finish_y) {
@@ -25,7 +31,7 @@ void Path_finder::find_path(const int& start_x, const int& start_y, const int& f
   int temp_finish_y = finish_y;
   pqi = 0;
 
-  Singleton::getInstance()->reset_route();
+  this->reset_route();
 
   for (y = 0; y < m; y++) { // reset the node maps
     for (x = 0; x < n; x++) {
@@ -55,7 +61,7 @@ void Path_finder::find_path(const int& start_x, const int& start_y, const int& f
         /*pushback dir vector of coord pairs*/
         temp_finish_x -= dx[ind];
         temp_finish_y -= dy[ind];
-        Singleton::getInstance()->route.push_back(std::make_pair(temp_finish_x, temp_finish_y));       
+        this->route.push_back(std::make_pair(temp_finish_x, temp_finish_y));       
        
         x += dx[j];
         y += dy[j];
@@ -64,14 +70,14 @@ void Path_finder::find_path(const int& start_x, const int& start_y, const int& f
       while (!pq[pqi].empty()) {
         pq[pqi].pop();
       }
-      Singleton::getInstance()->route.pop_back();
+      this->route.pop_back();
       return;
     }
 
     for (i = 0; i < dir; i++) { // generate moves (child nodes) in all possible directions
       xdx = x + dx[i]; ydy = y + dy[i];
 
-      if (!(xdx < 0 || xdx > n - 1 || ydy < 0 || ydy > m - 1 || Singleton::getInstance()->tile_map[xdx][ydy] == 1 || closed_nodes_map[xdx][ydy] == 1)) {
+      if (!(xdx < 0 || xdx > n - 1 || ydy < 0 || ydy > m - 1 || this->tile_map[xdx][ydy] == 1 || closed_nodes_map[xdx][ydy] == 1)) {
         m0 = new Node(xdx, ydy, n0->get_level(), n0->get_priority());   // generate a child node        
         m0->next_level(i);
         m0->update_priority(finish_x, finish_y);
@@ -112,9 +118,9 @@ void Path_finder::find_path(const int& start_x, const int& start_y, const int& f
 }
 
 void Path_finder::scratch_route_to_temp_map() {
-  this->temp_tile_map = Singleton::getInstance()->tile_map;
-  for (int i = 0; i < Singleton::getInstance()->route.size(); i++) {   
-    this->temp_tile_map[Singleton::getInstance()->route[i].first][Singleton::getInstance()->route[i].second] = 4;
+  this->temp_tile_map = this->tile_map;
+  for (int i = 0; i < this->route.size(); i++) {   
+    this->temp_tile_map[this->route[i].first][this->route[i].second] = 4;
   }
 }
 

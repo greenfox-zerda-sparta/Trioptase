@@ -3,7 +3,7 @@
 #include "SDL_image.h"
 #include <map>
 #include <utility>
-#include "Singleton.hpp"
+#include "../Entities/Game_logic.hpp"
 
 class Texture_manager {
 private:
@@ -23,7 +23,7 @@ public:
   void draw(std::string id, int x, int y, SDL_Renderer* renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
   void draw_frame(std::string id, int x, int y, int change_x, int change_y, SDL_Renderer* renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
   void draw_frame_static(std::string id, int x, int y, SDL_Renderer* renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
-  void draw_frame_dyn(std::string id, int change_x, int change_y, SDL_Renderer* renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
+  void draw_frame_dyn(int change_x, int change_y, SDL_Renderer* renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
   void draw_frame_dyn_pro_tile(std::string id, int x, int y, int change_x, int change_y, SDL_Renderer* renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
   SDL_Rect get_actual_rect();
   ~Texture_manager();  

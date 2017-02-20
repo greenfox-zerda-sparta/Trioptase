@@ -1,7 +1,5 @@
 #include "Building.hpp"
 
-
-
 Building::Building() : Game_entity() {
   Game_entity::IMG_PATH = "pic/building.png";
 }

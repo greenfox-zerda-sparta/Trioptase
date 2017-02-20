@@ -6,9 +6,11 @@
 
 using std::vector;
 
-const int MAP_SIZE = 30; // for the test min 3
+const int MAP_SIZE = 30;
 
 class Map: public JSON_Serial {
+private:
+  int MAP_SIZE;
 public:
   Map();
   json to_json();

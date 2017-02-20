@@ -1,4 +1,5 @@
 #include "Texture_manager.hpp"
+#include <iostream>
 
 Texture_manager::Texture_manager(int width, int height, int panel_width) : WINDOW_WIDTH(width), WINDOW_HEIGHT(height), PANEL_WIDTH(panel_width) {
   this->temp_last_y = 0;
@@ -77,7 +78,7 @@ void Texture_manager::draw_frame_static(std::string id, int x, int y, SDL_Render
   this->actual_rect.h = texture_resolution[id].second;
 }
 
-void Texture_manager::draw_frame_dyn(std::string id, int change_x, int change_y, SDL_Renderer* renderer, SDL_RendererFlip flip) {  
+void Texture_manager::draw_frame_dyn(int change_x, int change_y, SDL_Renderer* renderer, SDL_RendererFlip flip) {  
   /*hold the maps view if I navigate to the panel section*/
   if (change_x == WINDOW_WIDTH) {
     temp_last_y = change_y;
@@ -87,19 +88,18 @@ void Texture_manager::draw_frame_dyn(std::string id, int change_x, int change_y,
 
     change_y = temp_last_y;
   }
-  for (int i = 1; i < Singleton::getInstance()->tile_map.size() - 1; i++) {
-    for (int j = 1; j < Singleton::getInstance()->tile_map.size() - 1; j++) {
-      if (Singleton::getInstance()->tile_map[i][j] == 1) {
-        this->srcrect.x = 0;
-        this->srcrect.y = 0;
-        this->srcrect.w = this->WINDOW_WIDTH;
-        this->srcrect.h = this->WINDOW_HEIGHT;
-        this->dstrect.x = i * texture_resolution[id].first - change_x * 2;
-        this->dstrect.y = j * texture_resolution[id].second - change_y * 2;
-        this->dstrect.w = texture_resolution[id].first;
-        this->dstrect.h = texture_resolution[id].second;
-        SDL_RenderCopyEx(renderer, textures[id], &srcrect, &dstrect, 0, 0, flip);
-      }
+  for (int i = 1; i < 30 - 1; i++) {
+    for (int j = 1; j < 30 - 1; j++) {      
+      std::string temp_id = Game_logic::get_game_instance()->map->node_map[i][j]->get_entity()->IMG_PATH;        
+      this->srcrect.x = 0;
+      this->srcrect.y = 0;
+      this->srcrect.w = this->WINDOW_WIDTH;
+      this->srcrect.h = this->WINDOW_HEIGHT;
+      this->dstrect.x = i * texture_resolution[temp_id].first - change_x * 2;
+      this->dstrect.y = j * texture_resolution[temp_id].second - change_y * 2;
+      this->dstrect.w = texture_resolution[temp_id].first;
+      this->dstrect.h = texture_resolution[temp_id].second;
+      SDL_RenderCopyEx(renderer, textures[temp_id], &srcrect, &dstrect, 0, 0, flip);      
     }
   }
 }

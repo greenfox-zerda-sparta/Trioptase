@@ -6,12 +6,12 @@ using std::ofstream;
 Game_logic* Game_logic::game_instance = NULL;
 
 Game_logic::Game_logic() {
-  map = new Map;
+  map = new Map();
 }
 
 Game_logic* Game_logic::get_game_instance() {
   if (game_instance == NULL) {
-    game_instance = new Game;
+    game_instance = new Game_logic;
   }
   return game_instance;
 }

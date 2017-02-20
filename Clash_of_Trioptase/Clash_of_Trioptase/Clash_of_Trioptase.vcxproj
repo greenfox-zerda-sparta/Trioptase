@@ -153,7 +153,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Draw\Path_finder.cpp" />
     <ClCompile Include="Draw\Texture_manager.cpp" />
     <ClCompile Include="Draw\Window.cpp" />
     <ClCompile Include="Entities\Building.cpp" />
@@ -163,12 +162,13 @@
     <ClCompile Include="Entities\MapNode.cpp" />
     <ClCompile Include="Entities\Troop.cpp" />
     <ClCompile Include="Game_handler.cpp" />
+    <ClCompile Include="Logic\Node.cpp" />
+    <ClCompile Include="Logic\Path_finder.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="User_input\User_input.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Draw\Path_finder.hpp" />
     <ClInclude Include="Draw\Texture_manager.hpp" />
     <ClInclude Include="Draw\Window.hpp" />
     <ClInclude Include="Entities\Building.hpp" />
@@ -180,7 +180,16 @@
     <ClInclude Include="Entities\MapNode.hpp" />
     <ClInclude Include="Entities\Troop.hpp" />
     <ClInclude Include="Game_handler.hpp" />
+    <ClInclude Include="Logic\Node.hpp" />
+    <ClInclude Include="Logic\Path_finder.hpp" />
     <ClInclude Include="User_input\User_input.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="pictures\64x64.png" />
+    <Image Include="pictures\building.png" />
+    <Image Include="pictures\panel.png" />
+    <Image Include="pictures\smoke.png" />
+    <Image Include="pictures\wallpaper.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

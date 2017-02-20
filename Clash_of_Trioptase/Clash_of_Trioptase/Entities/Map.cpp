@@ -1,8 +1,6 @@
 #include "Map.hpp"
 
-
-
-Map::Map() {
+Map::Map() {  
   for (int i = 0; i < MAP_SIZE; i++) {
     vector<MapNode*> inner_vector;
     for (int j = 0; j < MAP_SIZE; j++) {

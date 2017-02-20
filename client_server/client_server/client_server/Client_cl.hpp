@@ -17,11 +17,13 @@ private:
   bool set_stat;
   int activeSockets;
   int gotMessage;
-  char server_chars[21];
+  char server_chars[90000];
   const char* client_chars;
-  std::string client_mess;
   json server_mess;
+  std::vector<uint8_t> message_vector;
+  std::string client_mess;
 
+  void recived_message_to_json();
 public:
   Client_cl();
   void client_init();

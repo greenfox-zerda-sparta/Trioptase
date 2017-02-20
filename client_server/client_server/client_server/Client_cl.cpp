@@ -22,24 +22,23 @@ void Client_cl::client_send(std::string client_mess) {
     running = false;
   }
 }
-struct trap {
-  json jackson;
-  int j;
-};
+
+void Client_cl::recived_message_to_json() {
+  for (int i = 0; i < 90000; i++) {
+    message_vector.push_back(server_chars[i]);
+  }
+  server_mess = json::from_msgpack(message_vector);
+}
 
 json Client_cl::client_receive() {
   bool running = true;
-  std::vector<uint8_t> message;
   while (running) {
     this->activeSockets = SDLNet_CheckSockets(set, 10);
     if (this->activeSockets != 0) {
       gotMessage = SDLNet_SocketReady(client);
       if (gotMessage != 0) {  
-        SDLNet_TCP_Recv(client, server_chars, 21);
-        for (int i = 0; i < 21; i++) {
-          message.push_back(server_chars[i]);
-        }
-        server_mess = json::from_msgpack(message);
+        SDLNet_TCP_Recv(client, server_chars, 90000);
+        recived_message_to_json();
         running = false;
       }
     }

@@ -87,8 +87,8 @@
     <LibraryPath>C:\libraryes\SDL2-2.0.5\lib\x86;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\sdl\all\konyvtar;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\libraryes\SDL2-2.0.5\include;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\sdl\all\ide;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\libraryes\SDL2-2.0.5\lib\x86;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\sdl\all\konyvtar;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\OneDrive\Programming\vs_dev_lib\SDL\include;C:\libraryes\SDL2-2.0.5\include;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\sdl\all\ide;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\libraryes\SDL2-2.0.5\lib\x86;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\sdl\all\konyvtar;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TEST|Win32'">
     <IncludePath>C:\libraryes\SDL2-2.0.5\include;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\sdl\all\ide;$(IncludePath)</IncludePath>
@@ -187,7 +187,9 @@
   <ItemGroup>
     <Image Include="pictures\64x64.png" />
     <Image Include="pictures\building.png" />
+    <Image Include="pictures\building_selected.png" />
     <Image Include="pictures\panel.png" />
+    <Image Include="pictures\panel_grid.png" />
     <Image Include="pictures\smoke.png" />
     <Image Include="pictures\wallpaper.jpg" />
   </ItemGroup>

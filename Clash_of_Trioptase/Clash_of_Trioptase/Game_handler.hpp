@@ -17,6 +17,7 @@ private:
   User_input* ui;
   std::pair<int, int> selected_coordinates;
   bool pin_building();
+  bool select_building_from_panel();
 public:
   Game_handler();
   void initialization();

@@ -133,5 +133,11 @@
     <Image Include="pictures\smoke.png">
       <Filter>pictures</Filter>
     </Image>
+    <Image Include="pictures\panel_grid.png">
+      <Filter>pictures</Filter>
+    </Image>
+    <Image Include="pictures\building_selected.png">
+      <Filter>pictures</Filter>
+    </Image>
   </ItemGroup>
 </Project>

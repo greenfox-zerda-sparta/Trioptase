@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Entities">
+      <UniqueIdentifier>{ca579e44-2d37-4f42-a6eb-82b83f914ffa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Draw">
+      <UniqueIdentifier>{e2e5b04f-b191-4df2-804d-e545e24beaa2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="User_input">
+      <UniqueIdentifier>{da1aaed2-8a4e-47fe-af8b-385d26697073}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test.cpp">
@@ -21,5 +30,79 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Game_handler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Entities\Building.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Entities\Game_entity.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Entities\Game_logic.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Entities\MapNode.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Entities\Map.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Entities\Troop.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Draw\Path_finder.cpp">
+      <Filter>Draw</Filter>
+    </ClCompile>
+    <ClCompile Include="Draw\Texture_manager.cpp">
+      <Filter>Draw</Filter>
+    </ClCompile>
+    <ClCompile Include="Draw\Window.cpp">
+      <Filter>Draw</Filter>
+    </ClCompile>
+    <ClCompile Include="User_input\User_input.cpp">
+      <Filter>User_input</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game_handler.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\Building.hpp">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\Game_entity.hpp">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\Game_logic.hpp">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\json.hpp">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\JSON_Serial.hpp">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\Map.hpp">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\MapNode.hpp">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\Troop.hpp">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Draw\Path_finder.hpp">
+      <Filter>Draw</Filter>
+    </ClInclude>
+    <ClInclude Include="Draw\Texture_manager.hpp">
+      <Filter>Draw</Filter>
+    </ClInclude>
+    <ClInclude Include="Draw\Window.hpp">
+      <Filter>Draw</Filter>
+    </ClInclude>
+    <ClInclude Include="User_input\User_input.hpp">
+      <Filter>User_input</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

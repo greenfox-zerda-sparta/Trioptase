@@ -153,8 +153,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Draw\Path_finder.cpp" />
+    <ClCompile Include="Draw\Texture_manager.cpp" />
+    <ClCompile Include="Draw\Window.cpp" />
+    <ClCompile Include="Entities\Building.cpp" />
+    <ClCompile Include="Entities\Game_entity.cpp" />
+    <ClCompile Include="Entities\Game_logic.cpp" />
+    <ClCompile Include="Entities\Map.cpp" />
+    <ClCompile Include="Entities\MapNode.cpp" />
+    <ClCompile Include="Entities\Troop.cpp" />
+    <ClCompile Include="Game_handler.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="test.cpp" />
+    <ClCompile Include="User_input\User_input.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Draw\Path_finder.hpp" />
+    <ClInclude Include="Draw\Texture_manager.hpp" />
+    <ClInclude Include="Draw\Window.hpp" />
+    <ClInclude Include="Entities\Building.hpp" />
+    <ClInclude Include="Entities\Game_entity.hpp" />
+    <ClInclude Include="Entities\Game_logic.hpp" />
+    <ClInclude Include="Entities\json.hpp" />
+    <ClInclude Include="Entities\JSON_Serial.hpp" />
+    <ClInclude Include="Entities\Map.hpp" />
+    <ClInclude Include="Entities\MapNode.hpp" />
+    <ClInclude Include="Entities\Troop.hpp" />
+    <ClInclude Include="Game_handler.hpp" />
+    <ClInclude Include="User_input\User_input.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

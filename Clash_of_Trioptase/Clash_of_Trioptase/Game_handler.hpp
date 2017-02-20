@@ -15,9 +15,12 @@ private:
   Window* window;
   Texture_manager* drawer;
   User_input* ui;
+  std::pair<int, int> selected_coordinates;
 public:
   Game_handler();
+  void initialization();
   void run();
+  void deinitialization();
   ~Game_handler();
 };
 

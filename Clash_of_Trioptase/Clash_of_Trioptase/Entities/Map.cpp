@@ -1,6 +1,13 @@
 #include "Map.hpp"
 
 Map::Map() {  
+  if (this->node_map.size() != MAP_SIZE) {
+    this->node_map.clear();
+    this->init_map();
+  }
+}
+
+void Map::init_map() {
   for (int i = 0; i < MAP_SIZE; i++) {
     vector<MapNode*> inner_vector;
     for (int j = 0; j < MAP_SIZE; j++) {

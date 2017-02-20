@@ -14,7 +14,7 @@ json Troop::to_json() {
 }
 
 Troop::Troop(): Game_entity() {
-  Game_entity::IMG_PATH = "pic/troop.png";
+  Game_entity::IMG_PATH = "troop";
 }
 
 Troop::~Troop() {

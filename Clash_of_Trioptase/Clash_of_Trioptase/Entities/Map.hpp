@@ -6,13 +6,12 @@
 
 using std::vector;
 
-const int MAP_SIZE = 30;
+static const int MAP_SIZE = 30;
 
 class Map: public JSON_Serial {
-private:
-  int MAP_SIZE;
 public:
   Map();
+  void init_map();
   json to_json();
   vector<vector<MapNode*>> node_map;
   ~Map();

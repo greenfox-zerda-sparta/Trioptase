@@ -6,7 +6,7 @@ using std::ofstream;
 Game_logic* Game_logic::game_instance = NULL;
 
 Game_logic::Game_logic() {
-  map = new Map();
+  this->map = new Map();
 }
 
 Game_logic* Game_logic::get_game_instance() {
@@ -45,6 +45,15 @@ void Game_logic::create_building_on_map(int first_index, int second_index, json 
   building.set_dp(object["defense"]);
   building.set_hp(object["health"]);
   building.set_price(object["price"]);
+  map->node_map[first_index][second_index]->set_entity(&building);
+}
+
+void Game_logic::create_building(int first_index, int second_index) {
+  Building building;
+  building.set_ap(10);
+  building.set_dp(10);
+  building.set_hp(10);
+  building.set_price(10);
   map->node_map[first_index][second_index]->set_entity(&building);
 }
 

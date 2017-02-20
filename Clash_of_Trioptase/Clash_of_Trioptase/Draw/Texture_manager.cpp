@@ -26,42 +26,7 @@ bool Texture_manager::load(std::string file_name, std::string id, int image_widt
   return false;
 }
 
-void Texture_manager::draw(std::string id, int x, int y, SDL_Renderer* renderer, SDL_RendererFlip flip) {
-  this->srcrect.x = 0;
-  this->srcrect.y = 0;
-  this->srcrect.w = dstrect.w = this->WINDOW_WIDTH;
-  this->srcrect.h = dstrect.h = this->WINDOW_HEIGHT;
-  this->dstrect.x = x;
-  this->dstrect.y = y;
-
-  SDL_RenderCopyEx(renderer, textures[id], &srcrect, &dstrect, 0, 0, flip);
-}
-
-void Texture_manager::draw_frame(std::string id, int x, int y, int change_x, int change_y, SDL_Renderer* renderer, SDL_RendererFlip flip) {    
-  /*hold the maps view if I navigate to the panel section*/
-  if (change_x == WINDOW_WIDTH) {
-     temp_last_y = change_y;
-  }  
-  if (change_x > WINDOW_WIDTH) {    
-    change_x = WINDOW_WIDTH;    
-    
-    change_y = temp_last_y;
-  }
-  this->srcrect.x = x + change_x * 2;
-  this->srcrect.y = y + change_y * 2;
-  this->srcrect.w = dstrect.w = this->WINDOW_WIDTH;
-  this->srcrect.h = dstrect.h = this->WINDOW_HEIGHT;
-  this->dstrect.x = x;
-  this->dstrect.y = y;
-  SDL_RenderCopyEx(renderer, textures[id], &srcrect, &dstrect, 0, 0, flip);
-
-  this->actual_rect.x = (x * texture_resolution[id].first - change_x) / 2;
-  this->actual_rect.y = (y * texture_resolution[id].second - change_y) / 2;
-  this->actual_rect.w = actual_rect.x + texture_resolution[id].first / 2;
-  this->actual_rect.h = actual_rect.y + texture_resolution[id].second / 2;
-}
-
-void Texture_manager::draw_frame_static(std::string id, int x, int y, SDL_Renderer* renderer, SDL_RendererFlip flip) {
+void Texture_manager::statically(std::string id, int x, int y, SDL_Renderer* renderer, SDL_RendererFlip flip) {
   this->srcrect.x = 0;
   this->srcrect.y = 0;
   this->srcrect.w = WINDOW_WIDTH + PANEL_WIDTH;
@@ -78,7 +43,25 @@ void Texture_manager::draw_frame_static(std::string id, int x, int y, SDL_Render
   this->actual_rect.h = texture_resolution[id].second;
 }
 
-void Texture_manager::draw_frame_dyn(int change_x, int change_y, SDL_Renderer* renderer, SDL_RendererFlip flip) {  
+void Texture_manager::dynamically_background(std::string id, int x, int y, int change_x, int change_y, SDL_Renderer* renderer, SDL_RendererFlip flip) {
+  /*hold the maps view if I navigate to the panel section*/
+  if (change_x == WINDOW_WIDTH) {
+    temp_last_y = change_y;
+  }
+  if (change_x > WINDOW_WIDTH) {
+    change_x = WINDOW_WIDTH;
+    change_y = temp_last_y;
+  }
+  this->srcrect.x = x + change_x * 2;
+  this->srcrect.y = y + change_y * 2;
+  this->srcrect.w = dstrect.w = this->WINDOW_WIDTH;
+  this->srcrect.h = dstrect.h = this->WINDOW_HEIGHT;
+  this->dstrect.x = x;
+  this->dstrect.y = y;
+  SDL_RenderCopyEx(renderer, textures[id], &srcrect, &dstrect, 0, 0, flip);
+}
+
+void Texture_manager::dynamically_all_tile(int change_x, int change_y, SDL_Renderer* renderer, SDL_RendererFlip flip) {
   /*hold the maps view if I navigate to the panel section*/
   if (change_x == WINDOW_WIDTH) {
     temp_last_y = change_y;
@@ -90,21 +73,23 @@ void Texture_manager::draw_frame_dyn(int change_x, int change_y, SDL_Renderer* r
   }
   for (int i = 1; i < 30 - 1; i++) {
     for (int j = 1; j < 30 - 1; j++) {      
-      std::string temp_id = Game_logic::get_game_instance()->map->node_map[i][j]->get_entity()->IMG_PATH;        
-      this->srcrect.x = 0;
-      this->srcrect.y = 0;
-      this->srcrect.w = this->WINDOW_WIDTH;
-      this->srcrect.h = this->WINDOW_HEIGHT;
-      this->dstrect.x = i * texture_resolution[temp_id].first - change_x * 2;
-      this->dstrect.y = j * texture_resolution[temp_id].second - change_y * 2;
-      this->dstrect.w = texture_resolution[temp_id].first;
-      this->dstrect.h = texture_resolution[temp_id].second;
-      SDL_RenderCopyEx(renderer, textures[temp_id], &srcrect, &dstrect, 0, 0, flip);      
+      if (Game_logic::get_game_instance()->map->node_map[i][j]->get_entity() != NULL) {        
+        std::string temp_id = Game_logic::get_game_instance()->map->node_map[i][j]->get_img_path();        
+        this->srcrect.x = 0;
+        this->srcrect.y = 0;
+        this->srcrect.w = this->WINDOW_WIDTH;
+        this->srcrect.h = this->WINDOW_HEIGHT;
+        this->dstrect.x = i * texture_resolution[temp_id].first - change_x * 2;
+        this->dstrect.y = j * texture_resolution[temp_id].second - change_y * 2;
+        this->dstrect.w = texture_resolution[temp_id].first;
+        this->dstrect.h = texture_resolution[temp_id].second;
+        SDL_RenderCopyEx(renderer, textures[temp_id], &srcrect, &dstrect, 0, 0, flip);
+      }
     }
   }
 }
 
-void Texture_manager::draw_frame_dyn_pro_tile(std::string id, int x, int y, int change_x, int change_y, SDL_Renderer* renderer, SDL_RendererFlip flip) {
+void Texture_manager::dynamically_one_tile(std::string id, int x, int y, int change_x, int change_y, SDL_Renderer* renderer, SDL_RendererFlip flip) {
   /*hold the maps view if I navigate to the panel section*/
   if (change_x == WINDOW_WIDTH) {
     temp_last_y = change_y;

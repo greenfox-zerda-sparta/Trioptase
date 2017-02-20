@@ -11,6 +11,9 @@ private:
   void create_troop_on_map(int, int, json);
   void create_building_on_map(int, int, json);
 public:
+
+  void create_building(int first_index, int second_index);
+
   Map* map = NULL;
   void update_map_from_json(json);
   void write_json_to_file(json);

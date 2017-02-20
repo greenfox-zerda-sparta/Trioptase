@@ -77,7 +77,7 @@ void Game_logic::update_map_from_json(json msg_from_server) {
 
 void Game_logic::write_json_to_file(json janos) {
   ofstream file;
-  file.open("json.json");
+  file.open("Game_saves/json.json");
   file << janos;
   file.close();
 }

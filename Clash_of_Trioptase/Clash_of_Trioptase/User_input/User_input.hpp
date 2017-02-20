@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL.h>
 #include <utility>
+#include <iostream>
 
 class User_input {
 private:

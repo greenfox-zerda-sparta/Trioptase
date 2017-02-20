@@ -1,5 +1,15 @@
 #include "Game_handler.hpp"
 
+bool Game_handler::pin_building() {
+  if (selected_coordinates.first > 1 && selected_coordinates.first < 29) {
+    Game_logic::get_game_instance()->create_building(selected_coordinates.first, selected_coordinates.second);    
+    return true;
+  }
+  else {    
+    return false;
+  }
+}
+
 Game_handler::Game_handler() {
   this->window = new Window(WINDOW_WIDTH + PANEL_WIDTH, WINDOW_HEIGHT);
   this->drawer = new Texture_manager(WINDOW_WIDTH, WINDOW_HEIGHT, PANEL_WIDTH);
@@ -12,6 +22,7 @@ void Game_handler::initialization() {
   drawer->load("pictures/wallpaper.jpg", "background", 1920, 1080, window->get_renderer());
   drawer->load("pictures/64x64.png", "troop", 64, 64, window->get_renderer());
   drawer->load("pictures/building.png", "building", 64, 64, window->get_renderer());
+  drawer->load("pictures/building.png", "static building", 32, 32, window->get_renderer());
   drawer->load("pictures/panel.png", "panel", 260, 640, window->get_renderer());
   drawer->load("pictures/smoke.png", "smoke", 64, 64, window->get_renderer());
 
@@ -32,15 +43,17 @@ void Game_handler::run() {
 
     {
       drawer->statically("panel", WINDOW_WIDTH, 0, window->get_renderer());
-      drawer->statically("building", WINDOW_WIDTH + 40, 60, window->get_renderer());      
+      drawer->statically("static building", WINDOW_WIDTH + 80, 84, window->get_renderer());
+      drawer->statically("static building", WINDOW_WIDTH + 80 + 64, 84, window->get_renderer());
+      drawer->statically("static building", WINDOW_WIDTH + 80 + 64 + 64, 84, window->get_renderer());      
       drawer->statically("troop", WINDOW_WIDTH + 40, 144 + 190, window->get_renderer());
     }
 
-    if (selected_coordinates.first != 0) {
-      Game_logic::get_game_instance()->create_building(selected_coordinates.first, selected_coordinates.second);
-    }
+    this->pin_building();
+
     window->render_present();
   }
+ /// Game_logic::get_game_instance()->write_json_to_file(Game_logic::get_game_instance()->map->to_json());  
 }
 
 void Game_handler::deinitialization() {

@@ -16,6 +16,7 @@ private:
   Texture_manager* drawer;
   User_input* ui;
   std::pair<int, int> selected_coordinates;
+  bool pin_building();
 public:
   Game_handler();
   void initialization();

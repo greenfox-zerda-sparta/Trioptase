@@ -1,9 +1,9 @@
 #include "Server_sr.hpp"
 #include <map>
 
-std::string Server_sr::json_to_string(json& _message) {
-  std::vector<uint8_t> temp_vec = json::to_msgpack(_message);
-  std::string text;
+string Server_sr::json_to_string(json& _message) {
+  vector<uint8_t> temp_vec = json::to_msgpack(_message);
+  string text;
   for (int i = 0; i < temp_vec.size(); i++) {
     text += temp_vec[i];
   }
@@ -35,7 +35,7 @@ void Server_sr::server_init() {
 }
 
 void Server_sr::server_send(json& _message) {          
-  std::string text = json_to_string(_message);
+  string text = json_to_string(_message);
   bool running = true;
   while (running) {
     SDLNet_TCP_Send(client, text.c_str(), text.length() + 1);
@@ -43,7 +43,7 @@ void Server_sr::server_send(json& _message) {
   }
 }
 
-std::string Server_sr::server_receive() {
+string Server_sr::server_receive() {
   bool running = true;
   while (running) {
     this->activeSockets = SDLNet_CheckSockets(set, 10);

@@ -10,6 +10,8 @@
 #include <vector>
 
 using json = nlohmann::json;
+using std::string;
+using std::vector;
 
 class Server_sr {
 private:
@@ -19,18 +21,19 @@ private:
   SDLNet_SocketSet set;
   int activeSockets;
   int gotMessage;
-
   bool set_stat;
   char client_chars[100];
   const char* server_chars;
-  std::string client_mess;
-  std::string server_mess;
-  std::string json_to_string(json& _message);
+  string client_mess;
+  string server_mess;
 public:
   Server_sr();
   void server_init();    
   void server_send(json& _message);
-  std::string server_receive();  
+  string server_receive();  
   void server_close();  
   ~Server_sr();
+private:
+  string json_to_string(json& _message);
+
 };

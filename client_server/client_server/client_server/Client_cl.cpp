@@ -8,7 +8,7 @@ void Client_cl::client_init() {
   SDL_Init(SDL_INIT_EVERYTHING);
   SDLNet_Init();
   set = SDLNet_AllocSocketSet(2);
-  SDLNet_ResolveHost(&ip, "10.27.6.25", 1234); //192.168.0.7  127.0.0.1
+  SDLNet_ResolveHost(&ip, "10.27.9.112", 1234); //192.168.0.7  127.0.0.1
   this->client = SDLNet_TCP_Open(&ip);
   SDLNet_TCP_AddSocket(set, client);
   this->activeSockets = SDLNet_CheckSockets(set, 10);

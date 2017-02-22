@@ -1,6 +1,6 @@
 #pragma once
 #include "JSON_Serial.hpp"
-
+#include <iostream>
 static int BASE_ID = 0;
 
 class Game_entity : public JSON_Serial {

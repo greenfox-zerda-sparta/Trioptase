@@ -9,7 +9,7 @@ string MapNode::get_img_path() {
   return entity_img_path;
 }
 
-Game_entity * MapNode::get_entity() {
+Game_entity* MapNode::get_entity() {
   return entity;
 }
 

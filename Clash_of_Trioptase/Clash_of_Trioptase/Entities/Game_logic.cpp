@@ -1,5 +1,4 @@
 #include "Game_logic.hpp"
-#include <fstream>
 
 using std::ofstream;
 
@@ -40,21 +39,28 @@ void Game_logic::create_troop_on_map(int first_index, int second_index, json obj
 }
 
 void Game_logic::create_building_on_map(int first_index, int second_index, json object) {
-  Building building;
-  building.set_ap(object["attack"]);
-  building.set_dp(object["defense"]);
-  building.set_hp(object["health"]);
-  building.set_price(object["price"]);
-  map->node_map[first_index][second_index]->set_entity(&building);
+  Building* building = new Building;
+  building->set_ap(10);
+  building->set_dp(10);
+  building->set_hp(10);
+  building->set_price(10);
+  map->node_map[first_index][second_index]->set_entity(building);
+}
+
+json Game_logic::read_json_from_file(std::string file_name) {  
+  std::ifstream my_file(file_name.c_str());
+  json temp_json;
+  my_file >> temp_json;
+  return temp_json;
 }
 
 void Game_logic::create_building(int first_index, int second_index) {
-  Building building;
-  building.set_ap(10);
-  building.set_dp(10);
-  building.set_hp(10);
-  building.set_price(10);
-  map->node_map[first_index][second_index]->set_entity(&building);
+  Building* building = new Building;
+  building->set_ap(10);
+  building->set_dp(10);
+  building->set_hp(10);
+  building->set_price(10);
+  map->node_map[first_index][second_index]->set_entity(building);
 }
 
 void Game_logic::update_map_from_json(json msg_from_server) {
@@ -83,6 +89,11 @@ void Game_logic::write_json_to_file(json janos) {
 }
 
 Game_logic::~Game_logic() {
+  for (int i = 0; i < map->node_map.size(); i++) {
+    for (int j = 0; j < map->node_map[i].size(); j++) {
+      delete map->node_map[i][j];
+    }
+  }  
   delete map;
   map = NULL;
 }

@@ -42,7 +42,9 @@ void Game_handler::initialization() {
 }
 
 void Game_handler::run() {
-  
+  json temp = Game_logic::get_game_instance()->read_json_from_file("../Game_saves/json.json");
+  Game_logic::get_game_instance()->update_map_from_json(temp);
+
   bool running = true;
   while (running) {    
     ui->input_handler(running, this->selected_coordinates);
@@ -60,14 +62,15 @@ void Game_handler::run() {
       drawer->statically("static_building", WINDOW_WIDTH + 80 + 64 + 64, 84, window->get_renderer());      
       drawer->statically("troop", WINDOW_WIDTH + 40, 144 + 190, window->get_renderer());
     }
-
-    if (this->select_building_from_panel()) {
+    bool trash_bool = this->select_building_from_panel();
+   // if (trash_bool) {
+      
       this->pin_building();
-    }    
+   // }    
 
     window->render_present();
   }
- /// Game_logic::get_game_instance()->write_json_to_file(Game_logic::get_game_instance()->map->to_json());  
+ Game_logic::get_game_instance()->write_json_to_file(Game_logic::get_game_instance()->map->to_json());  
 }
 
 void Game_handler::deinitialization() {

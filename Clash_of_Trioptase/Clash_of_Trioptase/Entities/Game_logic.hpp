@@ -3,6 +3,8 @@
 #include "Map.hpp"
 #include "Troop.hpp"
 #include "Building.hpp"
+#include <fstream>
+#include <string>
 
 class Game_logic {
 private:
@@ -11,7 +13,7 @@ private:
   void create_troop_on_map(int, int, json);
   void create_building_on_map(int, int, json);
 public:
-
+  json read_json_from_file(std::string file_name);
   void create_building(int first_index, int second_index);
 
   Map* map = NULL;

@@ -32,9 +32,9 @@ json Map::to_json() {
         //std::cout << "(" << i << ", " << j << ") " << node_map[i][j]->get_entity() << std::endl;
         temp_ID = node_map[i][j]->get_entity()->ID;
         std::cout << "here";
-        temp_json = node_map[i][j]->get_entity()->to_json();      
+        temp_json = node_map[i][j]->get_entity()->to_json();
         temp_full_node = { std::to_string(temp_ID), temp_json };
-        
+
       }
       to_return_j["Map"] += temp_full_node;
     } // end of second for loop
@@ -49,4 +49,4 @@ Map::~Map() {
       node_map[i][j] = NULL;
     }
   }
-}
+} // end of to_json() method

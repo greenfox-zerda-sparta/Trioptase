@@ -17,6 +17,7 @@ json file_to_json(string filename) {
   json content;
   my_file.open(filename.c_str());
   my_file >> content;
+  my_file.close();
   return content;
 }
 
@@ -25,15 +26,16 @@ int main(int argc, char* argv[]) {
   Server_sr my_server;
   json jani = file_to_json("json.json");
   cout << "Server is waiting for client" << endl;
-  my_server.server_init();  
+  my_server.server_init();    
   my_server.server_send(jani);
   my_server.server_close();
 
   Client_cl my_client;
   my_client.client_init();
- // my_client.client_send("cicca");
+  my_client.client_send("cicca");
   std::cout << my_client.client_receive()["hero"] << std::endl;
   my_client.client_close();
+
 
   return 0;
 }

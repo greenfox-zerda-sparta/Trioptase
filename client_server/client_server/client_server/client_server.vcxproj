@@ -83,16 +83,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TEST|Win32'">
-    <IncludePath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\SDL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\SDL\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\sdl\all\ide;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\SDL\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\sdl\all\konyvtar;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\SDL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\libraryes\SDL2-2.0.5\include;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\SDL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\libraryes\SDL2-2.0.5\lib\x86;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\SDL\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\sdl\all\ide;C:\libraryes\SDL2-2.0.5\include;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\SDL\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\sdl\all\konyvtar;C:\libraryes\SDL2-2.0.5\lib\x86;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\SDL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\SDL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\SDL\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\sdl\all\ide;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\include;C:\SDL\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\sdl\all\konyvtar;C:\Users\korom\OneDrive\Programming\vs_dev_lib\SDL\lib\x86;C:\SDL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

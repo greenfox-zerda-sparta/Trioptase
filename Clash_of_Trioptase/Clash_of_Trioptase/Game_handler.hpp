@@ -3,6 +3,8 @@
 #include "User_input/User_input.hpp"
 #include "Draw/Window.hpp"
 #include "Draw/Texture_manager.hpp"
+#include <thread>
+#include <mutex>
 #include <iostream>
 
 static const int WINDOW_WIDTH(640);
@@ -24,7 +26,15 @@ private:
   void select_troop_from_panel(bool& clicked);
   void pin_troop(bool& clicked);
   bool select_enemy_village;
+  void select_enemy_button(bool& clicked);
   void show_enemy_village(bool& clicked);
+  bool select_my_village;
+  void select_my_button(bool& clicked);
+  void show_my_village(bool& clicked);
+  void selection_controller();
+  void background_selector();
+  void network_connection();
+  bool first_round;
 public:
   Game_handler();
   void initialization();

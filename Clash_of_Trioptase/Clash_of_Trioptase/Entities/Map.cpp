@@ -17,6 +17,10 @@ void Map::init_map() {
   }
 }
 
+void Map::clear_map() {
+  node_map.clear();
+}
+
 json Map::to_json() {
   int temp_ID;
   json temp_json;

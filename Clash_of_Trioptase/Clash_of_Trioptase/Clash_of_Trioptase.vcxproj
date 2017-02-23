@@ -185,6 +185,7 @@
     <ClInclude Include="User_input\User_input.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="pictures\button_selected.png" />
     <Image Include="pictures\troop.png" />
     <Image Include="pictures\building.png" />
     <Image Include="pictures\building_selected.png" />
@@ -193,6 +194,7 @@
     <Image Include="pictures\smoke.png" />
     <Image Include="pictures\troop_selected.png" />
     <Image Include="pictures\wallpaper.jpg" />
+    <Image Include="pictures\wallpaper_enemy.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

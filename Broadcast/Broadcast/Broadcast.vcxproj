@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClCompile Include="Broadcast.cpp" />
     <ClCompile Include="Client.cpp" />
+    <ClCompile Include="Network.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>

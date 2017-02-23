@@ -7,19 +7,24 @@
 
 using std::string;
 
+const int WAIT = 2000;
+
 class Broadcast {
 public:
   Broadcast(const string& ip, int32_t remote, int32_t local);
   ~Broadcast();
+private:
+  void start_listening();//
+  bool recieve(); //
+  void start_game(); //
+  void start_server_mode(); //
   void start_broadcasting();
+  void resolve_IP(); //
+  void send(); //
+  void start_client_mode();//
+public:
   void set_server();
   void set_client();
-  void send();
-  int recieve();
-  void start_game();
-  void start_server_mode();
-  void start_client_mode() {};
-  void resolve_IP();
 public:
   bool server_mode;
   UDPsocket outSocket;

@@ -1,7 +1,6 @@
 #include "Client.h"
 
 Client::Client(string ip_address) {
-  set_stat = true;
   this->ip_address = ip_address;
 }
 
@@ -9,16 +8,19 @@ void Client::client_init() {
   SDLNet_Init();
   set = SDLNet_AllocSocketSet(2);
   SDLNet_ResolveHost(&ip, ip_address.c_str(), 1234);
-  this->client = SDLNet_TCP_Open(&ip);
+  client = SDLNet_TCP_Open(&ip);
   SDLNet_TCP_AddSocket(set, client);
-  this->activeSockets = SDLNet_CheckSockets(set, 10);
+  /*activeSockets = */SDLNet_CheckSockets(set, 10);
 }
 
-void Client::client_send(string client_mess) {
+
+void Client::send(json& _message) {
+  string text = json_to_string(_message);
   bool running = true;
   while (running) {
-    SDLNet_TCP_Send(client, client_mess.c_str(), client_mess.length() + 1);
-    running = false;
+    if (SDLNet_TCP_Send(client, text.c_str(), text.length() + 1)) {
+      running = false;
+    }
   }
 }
 
@@ -29,13 +31,11 @@ void Client::recived_message_to_json() {
   server_mess = json::from_msgpack(message_vector);
 }
 
-json Client::client_receive() {
+json Client::receive() {
   bool running = true;
   while (running) {
-    this->activeSockets = SDLNet_CheckSockets(set, 10);
-    if (this->activeSockets != 0) {
-      gotMessage = SDLNet_SocketReady(client);
-      if (gotMessage != 0) {
+    if (SDLNet_CheckSockets(set, 10)) {
+      if (SDLNet_SocketReady(client)) {
         SDLNet_TCP_Recv(client, server_chars, 90000);
         recived_message_to_json();
         running = false;
@@ -46,11 +46,8 @@ json Client::client_receive() {
 }
 
 
-void Client::client_close() {
+Client::~Client() {
   SDLNet_TCP_Close(client);
   SDLNet_FreeSocketSet(set);
-}
-
-Client::~Client() {
   SDLNet_Quit();
 }

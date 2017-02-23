@@ -31,6 +31,7 @@ int main(int argc, char* argv[]) {
   }
   json json = { "alma", 5 };
   ray.start_game();
+  ray.start_broadcasting();
   ray.communicate->send(json);
   return 0;
 }

@@ -13,7 +13,7 @@ private:
   IPaddress ip;
   TCPsocket server;
   TCPsocket client;
-  char client_chars[100];
+  char client_chars[90000];
   vector<uint8_t> message_vector;
   json client_mess_json;
   bool has_client = false;
@@ -22,9 +22,7 @@ public:
   void server_init(); 
   void send(json& _message); 
   json receive();
-  void server_close();
   ~Server();
 private:
   void recived_message_to_json();
-  string json_to_string(json& _message);
 };

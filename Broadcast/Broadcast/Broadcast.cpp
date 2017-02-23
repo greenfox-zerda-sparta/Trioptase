@@ -39,6 +39,17 @@ void Broadcast::start_server_mode() {
   communicate = new Server;
 }
 
+void Broadcast::resolve_IP() {
+
+}
+
+void Broadcast::start_broadcasting() {
+  resolve_IP();
+  while (1) {
+    send();
+  }
+}
+
 Broadcast::~Broadcast() {
   SDLNet_FreePacket(packet);
   SDLNet_Quit();

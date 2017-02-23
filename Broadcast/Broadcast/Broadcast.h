@@ -11,6 +11,7 @@ class Broadcast {
 public:
   Broadcast(const string& ip, int32_t remote, int32_t local);
   ~Broadcast();
+  void start_broadcasting();
   void set_server();
   void set_client();
   void send();
@@ -18,11 +19,13 @@ public:
   void start_game();
   void start_server_mode();
   void start_client_mode() {};
+  void resolve_IP();
 public:
   bool server_mode;
   UDPsocket outSocket;
   UDPsocket inSocket;
   IPaddress server_ip;
+  IPaddress my_ip;
   UDPpacket* packet;
   UDPpacket* income;
   const string ip_address;

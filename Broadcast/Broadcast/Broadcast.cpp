@@ -1,4 +1,5 @@
 #include "Broadcast.h"
+#include <math.h>
 
 Broadcast::Broadcast(const string& ip, int32_t remote, int32_t local): ip_address(ip) {
   remote_port = remote;
@@ -25,16 +26,17 @@ void Broadcast::send() {
   string msg = std::to_string(my_ip.host);
   memcpy(packet->data, msg.c_str(), msg.length());
   packet->len = msg.length();
+  std::cout << "send packet's data" << packet->data << std::endl;
   SDLNet_UDP_Send(outSocket, -1, packet);
 }
 
 bool Broadcast::recieve() {
   if (SDLNet_UDP_Recv(inSocket, income)) {
     server_mode = false;
-    return true;
+    return !server_mode;
   }
   server_mode = true;
-  return false;
+  return !server_mode;
 }
 
 void Broadcast::start_game() {
@@ -48,10 +50,21 @@ void Broadcast::start_server_mode() {
 }
 
 void Broadcast::start_client_mode() {
-  Uint8 msg = *(income->data);
-  string ip = std::to_string(msg);
-  communicate = new Client(ip);
-  std::cout << "client mode start to ip: " << ip << std::endl;
+  //std::cout << "recieved packet's data: " << income->data << std::endl;
+  //Uint8* msg_array = new Uint8[9];
+  //std::cout << income->len << std::endl;
+  //memcpy(msg_array, income->data, income->len+1);
+  //std::cout << msg_array << " & " << income->data << std::endl;
+  //std::cout << "msg_array: " << msg_array << std::endl;
+  //Uint8 msg=0;
+  //for (int i = 9; i > 0; i--) {
+   // msg += msg_array[i] * pow(10, i);
+  //}
+ // std::cout << "msg: " << msg << std::endl;
+  //string ip = std::to_string(msg);
+  communicate = new Client("10.27.99.18");
+  std::cout << "statr client mode" << std::endl;
+  //delete[] msg_array;
 }
 
 void Broadcast::resolve_IP() {

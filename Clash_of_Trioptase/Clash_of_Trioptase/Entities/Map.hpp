@@ -12,6 +12,7 @@ class Map: public JSON_Serial {
 public:
   Map();
   void init_map();
+  void clear_map();
   json to_json();
   vector<vector<MapNode*>> node_map;
   ~Map();

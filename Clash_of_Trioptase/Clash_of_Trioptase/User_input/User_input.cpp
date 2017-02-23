@@ -61,8 +61,6 @@ void User_input::input_handler(bool& running, std::pair<int, int>& selected_coor
         this->mouse_y = int((float)this->mouse_state_y / 32 / ((float)20 / 30));
         selected_coordinates.first = mouse_x;
         selected_coordinates.second = mouse_y;
-        std::cout << selected_coordinates.first << std::endl;
-        std::cout << selected_coordinates.second << std::endl;
       break;
     case SDL_MOUSEBUTTONUP:           
       break;

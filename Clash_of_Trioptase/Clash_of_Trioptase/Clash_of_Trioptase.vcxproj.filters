@@ -118,9 +118,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="pictures\64x64.png">
-      <Filter>pictures</Filter>
-    </Image>
     <Image Include="pictures\building.png">
       <Filter>pictures</Filter>
     </Image>
@@ -137,6 +134,18 @@
       <Filter>pictures</Filter>
     </Image>
     <Image Include="pictures\building_selected.png">
+      <Filter>pictures</Filter>
+    </Image>
+    <Image Include="pictures\troop.png">
+      <Filter>pictures</Filter>
+    </Image>
+    <Image Include="pictures\troop_selected.png">
+      <Filter>pictures</Filter>
+    </Image>
+    <Image Include="pictures\button_selected.png">
+      <Filter>pictures</Filter>
+    </Image>
+    <Image Include="pictures\wallpaper_enemy.jpg">
       <Filter>pictures</Filter>
     </Image>
   </ItemGroup>

@@ -71,8 +71,8 @@ void Texture_manager::dynamically_all_tile(int change_x, int change_y, SDL_Rende
 
     change_y = temp_last_y;
   }
-  for (int i = 1; i < 30 - 1; i++) {
-    for (int j = 1; j < 30 - 1; j++) {      
+  for (int i = 1; i < MAP_SIZE - 1; i++) {
+    for (int j = 1; j < MAP_SIZE - 1; j++) {      
       if (Game_logic::get_game_instance()->map->node_map[i][j]->get_entity() != NULL) {        
         std::string temp_id = Game_logic::get_game_instance()->map->node_map[i][j]->get_img_path();        
         this->srcrect.x = 0;

@@ -17,6 +17,10 @@ void Map::init_map() {
   }
 }
 
+void Map::clear_map() {
+  node_map.clear();
+}
+
 json Map::to_json() {
   int temp_ID;
   json temp_json;
@@ -24,14 +28,11 @@ json Map::to_json() {
   json to_return_j;
   for (int i = 0; i < MAP_SIZE; i++) {
     for (int j = 0; j < MAP_SIZE; j++) {
-      if (node_map[i][j]->get_entity() == NULL) {
-        //std::cout << "(" << i << ", " << j << ") " << node_map[i][j]->get_entity() << std::endl;
+      if (node_map[i][j]->get_entity() == NULL) {       
         temp_full_node = { "0", nullptr };
       }
-      else {
-        //std::cout << "(" << i << ", " << j << ") " << node_map[i][j]->get_entity() << std::endl;
+      else {        
         temp_ID = node_map[i][j]->get_entity()->ID;
-        std::cout << "here";
         temp_json = node_map[i][j]->get_entity()->to_json();
         temp_full_node = { std::to_string(temp_ID), temp_json };
 

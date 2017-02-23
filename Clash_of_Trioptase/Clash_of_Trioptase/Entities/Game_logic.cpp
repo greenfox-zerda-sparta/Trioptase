@@ -30,12 +30,12 @@ bool has_obj_key(string key, json obj) {
 }
 
 void Game_logic::create_troop_on_map(int first_index, int second_index, json object) {
-  Troop soldier;
-  soldier.set_ap(object["attack"]);
-  soldier.set_dp(object["defense"]);
-  soldier.set_hp(object["health"]);
-  soldier.set_price(object["price"]);
-  map->node_map[first_index][second_index]->set_entity(&soldier);
+  Troop* soldier = new Troop;
+  soldier->set_ap(object["attack"]);
+  soldier->set_dp(object["defense"]);
+  soldier->set_hp(object["health"]);
+  soldier->set_price(object["price"]);
+  map->node_map[first_index][second_index]->set_entity(soldier);
 }
 
 void Game_logic::create_building_on_map(int first_index, int second_index, json object) {
@@ -48,9 +48,15 @@ void Game_logic::create_building_on_map(int first_index, int second_index, json 
 }
 
 json Game_logic::read_json_from_file(std::string file_name) {  
-  std::ifstream my_file(file_name.c_str());
   json temp_json;
-  my_file >> temp_json;
+  std::ifstream my_file(file_name.c_str());
+  if (!my_file.is_open()) {
+    map->init_map();
+    temp_json = map->to_json();
+  }
+  else {
+    my_file >> temp_json;    
+  }
   return temp_json;
 }
 
@@ -61,6 +67,15 @@ void Game_logic::create_building(int first_index, int second_index) {
   building->set_hp(10);
   building->set_price(10);
   map->node_map[first_index][second_index]->set_entity(building);
+}
+
+void Game_logic::create_troop(int first_index, int second_index) {
+  Troop* troop = new Troop;
+  troop->set_ap(10);
+  troop->set_dp(10);
+  troop->set_hp(10);
+  troop->set_price(10);
+  map->node_map[first_index][second_index]->set_entity(troop);
 }
 
 void Game_logic::update_map_from_json(json msg_from_server) {
@@ -81,9 +96,9 @@ void Game_logic::update_map_from_json(json msg_from_server) {
   }
 }
 
-void Game_logic::write_json_to_file(json janos) {
+void Game_logic::write_json_to_file(json janos, std::string file_name) {
   ofstream file;
-  file.open("Game_saves/json.json");
+  file.open(file_name.c_str());
   file << janos;
   file.close();
 }

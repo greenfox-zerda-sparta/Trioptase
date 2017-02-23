@@ -7,13 +7,7 @@ using std::endl;
 const int WAIT = 5000;
 
 int main(int argc, char* argv[]) {
-  Broadcast ray("10.27.99.255", 1234, 1233);
-  
-  /*cout << "ip: " << ray.ip_address << endl;
-  cout << "local port: " << ray.local_port << endl;
-  cout << "remote port: " << ray.remote_port << endl;
-  cout << "decimal ip(169567231): " << ray.server_ip.host << endl;
-  cout << "decimal ip's port(1234): " << ray.server_ip.port << endl;*/
+  Broadcast ray("255.255.255.255", 1234, 1233);
 
   ray.set_client();
   bool running = true;
@@ -26,8 +20,7 @@ int main(int argc, char* argv[]) {
       ray.server_mode = false;
       running = false;
     }
-    int current_time = SDL_GetTicks();
-    if (current_time - start > WAIT) {
+    if (SDL_GetTicks() - start > WAIT) {
       cout << "server mode start\n";
       ray.server_mode = true;
       running = false;

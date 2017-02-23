@@ -1,6 +1,8 @@
 #pragma once
 #include <SDL_net.h>
 #include <string>
+#include "Server.h"
+#include "Client.h"
 
 using std::string;
 
@@ -25,5 +27,7 @@ public:
   const string ip_address;
   int32_t remote_port;
   int32_t local_port;
+  Server* server = NULL;
+  Client* client = NULL;
 };
 

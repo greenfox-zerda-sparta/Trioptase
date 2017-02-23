@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL_net.h>
 #include <string>
+#include "Network.h"
 #include "Server.h"
 #include "Client.h"
 
@@ -15,7 +16,7 @@ public:
   void send();
   int recieve();
   void start_game();
-  void start_server_mode() {};
+  void start_server_mode();
   void start_client_mode() {};
 public:
   bool server_mode;
@@ -27,7 +28,6 @@ public:
   const string ip_address;
   int32_t remote_port;
   int32_t local_port;
-  Server* server = NULL;
-  Client* client = NULL;
+  Network* communicate = nullptr;
 };
 

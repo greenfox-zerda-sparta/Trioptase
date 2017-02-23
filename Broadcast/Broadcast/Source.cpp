@@ -1,5 +1,8 @@
 #include "Broadcast.h"
 #include <iostream>
+#include "json.hpp"
+
+using json = nlohmann::json;
 
 using std::cout;
 using std::endl;
@@ -26,6 +29,8 @@ int main(int argc, char* argv[]) {
       running = false;
     }
   }
+  json json = { "alma", 5 };
   ray.start_game();
+  ray.communicate->send(json);
   return 0;
 }

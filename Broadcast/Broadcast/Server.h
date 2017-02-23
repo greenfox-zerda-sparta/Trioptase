@@ -1,39 +1,30 @@
 #pragma once
 #include <iostream>
-#include <SDL.h>
-#include <SDL_net.h>
-#include <conio.h>
 #include <string>
-#include <cstring>
-#include <WindowsX.h>
-#include "json.hpp"
 #include <vector>
+#include "Network.h"
 
-using json = nlohmann::json;
 using std::string;
 using std::vector;
 
-class Server {
+class Server: public Network {
 private:
+  SDLNet_SocketSet set;
   IPaddress ip;
   TCPsocket server;
   TCPsocket client;
-  SDLNet_SocketSet set;
-  int activeSockets;
-  int gotMessage;
-  bool set_stat;
   char client_chars[100];
-  const char* server_chars;
-  string client_mess;
-  string server_mess;
+  vector<uint8_t> message_vector;
+  json client_mess_json;
+  bool has_client = false;
 public:
-  Server();
-  void server_init();
-  void server_send(json& _message);
-  string server_receive();
+  Server(); 
+  void server_init(); 
+  void send(json& _message); 
+  json receive();
   void server_close();
   ~Server();
 private:
+  void recived_message_to_json();
   string json_to_string(json& _message);
-
 };

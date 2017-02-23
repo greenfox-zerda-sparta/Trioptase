@@ -131,6 +131,8 @@
   <ItemGroup>
     <ClInclude Include="Broadcast.h" />
     <ClInclude Include="Client.h" />
+    <ClInclude Include="json.hpp" />
+    <ClInclude Include="Network.h" />
     <ClInclude Include="Server.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

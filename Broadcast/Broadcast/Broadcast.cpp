@@ -35,7 +35,12 @@ void Broadcast::start_game() {
   server_mode ? start_server_mode() : start_client_mode();
 }
 
+void Broadcast::start_server_mode() {
+  communicate = new Server;
+}
+
 Broadcast::~Broadcast() {
   SDLNet_FreePacket(packet);
   SDLNet_Quit();
+  delete communicate;
 }

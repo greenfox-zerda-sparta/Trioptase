@@ -48,7 +48,7 @@ void Broadcast::start_server_mode() {
 }
 
 void Broadcast::start_client_mode() {
-  Uint8 msg = *income->data;
+  Uint8 msg = *(income->data);
   string ip = std::to_string(msg);
   communicate = new Client(ip);
   std::cout << "client mode start to ip: " << ip << std::endl;

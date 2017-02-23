@@ -185,12 +185,13 @@
     <ClInclude Include="User_input\User_input.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="pictures\64x64.png" />
+    <Image Include="pictures\troop.png" />
     <Image Include="pictures\building.png" />
     <Image Include="pictures\building_selected.png" />
     <Image Include="pictures\panel.png" />
     <Image Include="pictures\panel_grid.png" />
     <Image Include="pictures\smoke.png" />
+    <Image Include="pictures\troop_selected.png" />
     <Image Include="pictures\wallpaper.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

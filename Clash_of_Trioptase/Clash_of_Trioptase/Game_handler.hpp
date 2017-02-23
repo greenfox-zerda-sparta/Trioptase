@@ -16,8 +16,15 @@ private:
   Texture_manager* drawer;
   User_input* ui;
   std::pair<int, int> selected_coordinates;
-  bool pin_building();
-  bool select_building_from_panel();
+  void static_panel();
+  bool select_building;
+  void select_building_from_panel(bool& clicked);
+  void pin_building(bool& clicked);
+  bool select_troop_on_panel;
+  void select_troop_from_panel(bool& clicked);
+  void pin_troop(bool& clicked);
+  bool select_enemy_village;
+  void show_enemy_village(bool& clicked);
 public:
   Game_handler();
   void initialization();

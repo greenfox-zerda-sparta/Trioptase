@@ -25,8 +25,8 @@ void Broadcast::start_listening() {
 void Broadcast::send() {
   string msg = std::to_string(my_ip.host);
   memcpy(packet->data, msg.c_str(), msg.length());
-  packet->len = msg.length();
-  std::cout << "send packet's data" << packet->data << std::endl;
+  packet->len = msg.length() + 1;
+  std::cout << "send packet's data: " << packet->data << std::endl;
   SDLNet_UDP_Send(outSocket, -1, packet);
 }
 
@@ -44,9 +44,10 @@ void Broadcast::start_game() {
 }
 
 void Broadcast::start_server_mode() {
+  start_broadcasting();
   communicate = new Server;
   std::cout << "server mode start" << std::endl;
-  start_broadcasting();
+
 }
 
 void Broadcast::start_client_mode() {
@@ -54,7 +55,7 @@ void Broadcast::start_client_mode() {
   for (int i = 0; i < 9; i++) {
     ip_str += income->data[i];
   }
-  std::cout << "ip string: " << ip_str << std::endl;
+  std::cout << "Client mode : ip string: " << ip_str << std::endl;
   communicate = new Client(ip_str);
 }
 
@@ -67,7 +68,8 @@ void Broadcast::resolve_IP() {
 
 void Broadcast::start_broadcasting() {
   resolve_IP();
-  while (1) {
+  int start_time = SDL_GetTicks();
+  while (SDL_GetTicks() - start_time < 10000) {
     send();
   }
 }

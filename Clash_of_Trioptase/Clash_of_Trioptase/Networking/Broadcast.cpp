@@ -1,14 +1,14 @@
 #include "Broadcast.h"
 #include <math.h>
 
-Broadcast::Broadcast(const string& ip, int32_t remote, int32_t local): ip_address(ip) {
+Broadcast::Broadcast(const string& ip, int32_t remote, int32_t local) : ip_address(ip) {
   remote_port = remote;
   local_port = local;
   SDLNet_Init();
   server_mode = false;
   set_server();
   set_client();
-  start_listening();
+  //start_listening();
 }
 
 void Broadcast::start_listening() {
@@ -25,8 +25,8 @@ void Broadcast::start_listening() {
 void Broadcast::send() {
   string msg = std::to_string(my_ip.host);
   memcpy(packet->data, msg.c_str(), msg.length());
-  packet->len = msg.length();
-  std::cout << "send packet's data" << packet->data << std::endl;
+  packet->len = msg.length() + 1;
+  std::cout << "send packet's data: " << packet->data << std::endl;
   SDLNet_UDP_Send(outSocket, -1, packet);
 }
 
@@ -59,7 +59,7 @@ void Broadcast::start_client_mode() {
 
 void Broadcast::resolve_IP() {
   my_ip.host = NULL;
-  my_ip.port = 69;  
+  my_ip.port = 69;
   SDLNet_ResolveHost(&my_ip, SDLNet_ResolveIP(&my_ip), 69);
   my_ip.host = SDL_Swap32(my_ip.host);
 }

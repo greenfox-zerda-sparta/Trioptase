@@ -14,7 +14,6 @@ public:
   Broadcast(const string& ip, int32_t remote, int32_t local);
   ~Broadcast();
 private:
-  void start_listening();//
   bool recieve(); //
   void start_game(); //
   void start_server_mode(); //
@@ -23,6 +22,7 @@ private:
   void send(); //
   void start_client_mode();//
 public:
+  void start_listening();
   void set_server();
   void set_client();
 public:

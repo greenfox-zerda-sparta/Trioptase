@@ -2,6 +2,7 @@
 
 Client::Client(string ip_address) {
   this->ip_address = ip_address;
+  client_init();
 }
 
 void Client::client_init() {

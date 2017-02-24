@@ -3,6 +3,7 @@
 
 
 Server::Server() {
+  server_init();
 }
 
 void Server::server_init() {

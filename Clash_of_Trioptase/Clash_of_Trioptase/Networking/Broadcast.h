@@ -7,7 +7,7 @@
 
 using std::string;
 
-const int WAIT = 2000;
+const int WAIT = 1000;
 
 class Broadcast {
 public:

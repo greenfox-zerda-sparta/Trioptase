@@ -55,6 +55,7 @@ void Broadcast::start_client_mode() {
     ip_str += income->data[i];
   }
   communicate = new Client(ip_str);
+  std::cout << "start client mode with ip: " << ip_str << std::endl;
 }
 
 void Broadcast::resolve_IP() {

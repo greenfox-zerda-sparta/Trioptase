@@ -17,7 +17,8 @@ void Game_handler::pin_building(bool& clicked) {
   if (clicked) {
     if (selected_coordinates.first > 0 && selected_coordinates.first < 29) {
       Game_logic::get_game_instance()->create_building(selected_coordinates.first, selected_coordinates.second);
-      ///this->my_village = Game_logic::get_game_instance()->map->to_json();
+      this->my_village = Game_logic::get_game_instance()->map->to_json();
+      std::cout << my_village;
       ///network->communicate->send(my_village);
       clicked = false;
     }
@@ -35,7 +36,7 @@ void Game_handler::pin_troop(bool& clicked) {
   if (clicked) {
     if (selected_coordinates.first > 0 && selected_coordinates.first < 29) {
       Game_logic::get_game_instance()->create_troop(selected_coordinates.first, selected_coordinates.second);        
-      ///this->my_village = Game_logic::get_game_instance()->map->to_json();
+      this->my_village = Game_logic::get_game_instance()->map->to_json();
       ///network->communicate->send(my_village);      
       clicked = false;
     }

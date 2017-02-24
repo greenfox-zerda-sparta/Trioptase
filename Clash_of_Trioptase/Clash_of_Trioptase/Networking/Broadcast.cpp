@@ -50,21 +50,11 @@ void Broadcast::start_server_mode() {
 }
 
 void Broadcast::start_client_mode() {
-  //std::cout << "recieved packet's data: " << income->data << std::endl;
-  //Uint8* msg_array = new Uint8[9];
-  //std::cout << income->len << std::endl;
-  //memcpy(msg_array, income->data, income->len+1);
-  //std::cout << msg_array << " & " << income->data << std::endl;
-  //std::cout << "msg_array: " << msg_array << std::endl;
-  //Uint8 msg=0;
-  //for (int i = 9; i > 0; i--) {
-   // msg += msg_array[i] * pow(10, i);
-  //}
- // std::cout << "msg: " << msg << std::endl;
-  //string ip = std::to_string(msg);
-  communicate = new Client("10.27.99.18");
-  std::cout << "statr client mode" << std::endl;
-  //delete[] msg_array;
+  string ip_str;
+  for (int i = 0; i < 9; i++) {
+    ip_str += income->data[i];
+  }
+  communicate = new Client(ip_str);
 }
 
 void Broadcast::resolve_IP() {

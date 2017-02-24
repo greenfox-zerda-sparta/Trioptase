@@ -50,11 +50,12 @@ void Broadcast::start_server_mode() {
 }
 
 void Broadcast::start_client_mode() {
-  std::cout << "income->data: " << income->data << std::endl;
-  const char* ip = new char[10];
-  memcpy(&ip, income->data, 10);
-  std::cout << "const char* ip[10]: " << ip << std::endl;
-  communicate = new Client(ip);
+  string ip_str;
+  for (int i = 0; i < 9; i++) {
+    ip_str += income->data[i];
+  }
+  std::cout << "ip string: " << ip_str << std::endl;
+  communicate = new Client(ip_str);
 }
 
 void Broadcast::resolve_IP() {

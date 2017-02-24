@@ -18,7 +18,7 @@ void Game_handler::pin_building(bool& clicked) {
     if (selected_coordinates.first > 0 && selected_coordinates.first < 29) {
       Game_logic::get_game_instance()->create_building(selected_coordinates.first, selected_coordinates.second);
       this->my_village = Game_logic::get_game_instance()->map->to_json();
-      network->communicate->send(my_village);
+      ///network->communicate->send(my_village);
       clicked = false;
     }
   }
@@ -36,7 +36,7 @@ void Game_handler::pin_troop(bool& clicked) {
     if (selected_coordinates.first > 0 && selected_coordinates.first < 29) {
       Game_logic::get_game_instance()->create_troop(selected_coordinates.first, selected_coordinates.second);        
       this->my_village = Game_logic::get_game_instance()->map->to_json();
-      network->communicate->send(my_village);      
+      ///network->communicate->send(my_village);      
       clicked = false;
     }
   }
@@ -145,9 +145,9 @@ void Game_handler::initialization() {
 }
 
 void Game_handler::run() {  
-  network = new Broadcast("255.255.255.255", 1234, 1233);
-  std::thread network_receive(&Game_handler::network_update_map, &Game_handler());
-  network_receive.detach();
+  ///*network = new Broadcast("255.255.255.255", 1234, 1233);
+  //std::thread network_receive(&Game_handler::network_update_map, &Game_handler());
+  //network_receive.detach();*/
 
   bool running = true;
 
@@ -166,9 +166,9 @@ void Game_handler::run() {
     window->render_present();
   }
 
-  if (network_receive.joinable()) {
-    network_receive.join();
-  }
+  ////if (network_receive.joinable()) {
+  ////  network_receive.join();
+  ////}
 
 }
 

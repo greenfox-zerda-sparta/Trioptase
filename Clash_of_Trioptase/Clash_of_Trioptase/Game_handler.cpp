@@ -152,7 +152,7 @@ void Game_handler::run() {
   //network_receive.detach();
 
   bool running = true;
-  network->start_listening();
+  //network->start_listening();
   while (running) {
     ui->input_handler(running, this->selected_coordinates);
 

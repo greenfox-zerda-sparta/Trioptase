@@ -16,9 +16,10 @@ private:
   bool has_client = false;
 public:
   Server(); 
-  void server_init(); 
+  void init(); 
   void send(json& _message); 
   json receive();
+  bool wait_for_client();
   ~Server();
 private:
   void recived_message_to_json();

@@ -18,7 +18,7 @@ private:
 public:
   Client(string);
   string ip_address;
-  void client_init(); 
+  void init(); 
   void send(json&); 
   json receive(); 
   ~Client(); 

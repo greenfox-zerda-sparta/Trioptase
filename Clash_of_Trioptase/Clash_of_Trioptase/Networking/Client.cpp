@@ -2,16 +2,15 @@
 
 Client::Client(string ip_address) {
   this->ip_address = ip_address;
-  client_init();
 }
 
-void Client::client_init() {
-  SDLNet_Init();
+void Client::init() {
+  //SDLNet_Init();
   set = SDLNet_AllocSocketSet(2);
   SDLNet_ResolveHost(&ip, ip_address.c_str(), 1234);
   client = SDLNet_TCP_Open(&ip);
   SDLNet_TCP_AddSocket(set, client);
-  /*activeSockets = */SDLNet_CheckSockets(set, 10);
+  SDLNet_CheckSockets(set, 10);
 }
 
 

@@ -3,27 +3,16 @@
 
 
 Server::Server() {
-  server_init();
 }
 
-void Server::server_init() {
-  SDLNet_Init();
+void Server::init() {
+  std::cout << "///////////////////////////////////////////////meg egy nagy adagf lofasz just for wths" << std::endl;
   set = SDLNet_AllocSocketSet(2);
-  SDLNet_ResolveHost(&ip, NULL, 1234); //0.0.0.0:1234
+  SDLNet_ResolveHost(&ip, NULL, 1234);
   server = SDLNet_TCP_Open(&ip);
   SDLNet_TCP_AddSocket(set, server);
   client = SDLNet_TCP_Accept(server);
-  bool running = true;
-  while (running) {
-    if (client) {
-      SDLNet_TCP_AddSocket(set, client);
-      has_client = true;
-      running = false;
-    }
-    else {
-      client = SDLNet_TCP_Accept(server);
-    }
-  }
+  client_connected = wait_for_client();
 }
 
 void Server::send(json& _message) {
@@ -52,6 +41,24 @@ json Server::receive() {
     }
   }
   return client_mess_json;
+}
+
+bool Server::wait_for_client() {
+  int start = SDL_GetTicks();
+  bool running = true;
+  while (running) {
+    std::cout << "client: " << client << std::endl;
+    if (client || start - SDL_GetTicks() < 1000) {
+      SDLNet_TCP_AddSocket(set, client);
+      has_client = true;
+      running = false;
+      return  client ? true : false;
+    }
+    else {
+      client = SDLNet_TCP_Accept(server);
+    }
+  }
+  return false;
 }
 
 void Server::recived_message_to_json() {

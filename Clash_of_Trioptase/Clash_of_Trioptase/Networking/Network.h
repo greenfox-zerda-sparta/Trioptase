@@ -14,7 +14,8 @@ using std::vector;
 class Network {
 public:
   virtual json receive() = 0;
+  virtual void init() = 0;
   virtual void send(json&) = 0;
   string json_to_string(json& _message);
-
+  bool client_connected;
 };

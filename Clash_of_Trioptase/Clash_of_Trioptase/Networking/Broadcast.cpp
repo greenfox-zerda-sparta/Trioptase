@@ -1,5 +1,4 @@
 #include "Broadcast.h"
-#include <math.h>
 
 Broadcast::Broadcast(const string& ip, int32_t remote, int32_t local) : ip_address(ip) {
   remote_port = remote;
@@ -40,13 +39,17 @@ bool Broadcast::recieve() {
 }
 
 void Broadcast::start_game() {
+
   server_mode ? start_server_mode() : start_client_mode();
 }
 
 void Broadcast::start_server_mode() {
   communicate = new Server;
+  while (!communicate->client_connected) {
+    communicate->init();
+    start_broadcasting();
+  }
   std::cout << "server mode start" << std::endl;
-  start_broadcasting();
 }
 
 void Broadcast::start_client_mode() {
@@ -55,6 +58,7 @@ void Broadcast::start_client_mode() {
     ip_str += income->data[i];
   }
   communicate = new Client(ip_str);
+  communicate->init();
   std::cout << "start client mode with ip: " << ip_str << std::endl;
 }
 
@@ -68,7 +72,7 @@ void Broadcast::resolve_IP() {
 void Broadcast::start_broadcasting() {
   resolve_IP();
   int start_time = SDL_GetTicks();
-  while (SDL_GetTicks() - start_time < 10000) {
+  while (SDL_GetTicks() - start_time < 1000) {
     send();
   }
 }

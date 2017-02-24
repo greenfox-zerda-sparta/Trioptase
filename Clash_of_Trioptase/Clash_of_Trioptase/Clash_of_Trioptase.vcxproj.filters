@@ -28,6 +28,9 @@
     <Filter Include="Logic">
       <UniqueIdentifier>{ae3bc62b-0ab2-43e4-8f50-8064cb7f4ad4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Networking">
+      <UniqueIdentifier>{f0247a95-b2bc-436e-85cd-42b19739bfe9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test.cpp">
@@ -72,6 +75,18 @@
     <ClCompile Include="Logic\Path_finder.cpp">
       <Filter>Logic</Filter>
     </ClCompile>
+    <ClCompile Include="Networking\Broadcast.cpp">
+      <Filter>Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="Networking\Client.cpp">
+      <Filter>Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="Networking\Network.cpp">
+      <Filter>Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="Networking\Server.cpp">
+      <Filter>Networking</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_handler.hpp">
@@ -115,6 +130,18 @@
     </ClInclude>
     <ClInclude Include="Logic\Path_finder.hpp">
       <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Networking\Broadcast.h">
+      <Filter>Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="Networking\Client.h">
+      <Filter>Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="Networking\Network.h">
+      <Filter>Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="Networking\Server.h">
+      <Filter>Networking</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

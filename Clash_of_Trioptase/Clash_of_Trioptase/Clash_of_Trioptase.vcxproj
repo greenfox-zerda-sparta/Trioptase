@@ -165,6 +165,10 @@
     <ClCompile Include="Logic\Node.cpp" />
     <ClCompile Include="Logic\Path_finder.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Networking\Broadcast.cpp" />
+    <ClCompile Include="Networking\Client.cpp" />
+    <ClCompile Include="Networking\Network.cpp" />
+    <ClCompile Include="Networking\Server.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="User_input\User_input.cpp" />
   </ItemGroup>
@@ -182,6 +186,10 @@
     <ClInclude Include="Game_handler.hpp" />
     <ClInclude Include="Logic\Node.hpp" />
     <ClInclude Include="Logic\Path_finder.hpp" />
+    <ClInclude Include="Networking\Broadcast.h" />
+    <ClInclude Include="Networking\Client.h" />
+    <ClInclude Include="Networking\Network.h" />
+    <ClInclude Include="Networking\Server.h" />
     <ClInclude Include="User_input\User_input.hpp" />
   </ItemGroup>
   <ItemGroup>

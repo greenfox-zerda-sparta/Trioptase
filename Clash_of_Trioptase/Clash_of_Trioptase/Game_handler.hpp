@@ -6,6 +6,7 @@
 #include <thread>
 #include <mutex>
 #include <iostream>
+#include "Networking/Broadcast.h"
 
 static const int WINDOW_WIDTH(640);
 static const int WINDOW_HEIGHT(640);
@@ -15,9 +16,13 @@ static const int PANEL_WIDTH(260);
 class Game_handler {
 private:
   Window* window;
+  Broadcast* network = NULL;
   Texture_manager* drawer;
   User_input* ui;
-  std::pair<int, int> selected_coordinates;
+  std::pair<int, int> selected_coordinates;  
+  json my_village;
+  json enemy_village;
+  int one;
   void static_panel();
   bool select_building;
   void select_building_from_panel(bool& clicked);
@@ -34,8 +39,10 @@ private:
   void selection_controller();
   void background_selector();
   void network_connection();
+
   bool first_round;
 public:
+  void network_update_map();
   Game_handler();
   void initialization();
   void run();

@@ -17,6 +17,8 @@ void Game_handler::pin_building(bool& clicked) {
   if (clicked) {
     if (selected_coordinates.first > 0 && selected_coordinates.first < 29) {
       Game_logic::get_game_instance()->create_building(selected_coordinates.first, selected_coordinates.second);
+      this->my_village = Game_logic::get_game_instance()->map->to_json();
+      network->communicate->send(my_village);
       clicked = false;
     }
   }
@@ -33,6 +35,8 @@ void Game_handler::pin_troop(bool& clicked) {
   if (clicked) {
     if (selected_coordinates.first > 0 && selected_coordinates.first < 29) {
       Game_logic::get_game_instance()->create_troop(selected_coordinates.first, selected_coordinates.second);        
+      this->my_village = Game_logic::get_game_instance()->map->to_json();
+      network->communicate->send(my_village);      
       clicked = false;
     }
   }
@@ -40,9 +44,9 @@ void Game_handler::pin_troop(bool& clicked) {
 
 void Game_handler::select_enemy_button(bool& clicked) {
   if (selected_coordinates.first > 32 && selected_coordinates.first < 42 && selected_coordinates.second > 20 && selected_coordinates.second < 23) {
-    Game_logic::get_game_instance()->write_json_to_file(Game_logic::get_game_instance()->map->to_json(), "Game_saves/json.json");
+    Game_logic::get_game_instance()->write_json_to_file(Game_logic::get_game_instance()->map->to_json(), "Game_saves/json.json");    
     Game_logic::get_game_instance()->map->clear_map();
-    Game_logic::get_game_instance()->map->init_map();
+    Game_logic::get_game_instance()->map->init_map();    
     Game_logic::get_game_instance()->update_map_from_json(Game_logic::get_game_instance()->read_json_from_file("Multiplayer_data/json.json"));
     clicked = true;
     selected_coordinates.first = 50;
@@ -60,12 +64,12 @@ void Game_handler::show_enemy_village(bool& clicked) {
 void Game_handler::select_my_button(bool& clicked) {
   if (selected_coordinates.first > 32 && selected_coordinates.first < 42 && selected_coordinates.second > 18 && selected_coordinates.second < 21) {
     if (!first_round) {
-      Game_logic::get_game_instance()->write_json_to_file(Game_logic::get_game_instance()->map->to_json(), "Multiplayer_data/json.json");            
+      Game_logic::get_game_instance()->write_json_to_file(Game_logic::get_game_instance()->map->to_json(), "Multiplayer_data/json.json");      
     }          
       Game_logic::get_game_instance()->map->clear_map();
       Game_logic::get_game_instance()->map->init_map();
-      Game_logic::get_game_instance()->update_map_from_json(Game_logic::get_game_instance()->read_json_from_file("Game_saves/json.json"));
-    
+      Game_logic::get_game_instance()->update_map_from_json(Game_logic::get_game_instance()->read_json_from_file("Game_saves/json.json"));      
+
     first_round = false;
     clicked = true;
     selected_coordinates.first = 50;
@@ -101,8 +105,15 @@ void Game_handler::background_selector() {
 }
 
 void Game_handler::network_connection() {
-  //std::thread random_builder(&recursive_level::porgettyu, &rlvl, &running, &mazing);
-  //random_builder.detach();
+}
+
+void Game_handler::network_update_map() {
+  std::mutex mtx;
+  mtx.lock();
+  
+  enemy_village = my_village;//network->communicate->receive();
+  std::cout << "update map method" << std::endl;
+  mtx.unlock();
 }
 
 Game_handler::Game_handler() {
@@ -113,6 +124,7 @@ Game_handler::Game_handler() {
   this->selected_coordinates.second = 19; // my_map botton y if you would like to launch the game with own map
   bool select_building = false;
   first_round = true;
+  one = 1;
 }
 
 void Game_handler::initialization() {
@@ -133,7 +145,10 @@ void Game_handler::initialization() {
 }
 
 void Game_handler::run() {  
-  this->network_connection();
+  network = new Broadcast("255.255.255.255", 1234, 1233);
+  std::thread network_receive(&Game_handler::network_update_map, &Game_handler());
+  network_receive.detach();
+
   bool running = true;
 
   while (running) {    
@@ -149,18 +164,21 @@ void Game_handler::run() {
     this->selection_controller();
 
     window->render_present();
-  }  
+  }
+
+  if (network_receive.joinable()) {
+    network_receive.join();
+  }
+
 }
 
 void Game_handler::deinitialization() {
   window->close();
-  /*if (random_builder.joinable()) {
-    random_builder.join();
-  }*/
 }
 
 Game_handler::~Game_handler() {
   delete this->window;
   delete this->drawer;
   delete this->ui;
+  delete this->network;
 }
